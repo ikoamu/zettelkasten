@@ -23,7 +23,7 @@ jobs:
       #   with:
       #     node-version: "16.x"
       - name: Copy graphdata
-        run: cp -r zettelkasten/graphdata.json ui/public/graphdata.json
+        run: cp -r zettelkasten/graphdata.json ui/graphdata.json
       - name: Test2
         run: ls -la ./ui
       # - name: Install Dependencies
