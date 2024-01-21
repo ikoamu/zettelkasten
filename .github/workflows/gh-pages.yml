@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16.x"
+      - name: Test
+        run: ls -la
       - name: Install Dependencies
         working-directory: ./org-roam-ui
         run: yarn
