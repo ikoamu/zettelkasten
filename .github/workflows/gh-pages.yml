@@ -22,16 +22,10 @@ jobs:
       #   uses: actions/setup-node@v3
       #   with:
       #     node-version: "16.x"
-      - name: Test1
-        run: ls -la \
-          && ls -la zettelkasten \
-          && ls -la ui
       - name: Copy graphdata
         run: cp -r zettelkasten/graphdata.json ui/public/graphdata.json
       - name: Test2
-        run: ls -la \
-          && ls -la zettelkasten \
-          && ls -la ui
+        run: ls -la ./ui
       # - name: Install Dependencies
       #   working-directory: ./org-roam-ui
       #   run: yarn
