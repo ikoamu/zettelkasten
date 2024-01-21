@@ -30,7 +30,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
+          node-version: "20.x"
 
       - name: Install Dependencies
         working-directory: ./ui
@@ -40,9 +40,9 @@ jobs:
         working-directory: ./ui/standalone
         run: ./build-standalone-server.sh ../../zettelkasten
 
-      # - name: add nojekyll
-      #   working-directory: ./ui
-      #   run: touch ./standalone/out/.nojekyll
+      - name: add nojekyll
+        working-directory: ./ui
+        run: touch ./standalone/out/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
