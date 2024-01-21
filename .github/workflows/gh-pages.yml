@@ -18,17 +18,17 @@ jobs:
         with:
           repository: ikoamu/org-roam-ui
           path: ui
-      # - name: Setup Node
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: "16.x"
       - name: Copy graphdata
         run: cp -r zettelkasten/graphdata.json ui/graphdata.json
       - name: Test2
         run: ls -la ./ui
-      # - name: Install Dependencies
-      #   working-directory: ./org-roam-ui
-      #   run: yarn
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+      - name: Install Dependencies
+        working-directory: ./ui
+        run: yarn
       # - name: Build
       #   working-directory: ./org-roam-ui
       #   run: yarn build
