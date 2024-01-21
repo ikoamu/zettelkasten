@@ -19,8 +19,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16.x"
-          cache: yarn
-          cache-dependency-path: "./org-roam-ui"
       - name: Install Dependencies
         working-directory: ./org-roam-ui
         run: yarn
