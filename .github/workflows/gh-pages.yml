@@ -25,29 +25,36 @@ jobs:
           path: ui
       - name: Copy graphdata
         run: cp -r zettelkasten/graphdata.json ui/graphdata.json
-      - name: Test2
-        run: ls -la ./ui
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: "16.x"
+
       - name: Install Dependencies
         working-directory: ./ui
         run: yarn
+
       - name: Build
         working-directory: ./ui
         run: yarn build
+
       - name: Export
         working-directory: ./ui
         run: yarn export
+
       - name: add nojekyll
         working-directory: ./ui
         run: touch out/.nojekyll
+      - name: Test
+        run: ls -la ui/out
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           # Upload entire repository
           path: "./ui/out"
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
