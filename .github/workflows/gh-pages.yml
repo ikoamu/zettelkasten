@@ -29,17 +29,17 @@ jobs:
       - name: Install Dependencies
         working-directory: ./ui
         run: yarn
-      # - name: Build
-      #   working-directory: ./org-roam-ui
-      #   run: yarn build
-      # - name: Export
-      #   working-directory: ./org-roam-ui
-      #   run: yarn export
-      # - name: add nojekyll
-      #   working-directory: ./org-roam-ui
-      #   run: touch out/.nojekyll
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./org-roam-ui/out
+      - name: Build
+        working-directory: ./ui
+        run: yarn build
+      - name: Export
+        working-directory: ./ui
+        run: yarn export
+      - name: add nojekyll
+        working-directory: ./ui
+        run: touch out/.nojekyll
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ui/out
