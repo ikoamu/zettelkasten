@@ -41,8 +41,8 @@ jobs:
         run: ./build-standalone-server.sh ../../zettelkasten
 
       - name: add nojekyll
-        working-directory: ./ui/standalone
-        run: touch ./out/.nojekyll
+        working-directory: ./ui
+        run: touch ./standalone/out/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
