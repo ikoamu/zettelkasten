@@ -3,7 +3,9 @@
   "data": {
     "nodes": [
       {
-        "tags": [null],
+        "tags": [
+          null
+        ],
         "properties": {
           "CATEGORY": "20240121174014-hoge",
           "ID": "1BACA478-99AF-4366-BB33-315C0F241616",
@@ -19,7 +21,9 @@
         "id": "1BACA478-99AF-4366-BB33-315C0F241616"
       },
       {
-        "tags": [null],
+        "tags": [
+          null
+        ],
         "properties": {
           "CATEGORY": "20240121173827-test2",
           "ID": "26A3E3B8-9A11-4BA1-80B8-E3F57D0FB216",
@@ -35,7 +39,9 @@
         "id": "26A3E3B8-9A11-4BA1-80B8-E3F57D0FB216"
       },
       {
-        "tags": [null],
+        "tags": [
+          null
+        ],
         "properties": {
           "CATEGORY": "20240121173951-land",
           "ID": "2966E883-331A-4268-B695-8E63AAD4F0A5",
@@ -51,7 +57,9 @@
         "id": "2966E883-331A-4268-B695-8E63AAD4F0A5"
       },
       {
-        "tags": [null],
+        "tags": [
+          null
+        ],
         "properties": {
           "CATEGORY": "20240121173528-test",
           "ID": "2B303614-A36F-4497-B625-EBE8BF0C491B",
@@ -67,7 +75,9 @@
         "id": "2B303614-A36F-4497-B625-EBE8BF0C491B"
       },
       {
-        "tags": [null],
+        "tags": [
+          null
+        ],
         "properties": {
           "CATEGORY": "20240121173506-index",
           "ID": "AC24AD81-0D31-4751-806E-C43D81C61E19",
