@@ -31,7 +31,6 @@ jobs:
           node-version: "20.x"
 
       - name: Setup Graphdata Generator
-        working-directory: ./zettkasten
         run: npm ci
 
       - name: Generate Graphdata
