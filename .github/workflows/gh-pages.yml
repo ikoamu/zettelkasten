@@ -24,6 +24,7 @@ jobs:
           repository: ikoamu/org-roam-ui
           ref: feature/add-export-functionality
           path: ui
+
       - name: Copy graphdata
         run: cp -r zettelkasten/graphdata.json ui/graphdata.json
 
@@ -32,7 +33,19 @@ jobs:
         with:
           node-version: "20.x"
 
-      - name: Install Dependencies
+      - name: Setup Graphdata Generator
+        working-directory: ./zettkasten
+        run: npm ci
+
+      - name: Generate Graphdata
+        working-directory: ./zettelkasten
+        run: npm run generate-graphdata
+
+      - name: Generate Notes
+        working-directory: ./zettelkasten
+        run: ./generate-notes.sh
+
+      - name: Install org-roam-ui Dependencies
         working-directory: ./ui
         run: yarn
 
@@ -40,7 +53,7 @@ jobs:
         working-directory: ./ui/standalone
         run: ./build-standalone-server.sh ../../zettelkasten
 
-      - name: add nojekyll
+      - name: Add nojekyll
         working-directory: ./ui
         run: touch ./standalone/out/.nojekyll
 
