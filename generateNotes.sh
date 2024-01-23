@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p notes
+
 cat graphdata.json |
 jq -c '.data.nodes[]' |
 while read -r nodes; do
