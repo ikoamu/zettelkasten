@@ -25,9 +25,6 @@ jobs:
           ref: feature/add-export-functionality
           path: ui
 
-      - name: Copy graphdata
-        run: cp -r zettelkasten/graphdata.json ui/graphdata.json
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
