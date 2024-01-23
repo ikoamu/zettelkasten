@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test
-        uses: ikoamu/org-roam-ui-hosting
+        uses: ikoamu/org-roam-ui-hosting@main
       - name: Checkout
         uses: actions/checkout@v4
         with:
