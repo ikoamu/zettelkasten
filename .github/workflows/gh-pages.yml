@@ -36,13 +36,19 @@ jobs:
 
       - name: Generate Graphdata
         working-directory: ./zettelkasten
-        run: npm run generate \
-          cat ./graphdata.json
+        run: npm run generate
+
+      - name: Print Graphdata
+        working-directory: ./zettelkasten
+        run: cat ./graphdata.json
 
       - name: Generate Notes
         working-directory: ./zettelkasten
-        run: ./generateNotes.sh \
-          ls -l ./notes
+        run: ./generateNotes.sh
+
+      - name: Print Notes
+        working-directory: ./zettelkasten
+        run: ls -l ./notes
 
       - name: Install org-roam-ui Dependencies
         working-directory: ./ui
