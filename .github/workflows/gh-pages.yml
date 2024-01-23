@@ -32,11 +32,11 @@ jobs:
 
       - name: Setup Graphdata Generator
         working-directory: ./zettelkasten
-        run: ls -la
+        run: npm install
 
       - name: Generate Graphdata
         working-directory: ./zettelkasten
-        run: npm run generateGraphdata
+        run: npm run generate
 
       - name: Generate Notes
         working-directory: ./zettelkasten
