@@ -1,4 +1,4 @@
-name: Publish to Pages
+name: Generate static org-roam-ui page
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 #   id-token: write
 
 jobs:
-  build-deploy:
+  main:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
