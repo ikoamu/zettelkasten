@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       799D307C-B31B-4CF7-A986-3E19786CF7CE
+:END:
+#+title: emacs
+

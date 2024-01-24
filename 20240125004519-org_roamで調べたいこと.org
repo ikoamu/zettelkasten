@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       E8F40F53-137D-40E8-AAC7-12F79A4ED4C9
+:END:
+#+title: org-roamで調べたいこと
+
+* TODOS [0/4]
+** TODO ~org-roam-db-sync~ がうまくできていない
+** TODO ファイル間のリンクを削除する方法
+** TODO タグについて
+[[id:5DDF3B5D-0AE6-4229-8325-352C5C31463B][org-roamのタグについて]]
+** TODO Refについて

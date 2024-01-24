@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       47096488-6B07-44F6-9E5F-66587F585507
+:END:
+#+title: org-roam-ui
+
+[[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]の拡張機能
+
+[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]でメモを書きながら並行してブラウザでorg-roamで作成したメモやグラフを見ることができるWebアプリケーション

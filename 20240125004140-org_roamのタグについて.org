@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       5DDF3B5D-0AE6-4229-8325-352C5C31463B
+:END:
+#+title: org-roamのタグについて
+[[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]は ~org-roam-tag-add~ でトップレベルノードにタグを設定することができる
+https://www.orgroam.com/manual.html#Tags
+
+よく理解できていないので調べる
