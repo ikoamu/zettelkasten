@@ -17,4 +17,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: ikoamu/org-roam-ui-hosting@main
         with:
+          org-roam-db-filename: org-roam.db
           deploy-to-pages: true
