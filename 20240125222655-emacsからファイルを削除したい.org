@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       677FAFF1-ACEA-44AE-B659-E97DC48E45E0
+:END:
+#+title: emacsからファイルを削除したい
+
+1. [[id:18309702-38FB-4AB8-86AD-14B0B35A76F0][dired]](C-x d)を開いく
+2. ~d~ で削除フラグをつける
+   (~u~ or ~DEL~ で削除フラグを外せる)
+3. ~x~ で削除フラグが付けられたファイルを削除する

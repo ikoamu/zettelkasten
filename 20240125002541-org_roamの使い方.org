@@ -3,35 +3,11 @@
 :END:
 #+title: org-roamの使い方
 
+* 不要なノードを削除したい
+- ファイルまたはヘッドラインを削除後、 ~org-roam-db-sync~
+  - [[id:677FAFF1-ACEA-44AE-B659-E97DC48E45E0][emacsからファイルを削除したい]]
+- ノード間のリンクは手動で削除する必要がある
+
+https://www.reddit.com/r/OrgRoam/comments/smqq7t/how_to_delete_a_node/
 
 
-* org-roam-node-insert (C-c n i)
-* org-roam-buffer-toggle (C-c n l)
-* org-roam-graph (C-c n g)
-* org-roam-buffer-visit-thing
-* org-roam-buffer-display-dedicated
-* org-roam-ref-remove
-* org-roam-tag-remove
-* org-roam-promote-entire-buffer
-* org-roam-tag-add
-* org-roam-preview-visit
-* org-roam-buffer-refresh
-* org-roam-ref-add
-* org-roam-alias-add
-* org-roam-alias-remove
-* org-roam-migrate-wizard
-* org-roam-demote-entire-buffer
-* org-roam-dailies-goto-yesterday
-* org-roam-node-open
-* org-roam-diagnostics
-* org-roam-dailies-goto-date
-* org-roam-version
-* org-roam-dailies-capture-date
-* org-roam-dailies-find-directory
-* [[id:47096488-6B07-44F6-9E5F-66587F585507][org-roam-ui]]系
-** org-roam-ui-mode
-** org-roam-ui-sync-theme
-** org-roam-ui-export
-** org-roam-ui-follow-mode
-** org-roam-ui-node-local
-** org-roam-ui-node-zoom

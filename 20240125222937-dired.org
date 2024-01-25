@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       18309702-38FB-4AB8-86AD-14B0B35A76F0
+:END:
+#+title: dired
+

@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       43640AEE-E0DE-4FD3-A882-8C260D31FC3D
+:END:
+#+title: dired
+
