@@ -1,0 +1,18 @@
+:PROPERTIES:
+:ID:       C8229AB8-CBA8-4846-92DF-DC24456BAEB7
+:ROAM_REFS: https://docs.aws.amazon.com/ja_jp/cognito/latest/developerguide/authorization-endpoint.html
+:END:
+#+title: aws.cognito.signin.user.adminって何?
+#+filetags: :Cognito:AWS:
+
+* OAuthスコープ
+Cognitoのユーザープールのアプリクライアントを設定する上で、システム予約されたスコープは以下の5つ
+- ~openid~
+- ~email~
+- ~phone~
+- ~profile~
+- ~aws.cognito.signin.user.admin~
+* スコープにaws.cognito.signin.user.adminを設定すると
+ Cognito ユーザープールに対してアクセストークンを使用するAPIが実行できるようになる
+ e.g. ~UpdateUserAttributes~ , ~VerifyUserAttribute~
+ https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html

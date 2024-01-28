@@ -1,0 +1,32 @@
+:PROPERTIES:
+:ID:       3C19CF8D-6364-4D76-B1AA-035AEA1E0BD1
+:END:
+#+title: AmplifyのGoogleログインが失敗する
+#+filetags: :Cognito:AWS:
+
+* https://DOAMIN/error?error=invalid_request&client_id=CLIENT_ID
+→ CognitoのアプリケーションクライアントのホストされたUIからログインは成功する
+  → フロントエンド側の ~Amplify.configure()~ のdomainが誤ってる
+  → ~https://~ が不要だった
+
+* https://DOMAIN/error?error=redirect_mismatch&client_id=CLIENT_ID
+→ Cognitoのアプリケーションクライアントからログインは成功する
+  → フロントエンド側の ~redirectSignIn~ と ~redirectSignOut~ の末尾の ~/~ が不要だった
+
+* https://DOMAIN/?error_description=invalid_scope&state=STATE&error=invalid_request
+→ CognitoのアプリケーションクライアントのホストされたUIからログインしようとすると以下のエラーが表示された
+#+begin_src 
+Some requested scopes were invalid. {
+  valid=[
+    openid,
+    https://www.googleapis.com/auth/userinfo.email,
+    https://www.googleapis.com/auth/userinfo.profile
+  ],
+  invalid=[
+    aws.cognito.signin.user.admin
+  ]
+}
+#+end_src
+
+  → ~aws.cognito.signin.user.admin~ スコープを削除することで治った
+    [[id:C8229AB8-CBA8-4846-92DF-DC24456BAEB7][aws.cognito.signin.user.adminって何?]]

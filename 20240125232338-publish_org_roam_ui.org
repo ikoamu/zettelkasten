@@ -2,6 +2,7 @@
 :ID:       4ED39C6C-F151-4EA2-AF4E-B77718959ED3
 :END:
 #+title: publish-org-roam-ui
+#+filetags: :mywork:
 
 GitHub上で管理している[[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]のファイルから[[id:47096488-6B07-44F6-9E5F-66587F585507][org-roam-ui]]の静的サイトを生成するGitHub Action.
 
