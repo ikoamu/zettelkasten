@@ -30,3 +30,10 @@ Some requested scopes were invalid. {
 
   → ~aws.cognito.signin.user.admin~ スコープを削除することで治った
     [[id:C8229AB8-CBA8-4846-92DF-DC24456BAEB7][aws.cognito.signin.user.adminって何?]]
+
+* https://accounts.google.com/signin/oauth/error/v2?authError=AUTH_ERROR&client_id=CLIENT_ID
+→ Cognitoのアプリケーションクライアントからログインも失敗する
+→ Cognitoのエラー画面ではなく、Googleのエラー画面が表示される
+
+ 
+** TODO エラー画面のスクショを貼る
