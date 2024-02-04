@@ -18,4 +18,5 @@ jobs:
         uses: ikoamu/org-roam-ui-hosting@main
         with:
           org-roam-db-filename: org-roam.db
+          site-title: zettelkasten - ikoamu
           deploy-to-pages: true
