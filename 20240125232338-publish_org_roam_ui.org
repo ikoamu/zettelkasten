@@ -15,5 +15,5 @@ GitHub Pagesへのデプロイもできる
 以下を参考に作成した
 https://github.com/org-roam/org-roam-ui/discussions/109#discussioncomment-6500007
 
-
-
+* 画像表示
+[[./img/test.png]]
