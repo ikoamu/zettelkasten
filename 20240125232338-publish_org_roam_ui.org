@@ -17,3 +17,11 @@ https://github.com/org-roam/org-roam-ui/discussions/109#discussioncomment-650000
 
 * 画像表示
 [[./img/test.png]]
+
+org-roam-uiで上記のリンクは以下のようなimgタグに変換される
+#+begin_src html
+<img alt="Wow, an image." src="img/img%252Ftest.png" />
+#+end_src
+
+org-roam-uiの ~public~ ディレクトリにファイル名を変更してみる
+→ 

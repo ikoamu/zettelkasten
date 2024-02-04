@@ -34,5 +34,5 @@ Some requested scopes were invalid. {
 * https://accounts.google.com/signin/oauth/error/v2?authError=AUTH_ERROR&client_id=CLIENT_ID
 → Cognitoのアプリケーションクライアントからログインも失敗する
 → Cognitoのエラー画面ではなく、Googleのエラー画面が表示される
-[[./imgs/google_login_error.png]]
+[[./img/google_login_error.png]]
 → Google Cloudコンソールから承認済みの JavaScript 生成元にCognitoのドメインと承認済みのリダイレクト URIを正しく設定することでログインできるようになった
