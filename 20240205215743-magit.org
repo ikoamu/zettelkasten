@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       50EA3B03-F318-4EBB-90BB-00FDE6090B17
+:END:
+#+title: magit
+[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]からgitリポジトリの操作ができるツール
+https://qiita.com/maueki/items/70dbf62d8bd2ee348274
+
+* magit-status
+- magitの入口
+- ~C-x g~ をキーバインドにしている
+#+begin_src elisp
+(global-set-key (kbd "C-x g") 'magit-status)
+#+end_src
+
+* magit-statusで?押下でヘルプが表示される
+
+* add -> staging -> sキー
