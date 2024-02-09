@@ -2,6 +2,7 @@
 :ID:       677FAFF1-ACEA-44AE-B659-E97DC48E45E0
 :END:
 #+title: emacsからファイルを削除したい
+#+filetags: :emacs:
 
 1. [[id:812EB16C-B9DC-42E7-A0C3-13C65DE2D2E0][dired]](C-x d)を開いく
 2. ~d~ で削除フラグをつける

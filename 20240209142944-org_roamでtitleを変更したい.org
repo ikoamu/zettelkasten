@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       EB117E13-AD30-4B84-A939-771431D5B8EE
+:ROAM_REFS: https://org-roam.discourse.group/t/how-to-rename-a-note-with-everything-updated-at-the-same-time/300
+:END:
+#+title: org-roamでtitleを変更したい
+#+filetags: :org-roam:
+
+1. #+titleを変更する
+2. [[id:812EB16C-B9DC-42E7-A0C3-13C65DE2D2E0][dired]]でファイルをrenameuする
+   org-roamは[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]の中でリネームが行われたことを検知し、リンクを更新してくれる

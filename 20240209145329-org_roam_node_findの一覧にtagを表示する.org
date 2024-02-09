@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       19C371F3-78BD-4C1E-8BCF-92A82DAFDCCB
+:ROAM_REFS: https://org-roam.discourse.group/t/modify-org-roam-node-find-to-list-nodes-with-a-given-filetag/2651
+:END:
+#+title: org-roam-node-findの一覧にtagを表示する
+#+filetags: :org-roam:emacs:
+
+#+begin_src elisp
+(setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+#+end_src

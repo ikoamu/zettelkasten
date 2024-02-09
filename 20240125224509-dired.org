@@ -2,6 +2,7 @@
 :ID:       812EB16C-B9DC-42E7-A0C3-13C65DE2D2E0
 :END:
 #+title: dired
+#+filetags: :emacs:
 [[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]標準のファイラ
 
 * 基本操作

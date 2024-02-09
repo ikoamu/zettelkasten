@@ -2,6 +2,7 @@
 :ID:       50EA3B03-F318-4EBB-90BB-00FDE6090B17
 :END:
 #+title: magit
+#+filetags: :emacs:
 [[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]からgitリポジトリの操作ができるツール
 https://qiita.com/maueki/items/70dbf62d8bd2ee348274
 

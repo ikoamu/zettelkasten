@@ -2,4 +2,5 @@
 :ID:       D55F1AAC-759C-423D-9CA1-3FDD06C11C2F
 :END:
 #+title: Amplify
+#+filetags: :AWS:
 

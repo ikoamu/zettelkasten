@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       1EA9FE03-4CAD-4E96-9241-EC6BB4FEE2F0
+:END:
+#+title: magitがinstallできない
+#+filetags: :emacs:
+
+[[id:50EA3B03-F318-4EBB-90BB-00FDE6090B17][magit]]を ~package-list-package~ でinstall後に ~init.el~
+に ~(global-set-key (kbd "C-x g") 'magit-status)~ を追記して再起動した
+際にエラーが出ていた。
+
+原因は先にinstallしていた[[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]が ~magit-section~ に依存していたため、
+magitは無いけどmagit-statusは存在している状態だった模様
+
+~package-delete~ でmagit、org-roam、magit-sectionを削除して後に
+magit→org-roamの順に再度インストールすることで解決した。
