@@ -1,0 +1,31 @@
+:PROPERTIES:
+:ID:       F8FF0EFF-9193-4FF1-B3A5-5D66D1739054
+:END:
+#+title: RiverpodのProvider
+#+filetags: :Riverpod:Flutter:
+
+* Providerとは
+
+* 各Providerの使い分け
+** Provider
+https://riverpod.dev/ja/docs/providers/provider
+最もベーシックなプロバイダ。以下の用途で使われる
+- 計算結果をキャッシュするため。
+  - 別のProviderが取得した結果をフィルタして使いたい場合など
+    - 参照先のProviderの値が更新されるまで再評価されない
+    - ~ref.watch()~ があるおかげで参照先のプロバイダを再評価するタイミングを自動検知してくれる
+- 他のプロバイダに値（例えば Repository や HttpClient のインスタンス）を公開するため。
+- テスト実施時やウィジェット構築時に値をオーバーライドするため。
+- select を使わずにプロバイダやウィジェットの更新の条件を限定するため。
+  - *Providerが他のプロバイダと異なる点は*  ~ref.watch()~ を使うなどして
+    Provider の値が再評価された際に、 その値が以前の値と変わらない場合
+    は、値を監視する別のプロバイダもしくはウィジェットに通知しないとい
+    う点です。 つまり、そのプロバイダもしくはウィジェットが更新される
+    ことはないということです。
+** FutureProvider
+** StreamProvider
+** StateProvider
+** StateNotifierProvider
+** (Async)NotifierProvider
+** ChangeNotifierProvider
+非推奨。

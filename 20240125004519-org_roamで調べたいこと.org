@@ -2,6 +2,7 @@
 :ID:       E8F40F53-137D-40E8-AAC7-12F79A4ED4C9
 :END:
 #+title: org-roamで調べたいこと
+#+filetags: :org-roam:emacs:
 
 * TODOS [3/4]
 ** DONE ~org-roam-db-sync~ がうまくできていない
