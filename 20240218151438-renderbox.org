@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       493739A6-5120-4579-B268-A37D3CF0D474
+:ROAM_REFS: https://api.flutter.dev/flutter/rendering/RenderBox-class.html
+:END:
+#+title: RenderBox
+#+filetags: :Flutter:
+
+プロパティにサイズや位置などを持つ RenderObject のサブクラス
+多くのWidgetで描画の基礎となる矩形の抽象表現

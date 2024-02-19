@@ -1,0 +1,46 @@
+:PROPERTIES:
+:ID:       417BE9B2-1F8D-4D4F-917F-E8706EC593CF
+:END:
+#+title: AmplifyでGitHubログインしたい
+* 直近やること
+** TODO 以下のサイトをそのままやってみてログインできるか試してみる
+- https://github.com/TimothyJones/github-cognito-openid-wrapper
+  こちらの方が良さそうなので先に試してみる
+- https://sst.dev/examples/how-to-add-github-login-to-your-cognito-user-pool.html
+できたら、Cognitoの設定を見比べてエラーを解決する
+
+* 参考にできそうなサイト
+- https://sst.dev/examples/how-to-add-github-login-to-your-cognito-user-pool.html
+- https://github.com/aws-samples/cognito-custom-authentication
+- https://github.com/TimothyJones/github-cognito-openid-wrapper
+- https://qiita.com/tanaka_takurou/items/d5e20f86f75ae8725f73
+
+* idpの設定
+** プロバイダ名
+GitHub
+** クライアントID
+
+** クライアントシークレット
+
+** 許可されたスコープ
+
+** 識別子
+
+** 属性リクエストメソッド
+
+** セット方法（手動入力）
+
+*** 発行者URL
+
+*** トークンエンドポイント
+
+*** UserInfoエンドポイント
+
+*** Jwksエンドポイント
+
+* エラー諸々
+** http://localhost:5173/?error_description=GitHub+Error+-+502&state=XXXX&error=invalid_request
+- GitHubのログイン画面は表示される
+- ２要素認証後にアプリにはリダイレクトされるが、エラー
+- GitHubのDeveloper SettingsのAuthorization callback URLにはhttps://XXX.auth.ap-northeast-1.amazoncognito.com/oauth2/idpresponse が設定されている
+- CognitoのホストされたUIからログインしても同じエラー

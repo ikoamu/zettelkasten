@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       AF960D11-5967-495C-B832-59EB1B1B105E
+:ROAM_REFS: https://game.capcom.com/cfn/sfv/column-130890.html
+:END:
+#+title: 発生フレーム
+#+filetags: :格ゲー:game:
+
+[[./img/sf2_hassei.png]]
+格闘ゲームにおける発生フレームとは、技が出るまでの時間のことです。攻撃
+動作に入ってから最初の攻撃判定が出るまでの間を「発生」と呼びます。発生
+のフレーム数が小さいほど攻撃が出るのが速くなります
