@@ -2,6 +2,7 @@
 :ID:       47096488-6B07-44F6-9E5F-66587F585507
 :END:
 #+title: org-roam-ui
+#+filetags: :org-roam:
 
 [[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]の拡張機能
 

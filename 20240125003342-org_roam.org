@@ -2,4 +2,5 @@
 :ID:       DB5F02DD-8B76-4CDC-98D8-D79385963585
 :END:
 #+title: org-roam
+#+filetags: :org-roam:
 

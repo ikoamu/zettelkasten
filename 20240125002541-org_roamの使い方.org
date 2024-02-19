@@ -2,6 +2,7 @@
 :ID:       76955FCF-DD99-4EC0-8156-D4772E65F4A0
 :END:
 #+title: org-roamの使い方
+#+filetags: :org-roam:
 
 * 不要なノードを削除したい
 - ファイルまたはヘッドラインを削除後、 ~org-roam-db-sync~

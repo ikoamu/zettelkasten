@@ -2,6 +2,7 @@
 :ID:       417BE9B2-1F8D-4D4F-917F-E8706EC593CF
 :END:
 #+title: AmplifyでGitHubログインしたい
+#+filetags: :Amplify:AWS:
 * 直近やること
 ** TODO 以下のサイトをそのままやってみてログインできるか試してみる
 - https://github.com/TimothyJones/github-cognito-openid-wrapper
@@ -15,32 +16,79 @@
 - https://github.com/TimothyJones/github-cognito-openid-wrapper
 - https://qiita.com/tanaka_takurou/items/d5e20f86f75ae8725f73
 
-* idpの設定
-** プロバイダ名
+* Amplify
+#+begin_src js
+  export function override(
+      resources: AmplifyAuthCognitoStackTemplate,
+  ) {
+	  const idp = new cognito.CfnUserPoolIdentityProvider(
+		  resources.userPool,
+		  "GitHubIdp",
+		  {
+			  userPoolId: resources.userPool.ref,
+			  providerType: "OIDC",
+			  providerName: "GitHub",
+			  providerDetails: {
+				  client_id: "XXXX",
+				  client_secret: "XXXXXX",
+				  authorize_scopes: "openid user",
+				  attributes_request_method: "GET",
+				  oidc_issuer: "https://github.com",
+				  authorize_url: "https://github.com/login/oauth/authorize",
+				  token_url:
+					  "https://XXXX.execute-api.ap-northeast-1.amazonaws.com/Prod/token",
+				  attributes_url:
+					  "https://XXXX.execute-api.ap-northeast-1.amazonaws.com/Prod/user",
+				  jwks_uri:
+					  "https://XXXX.execute-api.ap-northeast-1.amazonaws.com/Prod/token",
+			  },
+			  attributeMapping: {
+				  email: "email",
+				  name: "name",
+				  picture: "avatar_url",
+			  },
+		  },
+	  );
+	  resources.userPoolClient.addDependency(idp);
+	  resources.userPoolClientWeb.addDependency(idp);
+	  resources.userPoolClient.supportedIdentityProviders = ["Google", "GitHub"];
+	  resources.userPoolClientWeb.supportedIdentityProviders = ["Google", "GitHub"];
+  }
+
+#+end_src
+** idpの設定
+*** プロバイダ名
 GitHub
-** クライアントID
+*** クライアントID
 
-** クライアントシークレット
+*** クライアントシークレット
 
-** 許可されたスコープ
+*** 許可されたスコープ
 
-** 識別子
+*** 識別子
 
-** 属性リクエストメソッド
+*** 属性リクエストメソッド
 
-** セット方法（手動入力）
+*** セット方法（手動入力）
 
-*** 発行者URL
+**** 発行者URL
 
-*** トークンエンドポイント
+**** トークンエンドポイント
 
-*** UserInfoエンドポイント
+**** UserInfoエンドポイント
 
-*** Jwksエンドポイント
+**** Jwksエンドポイント
 
+* gh-login-test2
+[[https://github.com/TimothyJones/github-cognito-openid-wrapper][github-cognito-openid-wrapper]]をつかってる
+1. 手動でCognitoのユーザープールを作成する
+2. GitHubでOAuth Appを作成する
+3. 
 * エラー諸々
 ** http://localhost:5173/?error_description=GitHub+Error+-+502&state=XXXX&error=invalid_request
 - GitHubのログイン画面は表示される
 - ２要素認証後にアプリにはリダイレクトされるが、エラー
 - GitHubのDeveloper SettingsのAuthorization callback URLにはhttps://XXX.auth.ap-northeast-1.amazoncognito.com/oauth2/idpresponse が設定されている
 - CognitoのホストされたUIからログインしても同じエラー
+
+
