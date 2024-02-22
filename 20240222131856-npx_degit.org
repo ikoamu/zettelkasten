@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       4858E934-B1EC-4359-A73E-20F27AF8AEC5
+:END:
+#+title: npx degit
+#+filetags: :npm:
+
+GitHubリポジトリの中の一部だけを簡単にダウンロードするツール
+
+- https://github.com/Rich-Harris/degit#readme
+- https://zenn.dev/sonialiang/articles/12399e6fda75c4
+
+

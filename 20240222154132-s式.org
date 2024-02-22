@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       0C407386-99D1-44B2-A096-F22B89B0C54E
+:END:
+#+title: S式
+#+filetags: :elisp:
+

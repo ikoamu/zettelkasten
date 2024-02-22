@@ -6,5 +6,5 @@
 #+filetags: :org-roam:
 
 1. #+titleを変更する
-2. [[id:812EB16C-B9DC-42E7-A0C3-13C65DE2D2E0][dired]]でファイルをrenameuする
+2. [[id:812EB16C-B9DC-42E7-A0C3-13C65DE2D2E0][dired]]でファイルをrenameする
    org-roamは[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]の中でリネームが行われたことを検知し、リンクを更新してくれる
