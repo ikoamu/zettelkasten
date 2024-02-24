@@ -1,0 +1,41 @@
+:PROPERTIES:
+:ID:       34EDBB4E-F1A8-4D98-A808-78AA50F2B80E
+:END:
+#+title: elispのクオート
+#+filetags: :elisp:
+
+- [[id:0C407386-99D1-44B2-A096-F22B89B0C54E][S式]]にはプログラムとデータの2面性がある
+- リストや[[id:C7533D83-7605-4A64-9B2A-7A975DF9B43C][シンボル(elisp)]]は評価されると *別物になる*
+  - [[id:DBEE8727-29A7-4F51-A6D8-E9239E0CDAE3][elispの関数呼び出し]]では関数に渡される引数は評価される
+- 引数のS式をそのままデータとして関数に渡したい時がある
+  - 評価を抑制したい
+- 評価を抑制したい時にリストやシンボルの前に ~'~ (クオート)を付ける
+- 別の記法として [[id:E02A573A-0AD0-49F1-AB88-9935DB83F1B4][quoteスペシャルフォーム]]を使うこともできる
+
+#+begin_src elisp
+(+ 1 3)
+#+end_src
+
+#+RESULTS:
+: 4
+
+#+begin_src elisp
+'(+ 1 3)
+#+end_src
+
+#+RESULTS:
+| + | 1 | 3 |
+
+#+begin_src elisp
+emacs-major-version
+#+end_src
+
+#+RESULTS:
+: 29
+
+#+begin_src elisp
+'emacs-major-verion
+#+end_src
+
+#+RESULTS:
+: emacs-major-verion

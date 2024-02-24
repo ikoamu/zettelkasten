@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       81489362-A1D5-4DFD-B51A-940F65B723C4
+:END:
+#+title: スペシャルフォーム
+#+filetags: :elisp:
+

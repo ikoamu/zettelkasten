@@ -3,6 +3,7 @@
 :ROAM_REFS: https://quruli.ivory.ne.jp/document/elisp_20.3/elisp_8.html
 :END:
 #+title: シンボル(elisp)
+#+filetags: :lisp:elisp:
 
 * シンボルとは
 - 一意な名前が付いたオブジェクト

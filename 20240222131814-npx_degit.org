@@ -1,4 +1,0 @@
-:PROPERTIES:
-:ID:       2F1E80DA-7438-46ED-95D5-B5DDC75CA75D
-:END:
-#+title: npx degit

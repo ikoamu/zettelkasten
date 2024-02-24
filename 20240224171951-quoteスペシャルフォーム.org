@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       E02A573A-0AD0-49F1-AB88-9935DB83F1B4
+:END:
+#+title: quoteスペシャルフォーム
+#+filetags: :elisp:
+

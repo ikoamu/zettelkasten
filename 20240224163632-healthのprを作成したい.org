@@ -1,0 +1,52 @@
+:PROPERTIES:
+:ID:       63204A08-2248-4C1F-A762-586D94501174
+:END:
+#+title: healthのPRを作成したい
+#+filetags: :OSS:Flutter:
+
+https://github.com/cph-cachet/flutter-plugins/tree/master/packages/health にPRを出したい。
+healthはflutter-pluginsのパッケージの１つ
+
+* 出したいPRに対応するissue
+https://github.com/cph-cachet/flutter-plugins/issues/550
+
+- HealthDataType.BLOOD_PRESSURE_SYSTOLICと
+  HealthDataType.BLOOD_PRESSURE_DIASTOLICでプラグインからアップルヘル
+  スにデータを書き込んでいます。しかし残念ながら、アップルヘルスにアク
+  セスしてもこのデータはありません。しかし、アップルヘルスのデータをエ
+  クスポートすると、BLOOD_PRESSURE_SYSTOLICとBLOOD_PRESSURE_DIASTOLIC
+  を見ることができます。
+
+- さらに調べた結果、Apple Healthの血圧ページに表示するためには、これを
+  相関関係として追加する必要があることがわかりました。これを行う方法は
+  ありますか？
+
+- また、Androidのgoogle fitの場合にも気づいた。収縮期と拡張期の両方を
+  同時に記述する必要がある。health 3.4.4のAPIでは、それぞれのデータ型
+  を個別に書くことしかできない。
+
+** 実際にやってみた
+healthパッケージ内のexampleで実施
+*** iOS
+**** バグの確認
+- 「心臓」のページにデータがないと表示される
+  [[./img/health_ios_before_blood_pressure_home.png]]
+- 血圧一覧に登録したデータが表示されない
+  [[./img/health_ios_before_blood_pressures_page.png]]
+- グラフには表示されている
+  [[./img/health_ios_before_blood_pressure_graph.png]]
+**** 修正
+https://github.com/ikoamu/flutter-plugins/commit/23063455a84941b872fb56fd4bf440b85ecd6655
+- [[./img/health_ios_after_blood_pressures_page.png]]
+- [[./img/health_ios_after_blood_pressure_details.png]]
+- [[./img/health_ios_after_blood_pressure_graph.png]]
+- [[./img/health_ios_after_blood_pressure_home.png]]
+
+* forkした自分のライブラリをアプリにインストール
+1. flutter-pluginsをfork
+2. forkしたリポジトリからブランチを作成 ~fix/write-blood-pressure~
+3. 作成したブランチをリモートにpush
+4. Flutterアプリ作成？→
+   https://github.com/cph-cachet/flutter-plugins/tree/master/packages/health/example からで良さそう
+
+* forkしたライブラリを利用する
