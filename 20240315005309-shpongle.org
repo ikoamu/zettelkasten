@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       475F0765-86FB-4DFE-88D7-E29F327EC49A
+:ROAM_REFS: https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%A5%E3%83%9D%E3%83%B3%E3%82%B0%E3%83%AB
+:END:
+#+title: Shpongle
+
+- [[id:C1FFC130-2697-4A49-8EA3-CF701E4808FB][イギリス]]のバンド
+- 電磁音楽と[[id:A7A9EB8A-4C82-4B49-BA74-7A6C5817650A][ワールドミュージック]]を基調とした[[id:1245B8AA-62D6-4160-B5DF-2E93FF64843B][サイケデリックバンド]]
+
+

@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       6D5E9808-B9DE-4B7E-BFFB-60D116B87106
+:END:
+#+title: tidalcyclesの音階(scale)
+#+filetags: :tidalcycles:
+
+tidalcycleで[[id:5BB91630-A572-4A92-BC7F-432BE4E5525B][音階(scale)]]を表現したい
+
+https://tidalcycles.org/docs/reference/harmony_melody/#scales
+
+| ド | レ | ミ | ファ｜ソ | ラ | シ |
+| C | D | E | F      | G | A | B |
+
+

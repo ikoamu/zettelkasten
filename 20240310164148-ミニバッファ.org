@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       619DC21D-28FA-4D03-BE16-D2ADD59E060D
+:END:
+#+title: ミニバッファ
+#+filetags: :emacs:
+

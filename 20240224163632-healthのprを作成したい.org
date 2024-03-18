@@ -42,6 +42,10 @@ https://github.com/ikoamu/flutter-plugins/commit/23063455a84941b872fb56fd4bf440b
 - [[./img/health_ios_after_blood_pressure_graph.png]]
 - [[./img/health_ios_after_blood_pressure_home.png]]
 
+*** Android
+[[id:0C2A558A-2B16-4E1E-BC36-DC4118EEBBA7][GoogleFitとHealthConnect]]の違いがよくわかっていない
+- ~writeBloodPressureHC~ と ~writeBloodPressure~ がある。前者がHealthConnect
+
 * forkした自分のライブラリをアプリにインストール
 1. flutter-pluginsをfork
 2. forkしたリポジトリからブランチを作成 ~fix/write-blood-pressure~

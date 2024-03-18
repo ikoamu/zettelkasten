@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       5BB91630-A572-4A92-BC7F-432BE4E5525B
+:END:
+#+title: 音階(scale)
+#+filetags: :music:
+
+音階とは、ある音からそのオクターブ上の音までの間を、特定の秩序によって
+並べた音列のこと
+
+
+

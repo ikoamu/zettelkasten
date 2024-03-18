@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       C969F7FD-BB17-4D80-8134-00607A320111
+:END:
+#+title: org-agenda
+#+filetags: :org-mode:org-roam:emacs:
+
+org-adgendaは[[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]に備わっているスケジュールを表示し、管理する一群の機能
+* TODO test

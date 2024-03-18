@@ -1,0 +1,13 @@
+:PROPERTIES:
+:ID:       A6A7F3D5-61FD-41B8-8A81-FE7B5FFC0A33
+:END:
+#+title: org-roamで新しいノードを作成したい
+#+filetags: :org-roam:
+
+https://emacs.stackexchange.com/questions/70436/create-new-org-roam-node-ignoring-pre-selected-existing-nodes
+通常、 ~org-roam-node-find~ を利用して新規にノードを作成するが、作成し
+たいノードの名前と既存のノードの名前の一部が一致してしまっている場合、
+新規にノードが作成できず、ヒットした既存のノードを選択してしまう。
+
+これは、一般的な補完系のフレームワークはEnterを押下すると[[id:619DC21D-28FA-4D03-BE16-D2ADD59E060D][ミニバッファ]]で選択中の候補を選択するようになっているから。
+自分の環境は [[id:EF1E401F-229D-4A2B-9BA0-457A21624DFB][ivy]]で補完をしているため、 ~C-M-j~ (~ivy-immediate-done~ )で候補を選択せずに新規にノードを作成できる。
