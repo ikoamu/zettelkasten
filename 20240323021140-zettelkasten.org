@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       F5A90785-FAB2-43C1-959C-9BB5CEDDA210
+:END:
+#+title: zettelkasten
+
+「Zettel」がメモを「kasten」が箱という意味
+* ルール
+https://iketerumens.com/what_is_zettelkasten/
+* 本
+[[id:55509DE5-D623-49FD-AAFA-D0F67CE49B82][take notes!]]

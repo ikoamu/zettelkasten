@@ -15,13 +15,5 @@ GitHub Pagesへのデプロイもできる
 以下を参考に作成した
 https://github.com/org-roam/org-roam-ui/discussions/109#discussioncomment-6500007
 
-* 画像表示
-[[./img/test.png]]
-
-org-roam-uiで上記のリンクは以下のようなimgタグに変換される
-#+begin_src html
-<img alt="Wow, an image." src="img/img%252Ftest.png" />
-#+end_src
-
-org-roam-uiの ~public~ ディレクトリにファイル名を変更してみる
-→ 
+* 追加機能
+- [[id:BD17A1FE-7B33-4468-ACA0-6B69EF1C4E7E][org-roam-uiのコードブロックにシンタックスハイライトを実装する]]

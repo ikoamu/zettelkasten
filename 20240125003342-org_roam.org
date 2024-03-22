@@ -2,5 +2,9 @@
 :ID:       DB5F02DD-8B76-4CDC-98D8-D79385963585
 :END:
 #+title: org-roam
-#+filetags: :org-roam:
+#+filetags: :org-mode:emacs:org-roam:
+* org-roamとは
+- [[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]のパッケージ
+- [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]を使ったナレッジ管理システム
+- [[id:F5A90785-FAB2-43C1-959C-9BB5CEDDA210][zettelkasten]]というノート術を元に作られた[[id:C3F2006C-B6A2-417F-8F8D-A8F7A7AE03CD][roam]]というツールの機能を参考にしている
 
