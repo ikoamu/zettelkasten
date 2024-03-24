@@ -4,6 +4,8 @@
 #+title: Flutterの束縛されない制約
 #+filetags: :Flutter:
 
+
+
 [[id:F2658354-621A-487C-95F9-8EB482E666AB][Flutterの制約]]の中には束縛されない制約「Unbounded constraints」というのものがある
 特定の状況では、ボックス（[[id:493739A6-5120-4579-B268-A37D3CF0D474][RenderBox]]）の制約が unbounded、つまり無限大になる。
 これは、最大幅または最大高さのいずれかがdouble.infinityに設定されることを意味する。
