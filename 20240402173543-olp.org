@@ -1,0 +1,13 @@
+:PROPERTIES:
+:ID:       40DC5010-C302-483F-A02C-B4CA6E83BAE0
+:END:
+#+title: olp
+#+filetags: :org-roam:
+
+https://org-roam.discourse.group/t/what-is-olp-olp/1922
+
+- [[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]で設定されるもの
+- ~outline-path~ の略
+- [[id:081A2901-A30A-403E-B962-CE3859A2B187][org-capture]]
+
+orgファイル自体ではなく、見出し（アウトライン）にIDを振る際に設定される

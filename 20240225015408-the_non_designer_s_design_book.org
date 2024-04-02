@@ -2,6 +2,7 @@
 :ID:       42D07F9E-DD09-4A83-B854-22A658DA22D4
 :END:
 #+title: The Non-Designer's Design Book
+#+filetags: :book:
 * Part1 デザインの原則
 ** Chapter 1 イントロダクション
 

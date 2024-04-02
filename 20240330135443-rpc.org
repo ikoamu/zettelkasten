@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       B2CD951B-D797-4180-9338-4202F4DB904F
+:END:
+#+title: RPC
+
+Remote Procedure Call
+https://www.ntt-west.co.jp/business/glossary/words-00229.html#:~:text=RPC%EF%BC%88Remote%20Procedure%20Call%EF%BC%89%E3%81%A8,%E3%81%AE%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB%E3%81%AE%E3%81%93%E3%81%A8%E3%81%A7%E3%81%99%E3%80%82

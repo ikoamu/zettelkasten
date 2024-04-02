@@ -4,4 +4,7 @@
 :END:
 #+title: planning-poker
 #+filetags: :mywork:
-[[id:D55F1AAC-759C-423D-9CA1-3FDD06C11C2F][Amplify]]と[[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]で作成したWebアプリ
+
+https://github.com/planning-p0ker/planning-poker
+
+- [[id:D55F1AAC-759C-423D-9CA1-3FDD06C11C2F][Amplify]]と[[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]で作成したWebアプリ

@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       0AF752DD-772F-43F6-AD69-E8993A62A211
+:END:
+#+title: Embedded App SDK
+#+filetags: :Discord:
+
+https://github.com/discord/embedded-app-sdk
+
+Embedded App SDKは、アプリケーションと[[id:63A71BCD-C71F-4EAF-9A31-4BE7B7947CA0][Discord]]間の[[id:B2CD951B-D797-4180-9338-4202F4DB904F][RPC]]通信を処理する。
+これによってゲームの様なインタラクティブなアクティビティを開発できる。

@@ -31,9 +31,17 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/3
 
 ** TODO 検索機能
 https://github.com/ikoamu/publish-org-roam-ui/issues/4
------> 村上さんに聞いてみる！！
+
+https://npmtrends.com/fast-fuzzy-vs-flexsearch-vs-fuse.js-vs-fuzzy-vs-lunr-vs-search-index
+見るとFuse.jsが人気そうか？
+
 - [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][tidalcycles]]の公式ドキュメントでは[[id:FE1BB533-6A7E-4709-B2BA-F366EF30E43C][algolia]]というやつを使っているみたい
+- [[id:9880562A-5A83-4E0A-AA3D-CB279C399CD2][flexsearch]]
+- [[id:705AE576-F876-42E1-BAB0-E4135A7D76D6][Fuse.js]]
 
 ** TODO ファビコン設定
 
 ** TODO インラインコードのスタイルもう少しかっこよくしたい
+
+* バグ修正
+** DONE [[id:A0578F9C-C1B6-4DB6-B27D-914E01E101FF][publish-org-roam-uiのヘッダーに設定している値でActionが失敗する]]

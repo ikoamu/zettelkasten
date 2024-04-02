@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       E5889D25-7616-4072-B6E0-7E759893F12B
+:END:
+#+title: Discord Activities
+#+filetags: :Discord:
+
+Discordアクティビティは[[id:63A71BCD-C71F-4EAF-9A31-4BE7B7947CA0][Discord]]内で実行できるWebアプリケーション
+
+- Docs: https://discord.com/developers/docs/activities/overview
+- Sample: https://discord.com/developers/docs/activities/overview#sample-projects
+- [[id:358813A6-381C-49E8-AEA0-10C29FE8047F][Building Your First Activity in Discord]]

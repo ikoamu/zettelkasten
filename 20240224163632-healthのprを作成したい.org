@@ -52,5 +52,3 @@ https://github.com/ikoamu/flutter-plugins/commit/23063455a84941b872fb56fd4bf440b
 3. 作成したブランチをリモートにpush
 4. Flutterアプリ作成？→
    https://github.com/cph-cachet/flutter-plugins/tree/master/packages/health/example からで良さそう
-
-* forkしたライブラリを利用する

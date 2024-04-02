@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       705AE576-F876-42E1-BAB0-E4135A7D76D6
+:END:
+#+title: Fuse.js
+#+filetags: :JavaScript:
+
+https://www.fusejs.io/
+
+- [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]の軽量な検索ライブラリ
+- フロントエンドで完結している
+- [[id:73FD1D67-FC4C-413E-B082-AD9F74F234C7][ファジー検索]]対応

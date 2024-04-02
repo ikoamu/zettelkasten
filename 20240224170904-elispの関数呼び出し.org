@@ -2,3 +2,5 @@
 :ID:       305EFD05-82D9-483D-892E-09D8CF6E0473
 :END:
 #+title: elispの関数呼び出し
+#+filetags: :elisp:
+

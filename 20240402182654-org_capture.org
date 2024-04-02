@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       081A2901-A30A-403E-B962-CE3859A2B187
+:END:
+#+title: org-capture
+#+filetags: :org-mode:
+
+

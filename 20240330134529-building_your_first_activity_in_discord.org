@@ -1,0 +1,67 @@
+:PROPERTIES:
+:ID:       358813A6-381C-49E8-AEA0-10C29FE8047F
+:END:
+#+title: Building Your First Activity in Discord
+#+filetags: :JavaScript:Discord:
+
+https://discord.com/developers/docs/activities/building-an-activity
+https://github.com/discord/getting-started-activity
+
+[[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]で以下の目標を持った[[id:E5889D25-7616-4072-B6E0-7E759893F12B][Discord Activities]]アプリを作る
+- 新しいDiscordアプリを作成する
+- VoiceChannelからアプリを起動する
+- ユーザー認証する
+- 現在のVoiceChannel名を取得し、表示する
+- 現在のサーバーアバターを表示する
+
+* 前提条件
+- [[id:0AF752DD-772F-43F6-AD69-E8993A62A211][Embedded App SDK]]を利用する
+- [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]の経験
+- ウェブ技術の知識
+
+** 知っておくべき概念
+- 非同期JavaScript
+- [[id:F581B8C4-23D6-470A-A9EB-D5F1A84B4C34][React]]、[[id:8274858C-983F-46BD-9F39-811589FDEF10][Vue]]などのフロントエンドフレームワーク
+
+* 1. 新しいDiscordアプリを作成する
+https://discord.com/developers/applications/ で新しいアプリを作成する
+
+* 2. プロジェクトファイルの設定
+gitで雛形をcloneする
+
+#+begin_src 
+git clone git@github.com:discord/getting-started-activity.git
+cd getting-started-activity
+#+end_src
+
+フロントは[[id:F581B8C4-23D6-470A-A9EB-D5F1A84B4C34][React]]、[[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]でやりたいので ~client~ を削除
+~npm create vite@latest~ clientのプロジェクトを作成
+https://ja.vitejs.dev/guide/
+vite.config.jsにサーバー側の設定を追加
+
+#+begin_src diff
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
++ envDir: '../',
++ server: {
++   proxy: {
++     '/api': {
++       target: 'http://localhost:3001',
++       changeOrigin: true,
++       secure: false,
++       ws: true,
++     },
++   },
++   hmr: {
++     clientPort: 443,
++   },
++ },
+  plugins: [react()],
+})
+#+end_src
+
+* [[id:0AF752DD-772F-43F6-AD69-E8993A62A211][Embedded App SDK]]をインストール
+

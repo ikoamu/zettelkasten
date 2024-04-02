@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       6BFF1928-8E42-4285-B2DE-07D449DA3E4E
+:END:
+#+title: magitでstashを削除したい
+
