@@ -29,15 +29,7 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/3
 - [[id:47096488-6B07-44F6-9E5F-66587F585507][org-roam-ui]]は[[id:B2AB7269-9667-4815-9806-D20CB48A8DEC][uniorg]]で[[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]から[[id:9102AF70-548B-4F59-8F83-B9864DA1630F][html]]に変換している
 - さらに、[[id:2FA96C31-2511-4EE1-BB1E-3EEDB6F28DE8][rehype]]を使って[[id:132258C2-3449-469D-9350-0B9A37818F4A][react]]の要素に変換している
 
-** TODO 検索機能
-https://github.com/ikoamu/publish-org-roam-ui/issues/4
-
-https://npmtrends.com/fast-fuzzy-vs-flexsearch-vs-fuse.js-vs-fuzzy-vs-lunr-vs-search-index
-見るとFuse.jsが人気そうか？
-
-- [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][tidalcycles]]の公式ドキュメントでは[[id:FE1BB533-6A7E-4709-B2BA-F366EF30E43C][algolia]]というやつを使っているみたい
-- [[id:9880562A-5A83-4E0A-AA3D-CB279C399CD2][flexsearch]]
-- [[id:705AE576-F876-42E1-BAB0-E4135A7D76D6][Fuse.js]]
+** TODO [[id:59470C83-9245-43E2-A0DB-33A91D651DA6][publish-org-roamで検索機能を実装する]]
 
 ** TODO ファビコン設定
 
@@ -45,3 +37,4 @@ https://npmtrends.com/fast-fuzzy-vs-flexsearch-vs-fuse.js-vs-fuzzy-vs-lunr-vs-se
 
 * バグ修正
 ** DONE [[id:A0578F9C-C1B6-4DB6-B27D-914E01E101FF][publish-org-roam-uiのヘッダーに設定している値でActionが失敗する]]
+** DONE [[id:F5612736-833B-433C-A032-F77234784C06][publish-org-roam-uiでタイムスタンプがないファイルに対応]]

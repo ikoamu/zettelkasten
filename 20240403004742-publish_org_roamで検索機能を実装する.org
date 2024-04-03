@@ -1,0 +1,18 @@
+:PROPERTIES:
+:ID:       59470C83-9245-43E2-A0DB-33A91D651DA6
+:END:
+#+title: publish-org-roamで検索機能を実装する
+
+https://github.com/ikoamu/publish-org-roam-ui/issues/4
+
+https://npmtrends.com/fast-fuzzy-vs-flexsearch-vs-fuse.js-vs-fuzzy-vs-lunr-vs-search-index
+見るとFuse.jsが人気そうか？
+
+- [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][tidalcycles]]の公式ドキュメントでは[[id:FE1BB533-6A7E-4709-B2BA-F366EF30E43C][algolia]]というやつを使っているみたい
+- [[id:9880562A-5A83-4E0A-AA3D-CB279C399CD2][flexsearch]]
+- [[id:705AE576-F876-42E1-BAB0-E4135A7D76D6][Fuse.js]]
+
+* ライブラリ入れずにいい感じにダイアログを作る方法
+https://www.otwo.jp/blog/css-modal/ でよさそう
+
+* 選択したノードをサイドバーで表示するには?
