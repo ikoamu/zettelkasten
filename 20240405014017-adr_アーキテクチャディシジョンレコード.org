@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       B85A8636-3BD8-4E9D-A08E-9CF4826F694A
+:END:
+#+title: ADR(アーキテクチャディシジョンレコード)
+
