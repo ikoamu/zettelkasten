@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
-        uses: ikoamu/org-roam-ui-hosting@main
+        uses: ikoamu/publish-org-roam-ui@main
         with:
           org-roam-db-filename: org-roam.db
           site-title: zettelkasten - ikoamu
