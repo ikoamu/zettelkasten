@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       42F44B69-5A03-41A7-A23D-1A2BDC848239
+:END:
+#+title: 時間と空間のトレードオフ
+
