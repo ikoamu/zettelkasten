@@ -1,0 +1,29 @@
+:PROPERTIES:
+:ID:       34751CE5-56AD-410F-94F9-657B9E60FF4D
+:END:
+#+title: Discord Activitiesのローカル動作確認方法
+#+filetags: :Discord:
+
+[[id:358813A6-381C-49E8-AEA0-10C29FE8047F][Building Your First Activity in Discord]]に書いてある方法をまとめる
+前提として、[[id:E5889D25-7616-4072-B6E0-7E759893F12B][Discord Activities]]アプリ自体のセットアップは完了しているものとする
+
+1. フロントエンドのサーバーを立ち上げる
+   ~npm run dev~
+#+begin_src 
+VITE v5.0.12  ready in 100 ms
+
+➜  Local:   http://localhost:5173/
+➜  Network: use --host to expose
+➜  press h + enter to show help
+#+end_src
+
+2. [[id:F1FBB63B-280B-4DE5-965E-5502062CC76C][cloudflared]]コマンドを使って[[id:3FED1068-807E-4C84-BB29-6C6EC5FE3024][localhost]]で立ち上げたWebサーバーを公開する
+   ~cloudflared tunnel --url http://localhost:5173~
+#+begin_src 
+2024-04-14T06:08:06Z INF +--------------------------------------------------------------------------------------------+
+2024-04-14T06:08:06Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
+2024-04-14T06:08:06Z INF |  https://nd-gains-removable-drag.trycloudflare.com                                         |
+2024-04-14T06:08:06Z INF +--------------------------------------------------------------------------------------------+
+#+end_src
+
+3. https://discord.com/developers/applications/ で対象のActivityを選択してURL Mappingに2で生成されたURLを設定する

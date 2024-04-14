@@ -1,0 +1,4 @@
+:PROPERTIES:
+:ID:       9A649720-EA9A-44E8-9995-715C4585A8FF
+:END:
+#+title: org-captureのエラー

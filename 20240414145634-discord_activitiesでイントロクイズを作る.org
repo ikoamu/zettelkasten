@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       7AC78B5D-36B3-4EF7-AA6B-7950FE9050F9
+:END:
+#+title: Discord Activitiesでイントロクイズを作る
+#+filetags: :Spotify:Discord:
+[[id:E5889D25-7616-4072-B6E0-7E759893F12B][Discord Activities]]を使ってイントロクイズを作る
+
+- [[id:E9D7B339-EDDC-4D00-9855-F8105CFFF4D6][Spotify]]のAPIを使ってプレイリストのpreviewを再生する
+- [[id:4DFE6404-F19A-4C86-A897-5203FE796811][Firebase]]でバックエンドを作成する
+
+Discord Activityの動作確認方法はめんどくさい
+-> [[id:34751CE5-56AD-410F-94F9-657B9E60FF4D][Discord Activitiesのローカル動作確認方法]]
+
+バックエンドはDBと[[id:05D9B89E-39B7-4362-B895-2C5566A746BA][OAuth]]のトークンを生成するだけで良さそう。トークン生成は[[id:0E4F74C9-FEED-4D39-A273-50B4C5D73F10][FaaS]]を使えばサーバー立てなくて済むし良さそう
+-> [[id:384B8016-50F5-4F62-ACA9-F4E017CCF0A6][Firebase Realtime Database]]と[[id:8E71F8DC-FC07-4F3B-BA5B-2E5137B9E3F6][Cloud Functions for Firebase]]を利用しよう
+
+インフラのコード化のため、[[id:241C3AF8-00AD-459F-81ED-589FB71F9EAB][Terraform]]も使おう

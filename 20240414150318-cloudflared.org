@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       F1FBB63B-280B-4DE5-965E-5502062CC76C
+:END:
+#+title: cloudflared
+* エラー
+** Failed to create new quic connection
+喫茶店のFree Wifiだったから？

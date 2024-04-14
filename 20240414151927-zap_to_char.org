@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       326CBD58-D58F-4BD5-87C8-DA70D877E3A7
+:END:
+#+title: Zap to Char
+#+filetags: :emacs:
+
+https://www.emacswiki.org/emacs/ZapToChar
+
+[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]のキーバインド ~Cmd+z~ で起動する
+undoしたい時に間違えて出てきてしまうため、使いこなせていないならundoにしてしまっていいかな
+
+
