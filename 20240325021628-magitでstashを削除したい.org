@@ -3,4 +3,15 @@
 :END:
 #+title: magitでstashを削除したい
 
-* TODO
+#+begin_example
+Stashes (1)
+stash@{0} WIP on main: 71c1cce update
+#+end_example
+
+* 一個ずつ削除
+1. [[id:50EA3B03-F318-4EBB-90BB-00FDE6090B17][magit]]のメインバッファ(~C-x C-g~)を起動
+2. stashesからdropしたいものにカーソルを合わせて ~k~
+3. yes or no で聞かれる
+
+* 一括削除
+~magit-stash-clear~ 

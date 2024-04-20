@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       1B2E2A9C-1CCE-426E-A3BB-A59E024E0CCF
+:END:
+#+title: Terraformのvariables
+#+filetags: :Terraform:
+* コマンドライン引数で渡す
+#+begin_src 
+terraform plan \
+-var 'billing_account=XXXX' \
+-var 'project_id=XXXX' \
+-var 'project_name=XXX'
+#+end_src
+* TODO envファイルから取得する
+

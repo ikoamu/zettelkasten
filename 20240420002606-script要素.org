@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       C9983E7F-8165-4CC2-80AD-8EC107A0DCEA
+:END:
+#+title: script要素
+#+filetags: :html:web:
+

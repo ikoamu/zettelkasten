@@ -1,0 +1,47 @@
+:PROPERTIES:
+:ID:       E7293D0C-B160-4B2B-8AE1-68C79CEDB383
+:END:
+#+title: Content Security Policy(CSP)
+#+filetags: :web:
+* CSPとは
+- ブラウザ上でのコンテンツ読み込みを制限する仕組み
+
+* ポリシーの構文
+#+begin_src http
+Content-Security-Policy: <policy-directive>; <policy-directive>
+#+end_src
+~policy-directive~: ~<directive> <value>~
+
+* ディレクティブ
+** フェッチディレクティブ
+特定のリソース種別を読み込むことができる場所を制御する
+
+* 値(value)
+** キーワード値
+*** none
+*** self
+*** strict-dynamic
+*** report-sample
+
+** ホスト値
+
+*** Host
+- 指定されたホストからのリソースの読み込みを許可する
+- オプションでスキーム、ポート番号、パスを指定することができる
+- CSP内の ~/~ で終わるパス部分はその窃盗時であるパスに全てのパスに一致する
+  - ~example.com/api/~ は ~example.com/api/users/new~ のような URL に一致する
+
+** その他の値
+*** nonce-*
+- スクリプトを許可するための暗号化（一度しか使われない）[[id:3CE2FB8C-25D6-436E-8155-CDD6FCBC7000][nonce]]
+- サーバーはポリシーを送信するたびに一意のノンス値を生成する必要がある
+  - これは[[id:9102AF70-548B-4F59-8F83-B9864DA1630F][html]]の[[id:C9983E7F-8165-4CC2-80AD-8EC107A0DCEA][script要素]]のnone属性と組み合わせて使う
+* 例
+** HTTPヘッダーで使用
+#+begin_src http
+Content-Security-Policy: default-src https:
+#+end_src
+** htmlのmeta要素での使用
+#+begin_src html
+<meta http-equiv="Content-Security-Policy" content="default-src https:" />
+#+end_src

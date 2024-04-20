@@ -15,3 +15,35 @@ Discord Activityの動作確認方法はめんどくさい
 -> [[id:384B8016-50F5-4F62-ACA9-F4E017CCF0A6][Firebase Realtime Database]]と[[id:8E71F8DC-FC07-4F3B-BA5B-2E5137B9E3F6][Cloud Functions for Firebase]]を利用しよう
 
 インフラのコード化のため、[[id:241C3AF8-00AD-459F-81ED-589FB71F9EAB][Terraform]]も使おう
+
+* [[id:384B8016-50F5-4F62-ACA9-F4E017CCF0A6][Firebase Realtime Database]]に接続できない
+[[id:E7293D0C-B160-4B2B-8AE1-68C79CEDB383][Content Security Policy(CSP)]]エラーが発生してFirebaseに接続できない
+#+begin_example
+firebase.ts:26 Refused to load the script
+'https://mydb.firebaseio.com/.lp?start=t&ser=62570095&cb=1&v=5&p=1:186620340131:web:e6a69a4864622cffad9c16'
+because it violates the following Content Security Policy directive:
+"script-src 'self' 'unsafe-eval' 'nonce-NjksMjMsMTkwLDIyOCwxODMsNzMsODQsMjUy' blob:".
+Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
+#+end_example
+
+DeveloperポータルのURLマッピングにも ~https://mydb.firebaseio.com~ を追加
+~patchUrlMappings~ にも上記URLを追加したが同様のエラー
+#+begin_src ts
+patchUrlMappings([
+    {
+      target: "mydb.firebaseio.com",
+      prefix: "/firebaseio/mydb"
+    }
+])
+#+end_src
+
+-> ~patchUrlMapping~ したにも関わらず、firebaseio.com に接続しようとしていることがよくない？
+-> バグかも
+https://github.com/discord/embedded-app-sdk/blob/94e9577d482919e46528f1da54ef533a7d3385df/src/utils/patchUrlMappings.ts#L19
+
+** patchUrlMapping
+- https://discord.com/developers/docs/activities/development-guides#using-external-resources
+- ~window.fetch~ 関数を書き換える関数っぽい
+  - forkして動作を見るのが良さそう
+    - 修正できたらPRを作成しよう
+

@@ -1,0 +1,28 @@
+:PROPERTIES:
+:ID:       F01E0DFA-7BBF-4E96-B5F5-45E32CFA1972
+:END:
+#+title: Discordで開発者モードを表示する
+#+filetags: :Discord:
+- Wim: ~%appdata%/discord/settings.json~
+  - Ctrl+Shift+S
+
+- Linux: ~~/.config/discord/settings.json~
+
+- macOS: ~~/Library/Application Support/discord/settings.json~
+  - Cmd+Option+I
+
+
+#+begin_src json
+{
+  "IS_MAXIMIZED": false,
+  "IS_MINIMIZED": false,
+  "WINDOW_BOUNDS": {
+    "x": -1920,
+    "y": 25,
+    "width": 1920,
+    "height": 1002
+  },
+  "chromiumSwitches": {},
+  "DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING": true
+}
+#+end_src

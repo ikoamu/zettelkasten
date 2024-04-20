@@ -1,0 +1,13 @@
+:PROPERTIES:
+:ID:       6A897622-658B-4446-A92D-BC4B3D24362C
+:END:
+#+title: FlutterのゴールデンテストをCI上で実行し、レポートを作成する
+#+filetags: :Flutter:
+
+- [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]のアプリ開発で、[[id:812A74D1-D7ED-46DE-AD3F-DC6DDE229099][VRT]]としてGoldenTestを使っている
+- [[id:B97CD4A8-AE76-45A5-90C0-566030AE1B44][GitHub Actions]]でGoldenTestを実行したい
+- テストが失敗した場合は、画像の差分レポートをartifactsとして出力したい
+- 比較対象のmasterImageはリポジトリにコミットしている ~/goldens~ 配下の画像
+- レポートの出力は[[id:24D30BB0-F2EC-4EF2-8C5C-B8EF38B7AAEB][reg-cli]]を使う
+* Actions化してみてもいいかも
+* [[id:D4B04046-8AB4-4E5C-B7B7-91234A579F9A][zenn]]に記事として書いてもいいかも

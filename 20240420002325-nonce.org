@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       3CE2FB8C-25D6-436E-8155-CDD6FCBC7000
+:END:
+#+title: nonce
+ノンスは、暗号通信で用いられる、使い捨てのランダムな値のことである。
