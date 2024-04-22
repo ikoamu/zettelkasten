@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       0F1B7CDE-2C75-4A2E-BC20-9F104AC45DB9
+:END:
+#+title: windowオブジェクト
+#+filetags: :JavaScript:web:
+
+- [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]のオブジェクト階層の最上位に位置する
+- https://developer.mozilla.org/ja/docs/Web/API/Window

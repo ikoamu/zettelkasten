@@ -2,11 +2,12 @@
 :ID:       7AC78B5D-36B3-4EF7-AA6B-7950FE9050F9
 :END:
 #+title: Discord Activitiesでイントロクイズを作る
-#+filetags: :Spotify:Discord:
+#+filetags: :mywork:Spotify:Discord:
 [[id:E5889D25-7616-4072-B6E0-7E759893F12B][Discord Activities]]を使ってイントロクイズを作る
 
 - [[id:E9D7B339-EDDC-4D00-9855-F8105CFFF4D6][Spotify]]のAPIを使ってプレイリストのpreviewを再生する
 - [[id:4DFE6404-F19A-4C86-A897-5203FE796811][Firebase]]でバックエンドを作成する
+  - https://github.com/firebase/firebase-js-sdk
 
 Discord Activityの動作確認方法はめんどくさい
 -> [[id:34751CE5-56AD-410F-94F9-657B9E60FF4D][Discord Activitiesのローカル動作確認方法]]
@@ -41,7 +42,9 @@ patchUrlMappings([
 -> バグかも
 https://github.com/discord/embedded-app-sdk/blob/94e9577d482919e46528f1da54ef533a7d3385df/src/utils/patchUrlMappings.ts#L19
 
-** patchUrlMapping
+-> https://github.com/firebase/firebase-js-sdk/blob/03069bbf32d281e2466d2276f36a3d98ad3316aa/packages/database/src/realtime/BrowserPollConnection.ts#L740
+
+** [[id:DCDC6786-46D0-40F3-B895-92D358E8AFB7][patchUrlMapping]]
 - https://discord.com/developers/docs/activities/development-guides#using-external-resources
 - ~window.fetch~ 関数を書き換える関数っぽい
   - forkして動作を見るのが良さそう

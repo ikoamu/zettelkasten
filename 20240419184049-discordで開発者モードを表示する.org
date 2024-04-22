@@ -3,6 +3,10 @@
 :END:
 #+title: Discordで開発者モードを表示する
 #+filetags: :Discord:
+
+[[id:63A71BCD-C71F-4EAF-9A31-4BE7B7947CA0][Discord]]で[[id:E5889D25-7616-4072-B6E0-7E759893F12B][Discord Activities]]の動作確認を行う際、デスクトップアプリからログやネットワークを確認したい時に行う必要がある
+デフォルトでは表示できない
+
 - Wim: ~%appdata%/discord/settings.json~
   - Ctrl+Shift+S
 

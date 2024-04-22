@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       70CA9663-CC6A-4061-A1B3-1F020B1D4942
+:END:
+#+title: Stringifier(文字列化子)
+#+filetags: :JavaScript:
+
+https://developer.mozilla.org/ja/docs/Glossary/Stringifier
+
+[[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]において、属性またはメソッドで、
+文字列が期待される場面においてオブジェクトのテキスト表現を提供するために定義されるものです。

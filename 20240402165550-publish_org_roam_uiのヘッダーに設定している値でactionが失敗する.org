@@ -20,6 +20,7 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/6
 ** [[id:2FF456A7-64B0-4CF8-BC93-5558A3258239][mtime]]
 ** [[id:2A8141CA-28E5-4FB6-9475-1E34313D082C][ctime]]
 * [[id:40DC5010-C302-483F-A02C-B4CA6E83BAE0][olp]]というプロパティが悪さしてそう
+-> [[id:40DC5010-C302-483F-A02C-B4CA6E83BAE0][olp]]は複数設定されるものである(つまり、 ~string[]~ )が、文字列( ~string~ )として設定してしまっていたためエラーになっていた
 修正した
 https://github.com/ikoamu/publish-org-roam-ui/commit/576693b00aa2be6ab4d2e9a24f3b6ffca627a304
 

@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       71A58D04-253A-4118-90AD-584AF5AAC935
+:END:
+#+title: hydra(emacs)
+#+filetags: :emacs:
+
+- [[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]のパッケージ
+- Hydraを使うとよく使う機能をまとめてシンプルなキーバインドを割り当てることができる
+- UIもカスタマイズ可能
+- https://github.com/abo-abo/hydra/wiki に色々書いてある
+- [[id:59180C55-A204-4992-8AAA-65168A846A98][emacs pinky]]問題を解消できる

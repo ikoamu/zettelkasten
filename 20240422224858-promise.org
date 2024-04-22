@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       31FE3F94-DE6F-42AA-831A-C23564E464EF
+:END:
+#+title: Promise
+#+filetags: :JavaScript:
+
+[[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]のオブジェクト

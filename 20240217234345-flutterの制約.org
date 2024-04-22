@@ -5,8 +5,8 @@
 #+title: Flutterの制約
 #+filetags: :Flutter:
 
-- FlutterのレイアウトはHTMLのレイアウトとは大きく異なる
-- Flutterのレイアウトのルール:
+- [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]のレイアウトは[[id:9102AF70-548B-4F59-8F83-B9864DA1630F][html]]のレイアウトとは大きく異なる
+- [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]のレイアウトのルール:
   Constraints go down. Sizes go up. Parent sets position.  (制約が減る。サイズが上がる。親が位置を決める。)
 
 * 制約とは

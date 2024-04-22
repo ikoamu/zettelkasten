@@ -39,6 +39,7 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/3
 
 ** DONE 検索結果をフォーカスしたい
 https://github.com/ikoamu/publish-org-roam-ui/issues/10
+-> フォーカス後にノードを画面の中央に持っていけないか？
 
 ** DONE codeのフォントサイズを変更したい
 https://github.com/ikoamu/publish-org-roam-ui/issues/8

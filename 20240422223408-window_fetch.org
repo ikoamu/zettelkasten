@@ -1,0 +1,25 @@
+:PROPERTIES:
+:ID:       09C3E1C9-55DF-4CCB-972B-A3023FF570AB
+:END:
+#+title: window.fetch
+#+filetags: :web:
+
+https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
+
+- [[id:0F1B7CDE-2C75-4A2E-BC20-9F104AC45DB9][windowオブジェクト]]のグローバルメソッド
+- ネットワークからリソースを取得するプロセスを開始し、レスポンスが利用できるようになったら履行されるプロミスを返す
+* 構文
+#+begin_src js
+fetch(resource)
+fetch(resource, options)
+#+end_src
+** ~resource~
+  取得したいリソースを定義する
+  - 文字列または[[id:70CA9663-CC6A-4061-A1B3-1F020B1D4942][Stringifier(文字列化子)]]できるオブジェクト
+    - [[id:D20667FA-BF8C-4CCB-BF43-A34C85AF1632][URLオブジェクト]]
+  - [[id:24235807-6A72-4F24-B0AE-12BDA3DC006C][Requestオブジェクト]]
+** ~options~ (optional)
+https://developer.mozilla.org/ja/docs/Web/API/fetch#options
+* 返値
+[[id:31FE3F94-DE6F-42AA-831A-C23564E464EF][Promise]]で[[id:393EBEE6-33BD-42BD-BABC-886FEFF77CC1][Responseオブジェクト]]に解決する
+

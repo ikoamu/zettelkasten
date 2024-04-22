@@ -1,0 +1,29 @@
+:PROPERTIES:
+:ID:       DCDC6786-46D0-40F3-B895-92D358E8AFB7
+:END:
+#+title: patchUrlMapping
+#+filetags: :Discord:
+
+- [[id:E5889D25-7616-4072-B6E0-7E759893F12B][Discord Activities]]で[[id:384B8016-50F5-4F62-ACA9-F4E017CCF0A6][Firebase Realtime Database]]にアクセスしようとすると、[[id:E7293D0C-B160-4B2B-8AE1-68C79CEDB383][Content Security Policy(CSP)]]エラーが発生する
+- document: https://discord.com/developers/docs/activities/development-guides#using-external-resources
+- source: https://github.com/discord/embedded-app-sdk/blob/main/src/utils/patchUrlMappings.ts
+
+* 引数
+- ~mappings[]~: ~Mapping[]~
+  - ~Mapping~
+    - ~prefix~: ~string~
+    - ~target~: ~string~
+- oprions: ~PatchUrlMappingsConfig~
+  - ~patchFetch~: ~boolean~
+    - デフォルト true
+  - ~pathWebSocket~: ~boolean~
+    - デフォルト true
+  - ~patchXhr~: ~boolean~
+    - デフォルト true
+  - ~patchSrcAttributes~: ~boolean~
+    - デフォルト false
+* 実装
+** ~patchFetch~ がtrueの場合
+- [[id:09C3E1C9-55DF-4CCB-972B-A3023FF570AB][window.fetch]]を書き換えている
+- コメントに書いてある ~fetch is a duplex, but this is consistent~ って？
+  - duplex: 直訳すると「重複の、二重の、部屋の中で上下2階になっている」などの意味合い

@@ -4,6 +4,9 @@
 #+title: Flutterのプロジェクト作成方法
 #+filetags: :Flutter:
 
+[[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]のプロジェクト作成方法
+よく忘れるのでメモ
+
 #+begin_src bash
 $ flutter create myapp
 #+end_src
@@ -12,5 +15,5 @@ $ flutter create myapp
 プラットフォーム指定
 #+begin_src bash
 flutter create myapp --platforms=android,ios,web
-#+end_src
+#+End_src
 

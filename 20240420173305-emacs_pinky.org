@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       59180C55-A204-4992-8AAA-65168A846A98
+:END:
+#+title: emacs pinky
+#+filetags: :emacs:
+
+Emacs小指問題
+

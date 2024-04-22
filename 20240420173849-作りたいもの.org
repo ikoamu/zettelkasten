@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       ECB79BD7-377A-4BD5-9CC0-FBAFCCF76740
+:END:
+#+title: 作りたいもの
+#+filetags: :mywork:
+
+作りたいものがいくつかあるため一旦整理したい
+- [[id:7AC78B5D-36B3-4EF7-AA6B-7950FE9050F9][Discord Activitiesでイントロクイズを作る]]
+- [[id:6A897622-658B-4446-A92D-BC4B3D24362C][FlutterのゴールデンテストをCI上で実行し、レポートを作成する]]
+- [[id:95562EDE-EC82-4166-975C-13013D1661F1][42アルバム]] 

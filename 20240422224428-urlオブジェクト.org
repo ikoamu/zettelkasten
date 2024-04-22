@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       D20667FA-BF8C-4CCB-BF43-A34C85AF1632
+:END:
+#+title: URLオブジェクト
+#+filetags: :JavaScript:
+
+[[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]のオブジェクト
+
+https://developer.mozilla.org/ja/docs/Web/API/URL
+
+
+  

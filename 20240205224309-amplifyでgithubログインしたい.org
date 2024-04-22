@@ -16,7 +16,7 @@
 - https://github.com/TimothyJones/github-cognito-openid-wrapper
 - https://qiita.com/tanaka_takurou/items/d5e20f86f75ae8725f73
 
-* Amplify
+* [[id:D55F1AAC-759C-423D-9CA1-3FDD06C11C2F][Amplify]]
 #+begin_src js
   export function override(
       resources: AmplifyAuthCognitoStackTemplate,
