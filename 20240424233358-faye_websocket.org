@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       41F9050E-B1F3-47CE-AAF3-71CF96DED6FE
+:END:
+#+title: faye-websocket
+#+filetags: :web:
+
+https://github.com/faye/faye-websocket-node

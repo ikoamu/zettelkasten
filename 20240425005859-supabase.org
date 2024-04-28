@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       9CD9977B-8206-45FA-B570-081FD2E7BE18
+:END:
+#+title: Supabase
+
+https://supabase.com/
+
+https://zenn.dev/chot/articles/ddd2844ad3ae61
+

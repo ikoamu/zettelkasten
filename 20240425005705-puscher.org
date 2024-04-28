@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       D9CB20AA-1DA4-49E0-9BCA-4A47E0AAB9D9
+:END:
+#+title: puscher
+#+filetags: :mobile:web:
+
+簡単かつ安全にウェブやモバイルアプリ、または他の任意のインターネット接続デバイスに[[id:86A4F269-911F-46B6-908A-41893563946D][WebSocket]]を介して、
+リアルタイムの双方向機能を統合し、迅速にするためのシンプルなホストされているAPI

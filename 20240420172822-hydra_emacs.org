@@ -4,8 +4,16 @@
 #+title: hydra(emacs)
 #+filetags: :emacs:
 
+https://github.com/abo-abo/hydra
+
 - [[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]のパッケージ
 - Hydraを使うとよく使う機能をまとめてシンプルなキーバインドを割り当てることができる
 - UIもカスタマイズ可能
 - https://github.com/abo-abo/hydra/wiki に色々書いてある
 - [[id:59180C55-A204-4992-8AAA-65168A846A98][emacs pinky]]問題を解消できる
+
+* [[id:36E13181-4A97-477D-8CAC-1B8DABFEA54E][語源]]
+- [[id:818EF9C4-599E-4169-8BF4-7AEB55EE3278][ギリシャ神話]]に登場する怪物[[id:238E4DD6-24ED-4B4C-A0C5-40A0785C8A72][hydra]]から
+
+* 使い方
+- defhydra[[id:B25CA82D-AD74-45DB-925F-1C4B512D3642][マクロ]]で呼び出すキーバインドや関数に割り当てるキーを設定する

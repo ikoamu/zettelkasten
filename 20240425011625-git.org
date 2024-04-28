@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       288CBCA7-067B-4E24-972E-AACDD61CC312
+:END:
+#+title: git
+

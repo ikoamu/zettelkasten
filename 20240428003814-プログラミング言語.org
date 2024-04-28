@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       43CBD27C-9AA5-4BD8-8372-F553111DC8F9
+:END:
+#+title: プログラミング言語
+

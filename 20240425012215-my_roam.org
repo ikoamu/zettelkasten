@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       999BD9C0-AA15-4D93-AC4C-2B2138476A2D
+:END:
+#+title: my-roam
+
+* ルール
+
+** グラフの紐付けはなるべくやろう
+- https://ikoamu.github.io/zettelkasten/
+
+* 改善
+** TODO [[id:71A58D04-253A-4118-90AD-584AF5AAC935][hydra(emacs)]]でメモを使いやすくしたい

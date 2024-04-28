@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       8A046BFE-F7C7-4E5F-8427-15B4C2BBD3FE
+:END:
+#+title: Dart
+#+filetags: :Dart:
+
+- [[id:4D1343CC-8288-441E-BA9B-B0A38A02E378][Google]]が開発した[[id:43CBD27C-9AA5-4BD8-8372-F553111DC8F9][プログラミング言語]]
+- [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]の代替言語として開発された
+- [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]で使われている

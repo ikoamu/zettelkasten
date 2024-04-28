@@ -1,0 +1,47 @@
+:PROPERTIES:
+:ID:       5D582188-304B-4FA7-986A-550A70484936
+:END:
+#+title: DartでParameterized Test
+#+filetags: :Test:Flutter:Dart:
+
+https://zenn.dev/ikoamu/articles/136e1e4044f720
+
+- [[id:8A046BFE-F7C7-4E5F-8427-15B4C2BBD3FE][Dart]]で[[id:B819418C-4E4D-4837-A0D5-942598EC348F][Parameterized Test]]をしたい
+- [[id:280384E8-ACF6-4CA8-A147-5AAFF4AE2DEA][Jest]]の ~each~ ぽっくやりたい
+- [[id:96FBF824-EB08-45A5-AEFA-C0FDB5A6F493][VSCode]]の[[id:A4E5ADEC-69CC-44C2-A097-FF333F592B23][CodeLens]]に表示したい
+
+* 実装
+#+begin_src dart
+import 'package:meta/meta.dart';
+
+@isTestGroup
+void Function(void Function(T param) test) each<T>(
+        String description, List<T> params) =>
+    (Function(T) test) => group(description, () => params.forEach(test));
+#+end_src
+
+* 使用例
+今回は例として、2つのint型の値の積を返す関数をテストしてみます。
+** プロダクトコード
+#+begin_src dart
+int multiply(int a, int b) {
+  return a * b;
+}
+#+end_src
+** テストコード
+#+begin_src dart
+void main() {
+  each("multiply", [
+    (a: 0, b: 0, expected: 0),
+    (a: 1, b: 1, expected: 1),
+    (a: 2, b: 2, expected: 4),
+    (a: 3, b: 3, expected: 9),
+  ])((param) {
+    test('${param.a} * ${param.b} = ${param.expected}', () {
+      expect(multiply(param.a, param.b), param.expected);
+    });
+  });
+}
+#+end_src
+
+

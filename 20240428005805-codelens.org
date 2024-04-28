@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       A4E5ADEC-69CC-44C2-A097-FF333F592B23
+:END:
+#+title: CodeLens
+
+- [[id:96FBF824-EB08-45A5-AEFA-C0FDB5A6F493][VSCode]]の生産性機能
+- エディタの行と行の間にインラインで情報やボタンとして表示されている
+- [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]のテストを実行できる ~Run~ ~Debug~ のようなやつ
+

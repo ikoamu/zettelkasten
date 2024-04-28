@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       280384E8-ACF6-4CA8-A147-5AAFF4AE2DEA
+:END:
+#+title: Jest
+#+filetags: :Test:JavaScript:
+
+[[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]のテスティングフレームワーク
+

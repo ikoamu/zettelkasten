@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       B819418C-4E4D-4837-A0D5-942598EC348F
+:END:
+#+title: Parameterized Test
+#+filetags: :Test:
+
+同じテストロジックを複数の異なる入力で実行することを可能にする手法。
+これにより、テストケースの記述量を減らすことができる。
+

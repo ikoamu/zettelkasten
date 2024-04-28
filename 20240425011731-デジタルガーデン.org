@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       22F32796-78DD-4CFD-8001-A3213688C800
+:END:
+#+title: デジタルガーデン
+
+- [[id:F5A90785-FAB2-43C1-959C-9BB5CEDDA210][zettelkasten]]を外部サイトに公開すること
+- マインドガーデンとも言うらしい
+- https://maggieappleton.com/garden-history

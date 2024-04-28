@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       B25CA82D-AD74-45DB-925F-1C4B512D3642
+:END:
+#+title: マクロ
+
