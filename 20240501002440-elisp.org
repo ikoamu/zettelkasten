@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       45C6278B-128A-4266-B328-7C04C677EAD9
+:END:
+#+title: elisp
+#+filetags: :emacs:elisp:
+

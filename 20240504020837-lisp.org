@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       F5268D5B-C3CD-41DC-972B-762290B66C86
+:END:
+#+title: lisp
+

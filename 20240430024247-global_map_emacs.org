@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       65ED04F0-14DB-4623-B960-CB4A73E23242
+:END:
+#+title: global-map(emacs)
+#+filetags: :emacs:
+
+グローバルキーマップは、 (カレントなバッファによらない) single-character キー の意味を定義します。変数 global-map がこのキーマップを持ちます。
+

@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       48D91596-EF2D-4AEC-91D8-4731EDB69336
+:END:
+#+title: org-babel
+#+filetags: :org-mode:
+
+
+- [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]内で実行できる
+- テキスト内でコードの実行ができる

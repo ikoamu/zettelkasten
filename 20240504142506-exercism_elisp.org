@@ -1,0 +1,34 @@
+:PROPERTIES:
+:ID:       1DD522D9-0FD1-4913-B27B-CCC5D9226216
+:END:
+#+title: Exercism-elisp
+#+filetags: :emacs:
+
+* hello-world
+
+** code
+#+NAME: hello-world
+#+begin_src elisp
+;;; hello-world.el --- Hello World exercise (exercism)  -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+(defun hello ()
+  "Hello, World!")
+
+(provide 'hello-world)
+;;; hello-world.el ends here
+#+end_src
+
+#+RESULTS:
+: hello-world
+
+** test-code
+#+NAME: hello-world-test
+#+begin_src elisp
+(ert-deftest hello-world-test ()
+  (should (string= (hello) "Hello, World!")))
+#+end_src
+
+#+RESULTS:
+: hello-world-test

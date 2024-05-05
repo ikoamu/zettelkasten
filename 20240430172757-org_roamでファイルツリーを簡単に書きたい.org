@@ -1,0 +1,145 @@
+:PROPERTIES:
+:ID:       A947533A-4A3F-4E9A-8D48-512D67548CF0
+:END:
+#+title: org-roamでファイルツリーを簡単に書きたい
+
+- [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]でファイルツリーを簡単に書きたい
+- [[id:48D91596-EF2D-4AEC-91D8-4731EDB69336][org-babel]]で実行がいい？
+- https://marketplace.visualstudio.com/items?itemName=aprilandjan.ascii-tree-generator
+- [[id:45C6278B-128A-4266-B328-7C04C677EAD9][elisp]]のテストってどうやってやるんだっけ？
+
+#+begin_src gentree 
+# a
+## b
+### c
+#+end_src
+
+#+RESULTS:
+: test
+
+#+begin_src elisp
+    (setq text "#a
+  ##b
+  ###c")
+    (defun generate-tree (body)
+      (print body))
+    (generate-tree text)
+#+end_src
+
+#+RESULTS:
+: #a
+: ##b
+: ###c
+
+* 文字列を一行ごとに分割する
+#+begin_src elisp
+  (setq text "#a
+  ##b
+  ###c")
+  (defun my-split (str)
+    (split-string str "\n+" t))
+  (my-split text)
+#+end_src
+
+#+RESULTS:
+| #a | ##b | ###c |
+
+* hashと文字列のコスセルを作成する
+#+begin_src elisp
+  (defun my-split-string-by-prefix (prefix str)
+    (let ((prefix-regex (concat "\\`\\(" (regexp-quote prefix) "*\\)\\(\\s-*\\)"))
+	  (hash-prefix "")
+	  (remaining-str str))
+      (if (string-match prefix-regex str)
+	  (setq hash-prefix (match-string 1 str)
+		remaining-str (substring str (match-end 0))))
+      (cons hash-prefix remaining-str)))
+
+    (my-split-string-by-prefix "*" "** atest" )
+#+end_src
+
+#+RESULTS:
+: (** . atest)
+
+* 合体させてみ
+
+#+begin_src elisp
+(defun gentree-convert-to-flat (body)
+  (let (
+	(lines (gentree-split-lines body))
+	(result nil)
+	)
+    (dolist (line lines)
+      (let (
+	    (pair (gentree-split-string-by-prefix "#" line))
+	    )
+	(push pair result)
+	))
+    (nreverse result)))
+#+end_src
+
+#+RESULTS:
+: gentree-convert-to-flat
+
+* リストを回して前後を見る
+#+begin_src elisp
+    (defun process-list (lst)
+    "リストLSTの各要素に対して、その前後の要素に基づいて何らかの処理を行う。
+  前後の要素がない場合は、nilが代わりに使用される。"
+    (let ((result nil)
+	  (prev nil)
+	  (curr (car lst))
+	  (next (cadr lst))
+	  (remaining (cddr lst)))
+      (while lst
+	(push (process-element prev curr next) result)
+	(setq prev curr
+	      curr next
+	      next (car remaining)
+	      remaining (cdr remaining)
+	      lst remaining))
+      (nreverse result)))
+
+  (defun process-element (prev curr next)
+    "要素CURRに対して、その前の要素PREVと次の要素NEXTに基づいて処理を行う。
+  この関数は、PREVとNEXTがない場合にnilが渡される。
+  実際の処理はここで定義する。"
+    (list curr prev next))
+
+
+  (process-list '(1 2 3 4 5))
+#+end_src
+
+* [[id:26F2A73B-08A0-4181-940D-2B3CA5960BC6][cond]]を使って[[id:8D593871-DD31-4454-89D5-D658F1F0FA37][コンスセル]]をTreeの文字列に変換したい
+
+#+begin_src elisp
+  (defun convert-to-tree (prev curr next)
+    (cond ((null prev) "curr is first")
+	  ((null next) "curr is last")
+	  (t "curr is middle")))
+
+  (convert-to-tree nil "2" "3")
+#+end_src
+
+#+RESULTS:
+: curr is first
+
+#+begin_src elisp
+  (defun check-x (x)
+    "変数Xがnilの場合に'x is nil'を返す"
+    (cond ((null x) "x is nil")
+	  (t x)))
+(check-x nil)
+#+end_src
+
+#+RESULTS:
+: x is nil
+
+#+begin_src elisp
+  (defun multi-test ()
+    (let ((mynum (+ 5 5))) (+ mynum 5)))
+  (multi-test)
+#+end_src
+
+#+RESULTS:
+: 15

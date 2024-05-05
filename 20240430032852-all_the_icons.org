@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       68F59879-D27C-4556-ACE2-F1E36F0EA892
+:END:
+#+title: all-the-icons
+#+filetags: :emacs:
+
+[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]でアイコンを表示するパッケージ

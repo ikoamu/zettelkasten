@@ -1,0 +1,24 @@
+:PROPERTIES:
+:ID:       4066AB86-2395-4A96-AC7D-AB626B960B4E
+:END:
+#+title: ServerComponent
+#+filetags: :nextjs:
+
+- Reactでは従来、[[id:3D12742E-FD6D-44F8-AC4E-491F33EB5F8D][SSR]]におけるすべてのコンポーネントはブラウザ/サーバー両方で実行されるものだった([[id:529502BE-9536-4339-A7AD-91BA86438899][ClientComponent]])
+- 対して、ServerComponentはサーバーサイドのみで実行されるコンポーネント
+  - 実行される=>FC。関数コンポーネント
+- コンポーネントは同期関数でしか書くことができなかったが、ServerComponentでは非同期関数(async function)で書くことができる
+  - これにより、コンポーネント上から直接外部Web APIのデータを取得してレンダリングすることが可能
+#+begin_src tsx
+export default async function ServerComponent() {
+  const res = await fetch("https://example.com/posts");
+  const posts = await res.json();
+  return (
+    <div>・・・</div>
+  );
+}
+#+end_src
+
+- App Router内で実装されるReactコンポーネントはデフォルトでServerComponentとして扱われる
+- ServerComponentは完全にサーバーサイドでのみ実行されるため、コンポーネントのJSファイルがブラウザに送られない
+  - パフォーマンスが高くなる

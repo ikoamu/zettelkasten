@@ -13,5 +13,5 @@
 *** TODO [[id:A6A7F3D5-61FD-41B8-8A81-FE7B5FFC0A33][org-roamで新しいノードを作成したい]]ときのコマンドを忘れがちなので、 ~Node(Cmd)~ にしたい
 *** DONE [[id:288CBCA7-067B-4E24-972E-AACDD61CC312][git]]で管理
 - [[id:4ED39C6C-F151-4EA2-AF4E-B77718959ED3][publish-org-roam-ui]]で管理+[[id:47096488-6B07-44F6-9E5F-66587F585507][org-roam-ui]]のホスティングをして[[id:22F32796-78DD-4CFD-8001-A3213688C800][デジタルガーデン]]を作成することができた
-*** TODO [[id:59180C55-A204-4992-8AAA-65168A846A98][emacs pinky]]問題
+*** DONE [[id:59180C55-A204-4992-8AAA-65168A846A98][emacs pinky]]問題
 - [[id:71A58D04-253A-4118-90AD-584AF5AAC935][hydra(emacs)]]で解決しよう -> [[id:999BD9C0-AA15-4D93-AC4C-2B2138476A2D][my-roam]]

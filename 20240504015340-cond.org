@@ -1,0 +1,27 @@
+:PROPERTIES:
+:ID:       26F2A73B-08A0-4181-940D-2B3CA5960BC6
+:END:
+#+title: cond
+#+filetags: :lisp:
+
+[[id:F5268D5B-C3CD-41DC-972B-762290B66C86][lisp]]のcondは条件分岐を行う特殊形式です。複数の条件式を評価し、真となった最初の条件式に対応する式を評価します。
+#+begin_src elisp
+(cond (条件式1 式1...)
+      (条件式2 式2...)
+      ...
+      (t 式n...))
+#+end_src
+* e.g.
+#+begin_src elisp
+(defun check-x (x)
+    "変数Xについて以下の条件を評価する:
+     - Xがnilの場合は'x is nil'を返す
+     - Xが負の値の場合は'x is negative'を返す
+     - それ以外の場合はXの値をそのまま返す"
+    (cond ((null x) "x is nil")
+	  ((< x 0) "x is negative")
+	  (t x)))
+#+end_src
+
+#+RESULTS:
+: 42

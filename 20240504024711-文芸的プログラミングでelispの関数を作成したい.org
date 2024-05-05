@@ -1,0 +1,53 @@
+:PROPERTIES:
+:ID:       B2AEA2A3-F73B-4E3B-A91F-EE2A0B255250
+:END:
+#+title: 文芸的プログラミングでelispの関数を作成したい
+
+- [[id:A947533A-4A3F-4E9A-8D48-512D67548CF0][org-roamでファイルツリーを簡単に書きたい]]というチャレンジをしていく中で、やりたいと思ったこと。
+- [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]を使うことで[[id:12FBE929-3AD3-4183-B770-0081D0CF6F9C][文芸的プログラミング]]の手法で[[id:45C6278B-128A-4266-B328-7C04C677EAD9][elisp]](ほぼ[[id:F5268D5B-C3CD-41DC-972B-762290B66C86][lisp]])の学習、そして開発ができると思っている。
+  - そのために重要なのは[[id:48D91596-EF2D-4AEC-91D8-4731EDB69336][org-babel]]の理解だろう。
+- org-babelを使いこなして開発する方法を調べていきたい。
+- [[id:95CADD3D-F1BE-4480-B513-AF0619A02C13][Exercism]]をこれでやってみたいかも
+
+* 参考にしたい
+- https://wallyqs.github.io/posts/2014/12/12/using-org-babel-for-lp-jp/
+- https://misohena.jp/blog/2017-10-26-how-to-use-code-block-of-emacs-org-mode.html
+- https://blog.symdon.info/posts/1604663141/
+
+* コードブロック間の情報の伝達
+評価しとけばほかのコードブロック内でも使える
+-> ルールとして、上に書いてあるものは下でだけ使ってもいいかも
+
+** 変数テスト
+#+begin_src elisp
+(setq sample-text "I am Sample")
+#+end_src
+
+#+RESULTS:
+: I am Sample
+
+#+begin_src elisp
+(print sample-text)
+#+end_src
+
+#+RESULTS:
+: I am Sample
+
+** 関数テスト
+#+begin_src elisp
+(defun sample-square-func (arg)
+  (* arg arg))
+#+end_src
+
+#+RESULTS:
+: sample-square-func
+
+#+begin_src elisp
+(sample-square-func 8)
+#+end_src
+
+#+RESULTS:
+: 64
+
+* コードブロックを名前で参照
+

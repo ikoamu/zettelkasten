@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       0173C121-7AF7-4502-A344-55787C266B07
+:END:
+#+title: SPA
+#+filetags: :web:
+
+SPAとは単一のWebページでアプリケーションを構成する設計構造の名称です。
+

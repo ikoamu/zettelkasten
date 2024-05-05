@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       E5BDB5F5-A65E-43A2-8F9C-6DAAF9DD0E51
+:END:
+#+title: export default
+#+filetags: :JavaScript:
+
+- 1つのモジュール内に1つだけexportできる
+  - １ファイルの責務を１つに絞ることができる
+- 呼び出し側で名前を自由に定義できる
+
+
+#+begin_src js
+import sampleFn from './Sample'
+#+end_src

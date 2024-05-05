@@ -1,0 +1,85 @@
+:PROPERTIES:
+:ID:       4484837B-AD43-481C-87C2-BC42E9944BFE
+:END:
+#+title: 実践Next.js
+#+filetags: :nextjs:book:frontend:web:
+
+https://github.com/practical-nextjs-book
+
+* 第1章 Next.jsの基礎
+
+** Template
+~npx create-next-app~
+https://nextjs.org/docs/pages/api-reference/create-next-app
+
+** Routeing
+
+*** Tree/SubTree
+- Tree: 階層構造を示す規則
+- Subtree: 任意のノードをRootとして始め、LeafでおわつTree
+- Root: TreeまたはSubtreeにおける最初のノード
+- Leaf: 子のない最後のノード
+
+*** Segment/Path
+- Segment: ~/~ で区切られたURLの一部
+- Path: ドメインの後に続くURL文字列
+
+e.g. example.com/profile/settings
+- ~example.com~ : ドメイン
+- ~profile~ , ~settings~ : セグメント
+- ~/profile/settings~ : パス
+
+- Dynamic Segment: ~/[id]~ 
+- Route Segment: 特定のPathに対応するセグメント
+
+*** Route Segmentの最小構成ファイル
+
+**** Page
+- page.tsx, page.jsx
+- Reactコンポーネントを[[id:E5BDB5F5-A65E-43A2-8F9C-6DAAF9DD0E51][export default]]する
+
+**** RootLayout
+- layout.tsx
+- 複数の画面間で共有されるUIを実装する場所
+- appディレクトリ直下に配置したlayout.tsxはRootLayoutとして識別される
+- Page同様Reactコンポーネントを[[id:E5BDB5F5-A65E-43A2-8F9C-6DAAF9DD0E51][export default]]する
+
+** Navigation
+- [[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]は[[id:0173C121-7AF7-4502-A344-55787C266B07][SPA]]を提供するフレームワーク
+*** ハードナビゲーション
+- ブラウザが画面を再読み込みする画面遷移
+*** ソフトナビゲーション
+- ブラウザが画面を再読み込みしない画面遷移
+- 画面全体を再描画せずに、必要な箇所だけ再レンダリングする
+- 一度取得したデータやレンダリングした画面をキャッシュとして活用できる
+
+AppRouterは変更されたRouteSegmentのみが再レンダリングされる
+
+*** Linkコンポーネント
+- ~<a>~ と同じようにhref属性にナビゲーション先のURLを設定する
+- ソフトナビゲーションで遷移する
+
+*** Dynamic SegmentとLink
+- DynamicSegmentはURLパスパラメータを参照できる
+
+*** useRouterを使用したナビゲーション
+- Linkコンポーネントを使用せずにナビゲーションを発火させることができる
+
+** ネスト可能なレイアウト
+- 親SegmentLayoutの中に子Segmentがネストされる
+  -> 子Segmentが親SegmentLayoutの影響を受ける
+
+* [[id:4066AB86-2395-4A96-AC7D-AB626B960B4E][ServerComponent]]と[[id:529502BE-9536-4339-A7AD-91BA86438899][ClientComponent]]
+
+** 使い分け
+*** ServerComponent
+- データを取得する
+- バックエンドリソースを取得する
+- 機密情報を扱う
+*** ClinetComponent
+- インタラクティブな機能を持つ
+- コンポーネントに保持した状態を扱う
+- ブラウザ専用のAPI・Hooksを使う
+- React Classコンポーネントを使う
+
+** Server Componentのデータ取得

@@ -1,0 +1,27 @@
+:PROPERTIES:
+:ID:       95CADD3D-F1BE-4480-B513-AF0619A02C13
+:END:
+#+title: Exercism
+
+- プログラミング言語の学習用サイト
+- [[id:F5268D5B-C3CD-41DC-972B-762290B66C86][lisp]]、[[id:45C6278B-128A-4266-B328-7C04C677EAD9][elisp]]の学習に使いたい
+- https://exercism.org/dashboard
+- 練習問題はオンラインのエディタとローカルが選べる
+  - ローカルで[[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]でできたらすごく[[id:12FBE929-3AD3-4183-B770-0081D0CF6F9C][文芸的プログラミング]]的じゃない？
+  - ローカルで実行するには[[id:C58566CC-A9A3-49BE-8EF6-D6ED0AAA8446][Exercism CLI]]をインストールする
+
+
+* Exercism CLI
+:PROPERTIES:
+:ID:       C58566CC-A9A3-49BE-8EF6-D6ED0AAA8446
+:END:
+回答をサイトに提出することができる
+
+** インストール
+今回は[[id:45C6278B-128A-4266-B328-7C04C677EAD9][elisp]]のエクササイズをする。
+[[id:77289594-47E5-4EA8-B28C-8D89D5709C0F][brew]]でインストールできる
+
+** セットアップ
+~exercism configure --token=XXXX~
+
+https://exercism.org/tracks/emacs-lisp

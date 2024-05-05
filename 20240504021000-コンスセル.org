@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       8D593871-DD31-4454-89D5-D658F1F0FA37
+:END:
+#+title: コンスセル
+#+filetags: :lisp:
+
+- [[id:F5268D5B-C3CD-41DC-972B-762290B66C86][lisp]]系言語において最も基礎となるデータ構造
+- CARとCDRの組み合わせ
+

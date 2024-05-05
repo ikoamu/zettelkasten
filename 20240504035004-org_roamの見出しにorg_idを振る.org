@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       3EA66E4E-74B3-43F9-AD63-0B48667CA131
+:END:
+#+title: org-roamの見出しにorg-idを振る
+#+filetags: :org-roam:
+- [[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]の見出しに ~org-id~ を振ることができる
+- これを使うことで、複数のメモをサブツリー(ひとつのファイル)で管理できる
+  - メモが大きくなってきたところで別ファイルにも分割することができる
+
+* org-id-get-create
+:PROPERTIES:
+:ID:       156655CA-81A1-436E-A331-E5241650DD7C
+:END:
+- 見出しにIDを追加できる
+- IDのない見出しはorg-roamのノードとみなされない

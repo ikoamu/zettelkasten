@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       3D12742E-FD6D-44F8-AC4E-491F33EB5F8D
+:END:
+#+title: SSR
+#+filetags: :web:
+

@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       529502BE-9536-4339-A7AD-91BA86438899
+:END:
+#+title: ClientComponent
+#+filetags: :nextjs:
+
+- 操作に対してインタラクティブ反応する振る舞いはWebアプリには必要不可欠
+  - [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]が必要
+- 画面を[[id:A4BB9811-228F-4881-96BF-F19831EB70CA][ハイドレーション]]するためにブラウザ・サーバーの両方でコンポーネントのコードが必要
+- [[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]でClintComponentを作るためには、 ~use client~ ディレクティブを追加する
+
+* ハイドレーション
+:PROPERTIES:
+:ID:       A4BB9811-228F-4881-96BF-F19831EB70CA
+:END:
+- 任意の[[id:F6B92F16-C863-4FB6-8915-6ECD56E646FE][DOM]]にイベントハンドラーをアタッチすること
+- [[id:4066AB86-2395-4A96-AC7D-AB626B960B4E][ServerComponent]]では実現できない
