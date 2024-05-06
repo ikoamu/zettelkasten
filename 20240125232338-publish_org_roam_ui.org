@@ -21,7 +21,17 @@ https://zenn.dev/ikoamu/articles/7193dbcf62fff8
 * forkしたリポジトリ
 https://github.com/ikoamu/org-roam-ui
 
-* 追加したい機能
+* 追加機能
+
+** TODO インラインコードのスタイルもう少しかっこよくしたい
+
+** TODO 検索して選択したノードにフォーカスする
+
+** TODO ファビコン設定
+
+** DONE ノードに特定のURLをつける
+https://github.com/ikoamu/publish-org-roam-ui/issues/13
+
 
 ** DONE シンタックスハイライト
 https://github.com/ikoamu/publish-org-roam-ui/issues/3
@@ -30,13 +40,6 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/3
 - さらに、[[id:2FA96C31-2511-4EE1-BB1E-3EEDB6F28DE8][rehype]]を使って[[id:132258C2-3449-469D-9350-0B9A37818F4A][react]]の要素に変換している
 
 ** DONE [[id:59470C83-9245-43E2-A0DB-33A91D651DA6][publish-org-roamで検索機能を実装する]]
-
-** TODO 検索して選択したノードにフォーカスする
-
-** TODO ファビコン設定
-
-** TODO インラインコードのスタイルもう少しかっこよくしたい
-
 ** DONE 検索結果をフォーカスしたい
 https://github.com/ikoamu/publish-org-roam-ui/issues/10
 -> フォーカス後にノードを画面の中央に持っていけないか？
