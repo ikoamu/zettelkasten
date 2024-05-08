@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       F4EA724E-5DD5-421D-A103-826C1A187829
+:END:
+#+title: App Router
+#+filetags: :Next.js:
+
