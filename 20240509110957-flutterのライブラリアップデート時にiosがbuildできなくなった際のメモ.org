@@ -1,0 +1,20 @@
+:PROPERTIES:
+:ID:       1B5918BB-505F-4DF1-B578-19A84A89301B
+:END:
+#+title: Flutterのライブラリアップデート時にiOSがBuildできなくなった際のメモ
+
+- [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]のライブラリアップデート時にAndroidがビルドできなくなった際の対応メモ
+- [[id:DF5598A5-145F-40E7-BCF9-5B21F27208C4][Android]]は[[id:FB63F4F5-EC4C-4545-8495-0AA7A8DE675B][FlutterのライブラリアップデートでAndroidがBuildできなくなった時]]
+
+
+* CocoaPods's specs repository is too out-of-date to satisfy dependencies
+- ターミナル上では ~pod repo update~ しろとメッセージが表示されるが、実行しても同様のエラー
+- Podfile.lockを削除することでうまくいった
+  https://zenn.dev/arrow/scraps/55c95492c53b8c
+#+begin_src bash
+> cd ios
+> rm Podfile.lock
+> pod install --repo-update
+> flutter clean
+#+end_src
+

@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       EDFEE3AE-0599-48BA-B007-210C1E9D0724
+:END:
+#+title: diredでrename
+
+大文字R

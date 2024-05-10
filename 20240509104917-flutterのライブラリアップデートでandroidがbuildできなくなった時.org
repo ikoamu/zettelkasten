@@ -1,0 +1,47 @@
+:PROPERTIES:
+:ID:       FB63F4F5-EC4C-4545-8495-0AA7A8DE675B
+:END:
+#+title: FlutterのライブラリアップデートでAndroidがBuildできなくなった時
+
+- [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]のライブラリアップデート時にAndroidがビルドできなくなった際の対応メモ
+- [[id:97DE19D0-807C-4BFC-82AE-EE5FC2F3CA00][iOS]]は[[id:1B5918BB-505F-4DF1-B578-19A84A89301B][Flutterのライブラリアップデート時にiOSがBuildできなくなった際のメモ]]
+
+* Could not create task ':<lib>:generateDebugLintModel'.
+- ~android/build.gradle~ で各パッケージの[[id:12802426-5051-401E-A553-FDD94125D1FF][Java]]のバージョンを指定していたことが原因
+- 削除することで起動するようになった
+#+begin_src groovy
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    // This code is where all the magic happens and fixes the error.
+    subprojects {
+        afterEvaluate { project ->
+            if (project.hasProperty('android')) {
+                project.android {
+                    if (namespace == null) {
+                        namespace project.group
+                    }
+                }
+            }
+            // 下記if文を削除することで動作した
+            if (project.name == "<lib>") {
+                project.android.compileSdkVersion = XX
+                if (project.android.hasProperty('compileOptions')) {
+                    project.android.compileOptions {
+                        sourceCompatibility JavaVersion.VERSION_XX
+                        targetCompatibility JavaVersion.VERSION_XX
+                    }
+                }
+                if (project.android.hasProperty('kotlinOptions')) {
+                    project.android.kotlinOptions {
+                        jvmTarget = JavaVersion.VERSION_XX.toString()
+                    }
+                }
+            }
+        }
+    }
+    // This code is where all the magic happens and fixes the error.
+}
+#+end_src
