@@ -42,7 +42,7 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
 **** Error: Failed to lookup route: /zettelkasten
 
 **** Uncaught (in promise) Error: Invariant: attempted to hard navigate to the same URL /zettelkasten#HASH https://ikoamu.github.io/zettelkasten/#HASH
-
+[[id:C350E2BF-6073-404F-9448-7EAF7D3EAB45][handleHardNavigation error]]が発生してる
   
 ** TODO ファビコン設定
 
