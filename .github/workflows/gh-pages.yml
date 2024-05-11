@@ -20,4 +20,4 @@ jobs:
           org-roam-db-filename: org-roam.db
           site-title: zettelkasten - ikoamu
           deploy-to-pages: true
-          ui-ref: migrate-nextjs
+          # ui-ref: migrate-nextjs

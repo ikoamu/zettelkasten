@@ -39,6 +39,8 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
 *** 開発者ツールを見るとエラーが出ているからそれが原因か？
 
 ローカルだとうまくいくからそこら辺かも?
+=> ホスティングしてるURLが ~https://ikoamu.github.io/zettelkasten/~ になってるからっぽい
+~router.replace~ でうまいことできないか？
 
 **** Error: Failed to lookup route: /zettelkasten
 
