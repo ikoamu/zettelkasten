@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       C350E2BF-6073-404F-9448-7EAF7D3EAB45
+:END:
+#+title: handleHardNavigation error
+
+- [[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]のアプリケーションで同じページにリダイレクトしようとすると発生するエラー
+- ~Error: Invariant: attempted to hard navigate to the same URL.~
+- https://github.com/vercel/next.js/discussions/61734
