@@ -38,6 +38,8 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
 
 *** 開発者ツールを見るとエラーが出ているからそれが原因か？
 
+ローカルだとうまくいくからそこら辺かも?
+
 **** Error: Failed to lookup route: /zettelkasten
 
 **** Uncaught (in promise) Error: Invariant: attempted to hard navigate to the same URL /zettelkasten#HASH https://ikoamu.github.io/zettelkasten/#HASH
