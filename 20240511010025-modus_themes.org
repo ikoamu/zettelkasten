@@ -1,0 +1,23 @@
+:PROPERTIES:
+:ID:       418ACBEF-F307-4B24-B7BF-ECA9AA615A62
+:END:
+#+title: modus-themes
+[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]のtheme
+
+* インストール方法
+~package-list-packages~ からインストールした
+
+* Emacs起動時にテーマをloadするか確認不要
+#+begin_src elisp
+(load-theme 'modus-vivendi :no-confirm)
+#+end_src
+
+* [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]のテーマをリッチにしたい
+#+begin_src elisp
+;; Add all your customizations prior to loading the themes
+(setq modus-themes-italic-constructs t
+      modus-themes-bold-constructs nil)
+;; Maybe define some palette overrides, such as by using our presets
+(setq modus-themes-common-palette-overrides
+      modus-themes-preset-overrides-intense)
+#+end_src

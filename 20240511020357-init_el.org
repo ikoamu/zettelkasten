@@ -1,0 +1,141 @@
+:PROPERTIES:
+:ID:       79A5613A-CC3E-4B11-B2DF-41E35CDF06F9
+:END:
+#+title: init.el
+#+filetags: :emacs:
+
+[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]の設定ファイル
+毎回色々と設定し直すのがめんどくさいのでどうにかしたい
+
+* package管理
+#+begin_src elisp
+(require 'package)
+(setq package-archives
+      '(("melpa" . "https://melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")
+        ("gnu" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
+#+end_src
+
+* 基本的な表示設定
+#+begin_src elisp
+;; メニューバーを非表示
+(menu-bar-mode 0)
+;; ツールバーを非表示
+(tool-bar-mode 0)
+;; default scroll bar消去
+(scroll-bar-mode -1)
+;; 現在ポイントがある関数名をモードラインに表示
+(which-function-mode 1)
+;; 対応する括弧をハイライト
+(show-paren-mode 1)
+;; emacsの起動時のメッセージを消す
+(setq inhibit-startup-message t)
+#+end_src
+
+* キーバインド
+#+begin_src elisp
+;; macのOptionをMetaキーに
+(setq mac-option-modifier 'meta)
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+(global-set-key (kbd "C-z") 'undo)
+#+end_src
+
+* ivy(ミニバッファ補完)
+counselのインストールも必要
+#+begin_src elisp
+(use-package ivy
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-height 30)
+  (setq ivy-extra-directories nil)
+  (setq ivy-re-builders-alist
+	'((t . ivy--regex-plus)))
+  (setq counsel-find-file-ignore-regexp (regexp-opt '("./" "../")))
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x C-f" . 'counsel-find-file))
+  :init
+  (ivy-mode 1))
+#+end_src
+
+* [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]
+
+** [[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]
+#+begin_src elisp
+(use-package org-roam
+  :config
+  (setq org-roam-v2-ack t)
+  (setq org-roam-db-location "~/zettelkasten/org-roam.db")
+  ;; (setq org-roam-db-loacation "~/dev/emacs/orui/publish-org-roam-ui/example/org-roam.db")
+  (setq org-roam-directory "~/zettelkasten")
+  ;; (setq org-roam-directory "~/dev/emacs/orui/publish-org-roam-ui/example/")
+  (setq org-roam-graph-executable "/opt/homebrew/bin/dot")
+  (setq org-roam-graph-link-hidden-types '("file" "http" "https"))
+  (setq org-roam-graph-extra-config '(("rankdir" . "LR")))
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:30}" 'face 'org-tag)))
+  (org-roam-db-autosync-enable)
+  
+  :bind (("C-c n l" . 'org-roam-buffer-toggle)
+         ("C-c n f" . 'org-roam-node-find)
+         ("C-c n g" . 'org-roam-graph)
+         ("C-c n i" . 'org-roam-node-insert)
+         ("C-c n s" . 'org-roam-db-sync)
+	 ("C-c n t" . 'org-roam-tag-add)
+	 ("C-c n r" . 'org-roam-ref-add)
+         ("C-c n d" . 'org-roam-dailies-capture-today)))
+(add-to-list 'load-path "~/dev/emacs/orui/org-roam-ui")
+(require 'org-roam-ui)
+#+end_src
+
+*** [[id:71A58D04-253A-4118-90AD-584AF5AAC935][hydra(emacs)]]
+#+begin_src elisp
+(defhydra hydra-roam (:Color pink :hint nil :exit t)
+ "roam"
+ ("f" org-roam-node-find " find")
+ ("i" org-roam-node-insert " insert")
+ ("l" org-roam-buffer-toggle " toggle")
+ )
+(global-set-key (kbd "C-q") 'hydra-roam/body)
+#+end_src
+
+** [[id:5CF0090E-0459-4122-96A7-BD3DF14FF332][org-tempo]]
+#+begin_src elisp
+(require 'org-tempo)
+#+end_src
+
+** [[id:48D91596-EF2D-4AEC-91D8-4731EDB69336][org-babel]]
+#+begin_src elisp
+(setq org-confirm-babel-evaluate nil)
+#+end_src
+
+** [[id:C969F7FD-BB17-4D80-8134-00607A320111][org-agenda]]
+#+begin_src elisp
+(require 'org-agenda)
+(setq org-agenda-files '("~/zettelkasten" "~/org"))
+(define-key global-map "\C-ca" 'org-agenda)
+#+end_src
+
+
+* [[id:50EA3B03-F318-4EBB-90BB-00FDE6090B17][magit]]
+#+begin_src elisp
+(global-set-key (kbd "C-x g") 'magit-status)
+#+end_src
+
+* かわEmacs
+** [[id:418ACBEF-F307-4B24-B7BF-ECA9AA615A62][modus-themes]]
+#+begin_src elisp
+(use-package modus-themes
+  :ensure t
+  :config
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil)
+
+  ;; Maybe define some palette overrides, such as by using our presets
+  (setq modus-themes-common-palette-overrides
+        modus-themes-preset-overrides-intense)
+
+  ;; Load the theme of your choice.
+  (load-theme 'modus-vivendi :no-confirm))
+#+end_src
