@@ -37,6 +37,13 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
   -> まず、開発中のブランチで[[id:B97CD4A8-AE76-45A5-90C0-566030AE1B44][GitHub Actions]]を動かせるようにしたい
   -> できた
 
+*** 開発者ツールを見るとエラーが出ているからそれが原因か？
+
+**** Error: Failed to lookup route: /zettelkasten
+
+**** Uncaught (in promise) Error: Invariant: attempted to hard navigate to the same URL /zettelkasten#HASH https://ikoamu.github.io/zettelkasten/#HASH
+
+  
 ** TODO ファビコン設定
 
 ** DONE ノードに特定のURLをつける
