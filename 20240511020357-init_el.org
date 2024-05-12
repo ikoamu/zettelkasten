@@ -6,6 +6,7 @@
 
 [[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]の設定ファイル
 毎回色々と設定し直すのがめんどくさいのでどうにかしたい
+[[file:~/.emacs.d/init.el][init.el]]
 
 * package管理
 #+begin_src elisp
@@ -88,15 +89,19 @@ counselのインストールも必要
 (require 'org-roam-ui)
 #+end_src
 
-*** [[id:71A58D04-253A-4118-90AD-584AF5AAC935][hydra(emacs)]]
+*** [[id:71A58D04-253A-4118-90AD-584AF5AAC935][hydra(emacs)]]で[[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]をつかいやすく
+:PROPERTIES:
+:ID:       7F02F36E-8C2B-4E87-89BF-2E6A061787E2
+:END:
 #+begin_src elisp
-(defhydra hydra-roam (:Color pink :hint nil :exit t)
- "roam"
- ("f" org-roam-node-find " find")
- ("i" org-roam-node-insert " insert")
- ("l" org-roam-buffer-toggle " toggle")
- )
-(global-set-key (kbd "C-q") 'hydra-roam/body)
+  (defhydra hydra-roam (:Color pink :hint nil :exit t)
+    "roam"
+    ("f" org-roam-node-find " find")
+    ("i" org-roam-node-insert " insert")
+    ("l" org-roam-buffer-toggle " toggle")
+    ("c" org-id-get-create " create id")
+    )
+   (global-set-key (kbd "C-q") 'hydra-roam/body)
 #+end_src
 
 ** [[id:5CF0090E-0459-4122-96A7-BD3DF14FF332][org-tempo]]

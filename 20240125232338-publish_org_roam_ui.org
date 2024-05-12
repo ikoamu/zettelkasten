@@ -41,6 +41,7 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
 ローカルだとうまくいくからそこら辺かも?
 => ホスティングしてるURLが ~https://ikoamu.github.io/zettelkasten/~ になってるからっぽい
 ~router.replace~ でうまいことできないか？
+-> [[id:D379EE24-8F29-4ACF-9907-1BA384671543][history API]]を直で叩くことで解決した
 
 **** Error: Failed to lookup route: /zettelkasten
 

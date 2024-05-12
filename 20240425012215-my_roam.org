@@ -2,6 +2,7 @@
 :ID:       999BD9C0-AA15-4D93-AC4C-2B2138476A2D
 :END:
 #+title: my-roam
+#+filetags: :org-roam:
 
 * ルール
 
@@ -10,6 +11,9 @@
 
 * 改善
 ** TODO [[id:71A58D04-253A-4118-90AD-584AF5AAC935][hydra(emacs)]]でメモを使いやすくしたい
+[[id:7F02F36E-8C2B-4E87-89BF-2E6A061787E2][hydra(emacs)でorg-roamをつかいやすく]]
+
 ** TODO tsxのシンタックスを入れたい
 基本的にメモする内容がWeb系が多いため、入れた方が見栄えがいい
-** TODO テーマ変えたい
+** DONE テーマ変えたい
+[[id:418ACBEF-F307-4B24-B7BF-ECA9AA615A62][modus-themes]]
