@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       1C1A11EA-78DF-44B5-A907-72C044BC7E32
+:END:
+#+title: BigQueryのRecord
+
+[[id:C32B9491-8874-4569-A905-F0E7F8CF5701][BigQuery]]でデータを取得する際、構造化された形式のデータを扱うのが結構大変
+
+
+https://qiita.com/uehiro22/items/485bb30ce1a70457d335
+
+https://cloud.google.com/bigquery/docs/nested-repeated?hl=ja

@@ -17,3 +17,8 @@
 基本的にメモする内容がWeb系が多いため、入れた方が見栄えがいい
 ** DONE テーマ変えたい
 [[id:418ACBEF-F307-4B24-B7BF-ECA9AA615A62][modus-themes]]
+** TODO remoteの[[id:147E9EBF-36C6-429C-BF25-C33D2E020D59][Git]]からノードをPull
+1. dbファイルをリストア
+2. git pull
+3. ~org-roam-db-clear~
+4. ~org-roam-db-sync~

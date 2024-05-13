@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       336911D7-4D8B-477D-9C9A-5517987C5173
+:END:
+#+title: Google Cloud
+

@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       C32B9491-8874-4569-A905-F0E7F8CF5701
+:END:
+#+title: BigQuery
+- [[id:336911D7-4D8B-477D-9C9A-5517987C5173][Google Cloud]]のデータ分析プラットフォーム
+- BigQueryでテーブルを作成して[[id:36E91184-DDAE-48D6-872D-C0929E84135A][Looker Studio]]で可視化する
