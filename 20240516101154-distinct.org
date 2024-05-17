@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       C7F02633-B90F-4FB9-BD8D-A8322D995E34
+:END:
+#+title: DISTINCT
+#+filetags: :sql:
+
+[[id:B9A94DDA-42FF-40A0-B1A9-C2A4B67833C7][SQL]]の重複したレコードをまとめるコマンド
+
+#+begin_src sql
+SELECT
+   DISTINCT 列名
+FROM
+  テーブル名;
+#+end_src

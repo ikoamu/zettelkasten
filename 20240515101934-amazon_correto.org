@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       114CD45E-6D46-4A4D-91A0-EC15BE901653
+:END:
+#+title: Amazon Correto
+#+filetags: :Java:
+
+* インストール
+https://docs.aws.amazon.com/ja_jp/corretto/latest/corretto-21-ug/macos-install.html

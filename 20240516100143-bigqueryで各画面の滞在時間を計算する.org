@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       E806F675-5051-4736-96A5-C6E0C2191BAC
+:END:
+#+title: BigQueryで各画面の滞在時間を計算する
+
+- [[id:454D5CF1-0C13-49EC-A312-D38D0B51BA99][Google Analytics]]からのデータを[[id:C32B9491-8874-4569-A905-F0E7F8CF5701][BigQuery]]でテーブル化し、[[id:36E91184-DDAE-48D6-872D-C0929E84135A][Looker Studio]]にグラフで表示したい
+- 平均滞在時間が40秒ほどになってほしい画面が今3分半くらいになっているので修正している
+
+* 参考
+- https://note.com/macmuko/n/nf6bfbecc1b9f
+- https://ex-ture.com/blog/2020/10/23/google-analytics-4-bigquery-6sqls/

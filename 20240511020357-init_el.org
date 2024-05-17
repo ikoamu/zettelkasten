@@ -111,7 +111,14 @@ counselのインストールも必要
 
 ** [[id:48D91596-EF2D-4AEC-91D8-4731EDB69336][org-babel]]
 #+begin_src elisp
-(setq org-confirm-babel-evaluate nil)
+  (setq org-confirm-babel-evaluate nil)
+  (add-to-list 'org-src-lang-modes (cons "jsx" 'rjsx-mode))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+     '((shell . t)
+       (js . t)
+       
+       (python . t)))
 #+end_src
 
 ** [[id:C969F7FD-BB17-4D80-8134-00607A320111][org-agenda]]

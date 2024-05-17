@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       4B5EF83E-5410-4A84-8A88-E1D0C33AACD2
+:END:
+#+title: org-babelでBigQueryを実行したい
+#+begin_src shell :result output
+ls
+#+end_src

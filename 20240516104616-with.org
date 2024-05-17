@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       3C8A1F78-09A0-4FD4-ABA9-D2C833D27CA4
+:END:
+#+title: WITH
+#+filetags: :sql:
+
+[[id:B9A94DDA-42FF-40A0-B1A9-C2A4B67833C7][SQL]]のサブクエリに名前をつけて一時的に別管理する機能
+
+#+begin_src sql
+WITH cte_name AS (
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition
+)
+SELECT *
+FROM cte_name;
+#+end_src

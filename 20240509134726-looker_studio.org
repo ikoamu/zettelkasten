@@ -2,3 +2,22 @@
 :ID:       36E91184-DDAE-48D6-872D-C0929E84135A
 :END:
 #+title: Looker Studio
+
+* ディメンション                                               :LookerStudio:
+:PROPERTIES:
+:ID:       6A9DCFB7-41A4-4927-B061-D4F535C5E0C6
+:END:
+https://support.google.com/looker-studio/answer/6303401?hl=ja
+データをグループ化するための条件となる一連の値
+
+#+begin_example
+たとえば、ウェブサイトへのトラフィックに関するレポートを作成する場合、「ブラウザ」、「ランディング ページ」、「キャンペーン」などのディメンションを使用します。
+これらのディメンションには、それぞれ「Chrome」、「/home」、「サマーセール」などの値が格納されます。
+地理データの場合は、「大陸」、「国」、「緯度」、「経度」などのディメンションがあり、それぞれ「北アメリカ」、「米国」、「36.985891」、「-121.965528」などの値が格納されます。
+ディメンションには、価格などの集計されていない数値も含まれます。
+#+end_example
+
+
+** 内訳ディメンション
+https://support.google.com/looker-studio/answer/7625527?hl=ja#zippy=%2C%E3%81%93%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AE%E5%86%85%E5%AE%B9
+

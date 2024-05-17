@@ -1,0 +1,13 @@
+:PROPERTIES:
+:ID:       914BDA6D-EF9A-4BD9-9E73-D4B18AB55E08
+:END:
+#+title: iconv
+* utf8 -> sjis
+#+begin_src shell
+iconv -f UTF-8 -t SJIS sample.txt > sjis.txt
+#+end_src
+
+* sjis -> utf8
+#+begin_src shell
+iconv -f SJIS -t UTF-8 sample.txt > utf8.txt
+#+end_src]

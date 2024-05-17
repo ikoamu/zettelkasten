@@ -9,3 +9,13 @@
 https://qiita.com/uehiro22/items/485bb30ce1a70457d335
 
 https://cloud.google.com/bigquery/docs/nested-repeated?hl=ja
+* [[id:454D5CF1-0C13-49EC-A312-D38D0B51BA99][Google Analytics]]のeventを[[id:B9A94DDA-42FF-40A0-B1A9-C2A4B67833C7][SQL]]で触る                                       :sql:
+:PROPERTIES:
+:ID:       D1FA9713-BD61-4A7E-ADCD-C55B0DA72022
+:END:
+#+begin_src sql
+SELECT *
+FROM `events_20240515`
+WHERE
+  (SELECT value.int_value FROM UNNEST(event_params) WHERE KEY = 'ga_session_id') = 1715771882
+#+end_src

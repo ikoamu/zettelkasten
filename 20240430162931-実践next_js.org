@@ -6,7 +6,7 @@
 
 https://github.com/practical-nextjs-book
 
-* 第1章 Next.jsの基礎
+* Next.jsの基礎
 
 ** Template
 ~npx create-next-app~
@@ -76,6 +76,7 @@ AppRouterは変更されたRouteSegmentのみが再レンダリングされる
 - データを取得する
 - バックエンドリソースを取得する
 - 機密情報を扱う
+
 *** ClinetComponent
 - インタラクティブな機能を持つ
 - コンポーネントに保持した状態を扱う
@@ -83,3 +84,42 @@ AppRouterは変更されたRouteSegmentのみが再レンダリングされる
 - React Classコンポーネントを使う
 
 ** Server Componentのデータ取得
+[[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]では標準のデータ取得方法として、[[id:09C3E1C9-55DF-4CCB-972B-A3023FF570AB][window.fetch]]を使う。
+[[id:09C3E1C9-55DF-4CCB-972B-A3023FF570AB][window.fetch]]は[[id:4484837B-AD43-481C-87C2-BC42E9944BFE][実践Next.js]]内で拡張されている
+
+*** 直接データを取得する[[id:4066AB86-2395-4A96-AC7D-AB626B960B4E][ServerComponent]]
+:PROPERTIES:
+:ID:       2E0A0A05-9090-4B64-A501-79B5687F49E4
+:END:
+ServerComponentではコンポーネントレベルで直接データを取得できる
+※[[id:6074FCBD-4CB2-4B0C-9D95-4916E4073EEB][Page Router]]ではページレベルでデータを取得していた
+
+#+begin_src jsx
+export default async function ServerComponent() {
+  const res = await fetch();
+  const data = await res.json();
+  return <div>{・・・}</div>;
+}
+#+end_src
+
+データの取得に伴い、エラーハンドリングやローディングを考慮する必要がある
+
+**** [[id:4066AB86-2395-4A96-AC7D-AB626B960B4E][ServerComponent]]でデータを取得する利点
+- バックエンドリソースへ直接アクセスできる
+- トークンやAPIキーをクライアントサイドで持たなくて良い
+- クライアント・サーバー間の通信往復回数が削減される
+- クライアント・サーバー間のウォーターフォールが削減される
+  - HTMLやアセットそれぞれの順番にダウンロードしていくこと？
+  - DevToolのネットワークタブで確認できる
+
+**** データを並列で取得する
+[[id:95D0A141-FBE2-4A24-8B7B-BC5D89DA11D2][Promise.all]]でやる
+#+begin_src tsx
+export default async function Page({ params, searchParams }: Props) {
+  const [category, photos] = await Promise.all([
+    getCategory(),
+    getPhotos(),
+  ]);
+  // ・・・
+}
+#+end_src
