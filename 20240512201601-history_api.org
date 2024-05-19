@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       D379EE24-8F29-4ACF-9907-1BA384671543
+:END:
+#+title: history API
+#+filetags: :web:
+
+https://developer.mozilla.org/ja/docs/Web/API/History_API
