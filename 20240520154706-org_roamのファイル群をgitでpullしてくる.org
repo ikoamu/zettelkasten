@@ -1,0 +1,25 @@
+:PROPERTIES:
+:ID:       C9D65B80-4144-4BD0-8E8F-3BFDF2F75068
+:END:
+#+title: org-roamのファイル群をGitでPullしてくる
+#+filetags: :org-roam:
+
+[[id:147E9EBF-36C6-429C-BF25-C33D2E020D59][Git]]で管理している[[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]のファイル群をPullする際のめんどくさい作業をコマンド一発でやりたい
+
+1. org-roam.dbの変更をDiscard
+2. ファイルの変更をstash
+3. ~git pull~
+4. (コンフリクトを解消？)
+5. ~org-roam-db-clear-all~
+6. ~org-roam-db-sync~
+
+#+begin_src elisp
+  (defun test ()
+    (org-roam-db-clear-all)
+    (org-roam-db-sync)
+  )
+  (test)
+#+end_src
+
+#+RESULTS:
+: test

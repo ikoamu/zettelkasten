@@ -123,3 +123,30 @@ export default async function Page({ params, searchParams }: Props) {
   // ・・・
 }
 #+end_src
+
+** Cache
+- [[id:09C3E1C9-55DF-4CCB-972B-A3023FF570AB][window.fetch]]は[[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]で拡張されている
+- デフォルトでキャッシュが聴く
+- キャッシュを無効化したい場合は[[id:09C3E1C9-55DF-4CCB-972B-A3023FF570AB][window.fetch]]のOptionに ~{cache: "no-store"}~ を設定する
+** Routeのレンダリング
+- 静的ファイルは[[id:01707DE6-A267-43D6-8396-4C98160BA777][CDN]]で配信できる
+
+[[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]はRouteごとにレンダリング手法を選べる
+- 静的レンダリングRoute
+- 動的レンダリングRoute
+
+*** 静的レンダリングRoute
+- レンダリング結果をHTMLなどの静的ファイルに出力し、レスポンスとして使用する
+- [[id:01707DE6-A267-43D6-8396-4C98160BA777][CDN]]で配信できる
+- [[id:2D6C4937-D346-4E3C-A9A0-F45B686310A6][ISR]]もこっち
+- [[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]はで基本的にこっちでレンダリングしようとして、無理だったら動的にする
+
+*** 動的レンダリングRoute
+- リクエスト内容を都度評価する
+- 常に最新のデータを返したり、リクエスト内容に応じてレンダリング結果を動的に変えるRoute
+- 動的データを取得する場合
+  - ~{cache: "no-store"}~ 
+- 動的関数を使用する場合
+- Dynamic Segmentを使用する場合
+* AppRouterの規約
+
