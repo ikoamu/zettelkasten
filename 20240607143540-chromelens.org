@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       B5055366-B0C1-4E7F-97BB-E2E0B6C52810
+:END:
+#+title: ChromeLens
+
+視覚障害や色盲の人が見てるWEBサイトの状況がわかる
+[[id:BC3BDECB-8782-4AB2-B778-3AA881EE1078][GoogleChrome]]の拡張機能

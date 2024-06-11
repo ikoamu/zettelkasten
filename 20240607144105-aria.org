@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       9DC705B4-199D-4E73-AA6E-2A6DA75B5071
+:END:
+#+title: ARIA
+ARIA は、インターネットを管理および規制する包括的な World Wide Web
+Consortium（W3C）のサブセットである Web Accessibility Initiative（WAI）
+グループによって 2008 年に初めて開発されました。
+
+[[id:9102AF70-548B-4F59-8F83-B9864DA1630F][html]]のaria属性

@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       7412F914-5D63-4EE0-B0B9-7D9B9E76E41E
+:END:
+#+title: web-a11y
+#+filetags: :web:frontend:
+
+* 用語
+** WCAG
+- Web Content A11y Guildlines
+** WAI
+- Web A11y Initiative
+** WAI-[[id:9DC705B4-199D-4E73-AA6E-2A6DA75B5071][ARIA]]
+- 動的なWebアプリについてのA11y
+* web.devで座学
+https://web.dev/learn/accessibility/welcome?hl=ja

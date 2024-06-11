@@ -3,3 +3,5 @@
 :END:
 #+title: html
 
+* どのタグを使うか判断に迷う場合
+https://web.dev/learn/html/semantic-html?hl=ja
