@@ -1,0 +1,26 @@
+:PROPERTIES:
+:ID:       9EB6B7D0-BC90-4B79-A38E-DF10AFAFDD47
+:END:
+#+title: bondedState
+#+filetags: :ble:android:
+
+* 10: BOND_NONE
+https://developer.android.com/reference/android/bluetooth/BluetoothDevice#BOND_NONE
+- リモートデバイスがボンディング（ペアリング）されていないことを示す。
+- リモート・デバイスとの共有リンク・キーは存在しないため、通信は（許可されたとしても）認証も暗号化もされない。
+
+* 11: BOND_BONDING
+https://developer.android.com/reference/android/bluetooth/BluetoothDevice#BOND_BONDING
+- リモートデバイスとのボンディング（ペアリング）が進行中であることを示す。
+
+* 12: BOND_BONDED
+https://developer.android.com/reference/android/bluetooth/BluetoothDevice#BOND_BONDED
+- リモートデバイスがボンディング（ペアリング）されていることを示す。
+- リモート・デバイス用に共有リンク・キーがローカルに存在するので、通信は認証され暗号化される。
+- リモート・デバイスとボンディング（ペアリング）されていても、そのデバ
+  イスが現在接続されているとは限りません。それは、保留中の手続きが以前
+  の時点で完了し、リンクキーがまだローカルに保存されており、次の接続で
+  使用できる状態であることを意味するだけである。
+
+
+ 
