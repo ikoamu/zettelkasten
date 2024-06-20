@@ -30,7 +30,10 @@ healthパッケージ内のexampleで実施
 *** iOS
 **** バグの確認
 - 「心臓」のページにデータがないと表示される
+  
+  #+ATTR_HTML: :alt alt-test :width 480px
   [[./img/health_ios_before_blood_pressure_home.png]]
+
 - 血圧一覧に登録したデータが表示されない
   [[./img/health_ios_before_blood_pressures_page.png]]
 - グラフには表示されている

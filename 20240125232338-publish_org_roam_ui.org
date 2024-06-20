@@ -27,7 +27,7 @@ https://github.com/ikoamu/org-roam-ui
 
 ** DONE 検索して選択したノードにフォーカスする
 
-** TODO ノードにhash linkを作る
+** DONE ノードにhash linkを作る
 https://github.com/ikoamu/publish-org-roam-ui/issues/13
 -> 一度やってみたが、[[id:63A0834E-B3E9-471F-9094-DCD0BEECB96A][GitHub Pages]]にデプロイすると余計なリロードが入っていまう。
 そろそろ[[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]のバージョンをあげて[[id:F4EA724E-5DD5-421D-A103-826C1A187829][App Router]]に移行してみてうまくいくか試してみたい
@@ -35,7 +35,7 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
 -> 今回、一度開発ブランチを ~publish-org-roam-ui~ マージしてしまったが、実際にデプロイしたらうまくいかなかった
   -> まず、開発中のブランチで[[id:B97CD4A8-AE76-45A5-90C0-566030AE1B44][GitHub Actions]]を動かせるようにしたい
   -> できた
-
+** DONE [[id:88F3E78B-05D2-4C70-A4DD-FB17B7904945][publish-org-roam-uiで画像のATTR_HTMLをサポート]]
 *** 開発者ツールを見るとエラーが出ているからそれが原因か？
 
 ローカルだとうまくいくからそこら辺かも?

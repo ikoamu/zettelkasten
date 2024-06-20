@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       88F3E78B-05D2-4C70-A4DD-FB17B7904945
+:END:
+#+title: publish-org-roam-uiで画像のATTR_HTMLをサポート
+#+filetags: :org-mode:org-roam:
+
+- https://github.com/ikoamu/publish-org-roam-ui/issues/16
+- https://orgmode.org/manual/Images.html
+
+* Support ~#+ATTR_HTML~ in images
+
+#+ATTR_HTML: :alt org-mode-unicorn :width 280px :align right
+[[./img/org-mode-unicorn.svg]]
+
