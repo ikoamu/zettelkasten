@@ -17,7 +17,8 @@ https://github.com/org-roam/org-roam-ui/discussions/109#discussioncomment-650000
 
 もろもろまとめて記事にした
 https://zenn.dev/ikoamu/articles/7193dbcf62fff8
-
+* テスト環境を作りたい
+- 
 * forkしたリポジトリ
 https://github.com/ikoamu/org-roam-ui
 
@@ -35,7 +36,7 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
 -> 今回、一度開発ブランチを ~publish-org-roam-ui~ マージしてしまったが、実際にデプロイしたらうまくいかなかった
   -> まず、開発中のブランチで[[id:B97CD4A8-AE76-45A5-90C0-566030AE1B44][GitHub Actions]]を動かせるようにしたい
   -> できた
-** DONE [[id:88F3E78B-05D2-4C70-A4DD-FB17B7904945][publish-org-roam-uiで画像のATTR_HTMLをサポート]]
+** TODO [[id:88F3E78B-05D2-4C70-A4DD-FB17B7904945][publish-org-roam-uiで画像のATTR_HTMLをサポート]]
 *** 開発者ツールを見るとエラーが出ているからそれが原因か？
 
 ローカルだとうまくいくからそこら辺かも?
@@ -52,7 +53,6 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
 
 ** DONE ノードに特定のURLをつける
 https://github.com/ikoamu/publish-org-roam-ui/issues/13
-
 
 ** DONE シンタックスハイライト
 https://github.com/ikoamu/publish-org-roam-ui/issues/3

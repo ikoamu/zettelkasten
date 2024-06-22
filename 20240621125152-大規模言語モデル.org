@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       2A388B36-851C-4C83-82F9-101E0EEDA49C
+:END:
+#+title: 大規模言語モデル
+

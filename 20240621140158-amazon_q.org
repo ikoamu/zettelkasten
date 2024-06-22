@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       F5014C33-BF8E-4C61-B162-BCDD15841BBE
+:END:
+#+title: Amazon Q
+#+filetags: :AWS:
+
+- ソフトウェア開発全体で開発者をサポートしてくれる
+* Amazon Q Developer
+:PROPERTIES:
+:ID:       2BD24814-49CD-4736-8446-D44A83A7F88B
+:END:
+- コードの生成([[id:D22E2FA4-695C-4045-B223-27B2ED22BB50][Copilot]]的な)

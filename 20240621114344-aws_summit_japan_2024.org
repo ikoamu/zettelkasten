@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       87969280-1803-4380-975B-5B3074D7F98A
+:END:
+#+title: AWS Summit Japan 2024
+
+- [[id:52ED7897-D8CD-46AD-B041-BBB3797691C8][サーバーレス開発のベストプラクティス]]
+- [[id:4F488C31-E1C5-4CB9-8BA5-D32A9BDE1F00][プロンプトエンジニアリング入門]]
+- [[id:837AE3A7-0B1F-4CF6-8B2F-06AF5BCFAF62][AWS AmplifyとAmanzon Q Developerを活用した生成AIアプリケーションの作り方]]

@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       837AE3A7-0B1F-4CF6-8B2F-06AF5BCFAF62
+:END:
+#+title: AWS AmplifyとAmanzon Q Developerを活用した生成AIアプリケーションの作り方
+#+filetags: :GenAI:AWS_SUMMIT_2024:AWS:
+
+- [[id:D55F1AAC-759C-423D-9CA1-3FDD06C11C2F][Amplify]] でAI/MLサービスセットがサポートされるようになった
+- [[id:2BD24814-49CD-4736-8446-D44A83A7F88B][Amazon Q Developer]]を利用するこで、コードベースのGen2のバックエンド構築が迅速にできる
+  - 最適なコードを出してくれるらしい
+  - [[id:D22E2FA4-695C-4045-B223-27B2ED22BB50][Copilot]]より補完うまくいくかも？
+
+* Amplify Gen2で[[id:92EF66B7-5A84-4C10-85E8-A6E44318BB2E][Bedrock]]を利用する方法
+- [[id:92EF66B7-5A84-4C10-85E8-A6E44318BB2E][Bedrock]]のHTTPリソースを作成
+- [[id:92EF66B7-5A84-4C10-85E8-A6E44318BB2E][Bedrock]]を呼び出すリゾルバーを作成
+- データソースに権限を付与

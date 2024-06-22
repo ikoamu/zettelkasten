@@ -1,0 +1,38 @@
+:PROPERTIES:
+:ID:       52ED7897-D8CD-46AD-B041-BBB3797691C8
+:END:
+#+title: サーバーレス開発のベストプラクティス
+#+filetags: :AWS_SUMMIT_2024:AWS:
+* [[id:848C5EF6-DA09-4D87-A167-4AAC246269E9][サーバレス]]とは?
+- [[id:E0288751-720E-4157-9D3D-A3DC8B56F76A][AWS Lambda]]が登場して10年
+- [[id:92EF66B7-5A84-4C10-85E8-A6E44318BB2E][Bedrock]]
+* サービスフルなサーバレス
+- ラムダリス = [[id:E0288751-720E-4157-9D3D-A3DC8B56F76A][AWS Lambda]] + [[id:DADC00CD-7DAB-423F-961B-CDB39975E71E][モノリス]]([[id:CB47BB9B-35D2-458D-839A-B32E9FD5C4A3][Lambda-lith]])
+  - パフォーマンス・IAMの調整が難しい
+- 巨大なLambdaを作らずに、単一責務にする
+  - でも膨大な数のLambdaを作ってしまうと運用負荷がでかい？
+  - 適切な粒度にグループ化しよう
+* [[id:047666B3-276B-4EC0-A2FB-9849298BD9CE][オーケストレーション]]と[[id:D3B85ABF-1C8A-4334-991E-1E3C47A7F7E3][コレオグラフィ]]の使い分け
+- 各サービスが自律的に動作する
+- [[id:0BCF5B64-2B8A-4C2F-873B-A5C77AA2C580][プラグインアーキテクチャ]]
+  - [[id:6CE9BB2C-29B2-479A-9144-E9824A72BA8B][EventBridge]]と[[id:3E1BBB91-C564-4B1A-A8A1-BE32F5537D24][EventBus]]で実現
+** [[id:E0288751-720E-4157-9D3D-A3DC8B56F76A][AWS Lambda]]をサービス統合に置き換えたい
+- [[id:BF37114B-699D-40B8-A0E9-74BE6A1EE1A6][AWS SDK integrations]]を使うことで、Lambdaを削減できるかも
+- [[id:8DC02F99-B9D3-43DE-BEE2-08B177730781][API Gateway]]から直接APIを叩ける
+  - Lambdaをプロキシ的な使い方をしなくて良くなる
+- [[id:528E94D5-0A6D-4144-AA16-76F4F4C2A0F4][EventBridge pipes]]も
+* [[id:B13F1205-C125-4005-B9EC-D083C1161C95][生成AI]]とサーバレス
+- [[id:5CBC64D1-449E-4EF0-9F49-36CC4769FBAD][AWS StepFunction]]
+- [[id:92EF66B7-5A84-4C10-85E8-A6E44318BB2E][Bedrock]]
+  - 最適化された統合がサポートされたため、Lambdaを使わずに使える
+  - Invoke model
+  - Create model Customization Job
+- パブリックAPIを使ってAWS外のモデルを使う
+  - 認証めんどくさい
+  - I/O・エラーハンドリングめんどくさい
+  - 差別化とならない重労働
+- [[id:0C00237A-7489-41F1-A921-F2B0A1016009][プロンプトチェーン]]
+** API Endpointへの直接統合([[id:5CBC64D1-449E-4EF0-9F49-36CC4769FBAD][AWS StepFunction]])
+- Public APIへのアクセスが簡単に
+- [[id:C55A94AB-F1DF-4518-B5AD-21B6E0F282F7][テストステート]]でテスト可能
+* まとめ

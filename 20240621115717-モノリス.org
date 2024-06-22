@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       DADC00CD-7DAB-423F-961B-CDB39975E71E
+:END:
+#+title: モノリス
+

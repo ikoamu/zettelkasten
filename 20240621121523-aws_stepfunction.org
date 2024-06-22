@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       5CBC64D1-449E-4EF0-9F49-36CC4769FBAD
+:END:
+#+title: AWS StepFunction
+
+* Callback pattern
+- タスクトークンを使ってユーザー操作を待機したりできる
+
+* テストステート
+:PROPERTIES:
+:ID:       C55A94AB-F1DF-4518-B5AD-21B6E0F282F7
+:END:
+ステップを独立して動作確認できる
+
+* Redrive
+失敗したところから再実行できる
+

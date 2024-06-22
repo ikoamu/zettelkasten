@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       0BCF5B64-2B8A-4C2F-873B-A5C77AA2C580
+:END:
+#+title: プラグインアーキテクチャ
+

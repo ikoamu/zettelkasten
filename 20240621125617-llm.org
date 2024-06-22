@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       25325C32-83C5-4A63-A994-0766C6ECB2D9
+:END:
+#+title: LLM
+
+-大規模言語モデル(Large Langueage Model)
+
+* ユースケース
+# put image

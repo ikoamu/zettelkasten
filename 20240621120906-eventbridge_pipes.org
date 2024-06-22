@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       528E94D5-0A6D-4144-AA16-76F4F4C2A0F4
+:END:
+#+title: EventBridge pipes
+

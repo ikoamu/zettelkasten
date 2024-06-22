@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       A220B0A4-61CF-4E30-8CA0-20B88D133E83
+:END:
+#+title: bedrock
+#+filetags: :AWS:
+
