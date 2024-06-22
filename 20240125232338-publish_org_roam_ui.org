@@ -38,6 +38,7 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
   -> できた
 ** TODO [[id:88F3E78B-05D2-4C70-A4DD-FB17B7904945][publish-org-roam-uiで画像のATTR_HTMLをサポート]]
 *** 開発者ツールを見るとエラーが出ているからそれが原因か？
+- processOrgのsecction部分かな？
 
 ローカルだとうまくいくからそこら辺かも?
 => ホスティングしてるURLが ~https://ikoamu.github.io/zettelkasten/~ になってるからっぽい
