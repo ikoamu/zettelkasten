@@ -1,0 +1,586 @@
+:PROPERTIES:
+:ID:       9D7068AD-090B-4C72-B1D3-AA97E34FF736
+:END:
+#+title: org-roam-uiのgraphdata
+#+filetags: :org-roam:
+
+* [[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]の向き先設定
+#+begin_src elisp
+  ;;; MY ROAM
+  (setq org-roam-directory "~/zettelkasten")
+  (setq org-roam-db-location "~/zettelkasten/org-roam.db")
+
+  ;;; ISSUE#20
+  ;(setq org-roam-directory "/Users/aokisusumutarou/dev/emacs/orui/MElemental.github.io")
+  ;(setq org-roam-db-location "/Users/aokisusumutarou/dev/emacs/orui/MElemental.github.io/org-roam.db")
+
+  ;;; EXAMPLE
+  ;; (setq org-roam-directory "~/dev/emacs/orui/publish-org-roam-ui/example/")
+  ;; (setq org-roam-db-loacation "~/dev/emacs/orui/publish-org-roam-ui/example/org-roam.db")
+
+#+end_src
+
+#+RESULTS:
+: ~/zettelkasten/org-roam.db
+
+* グラフ作成の関数
+#+begin_src elisp
+    (require 'org-roam)
+    (defun org-roam-ui--make-graphdata ()
+    "Get roam data and make JSON"
+    (let* ((nodes-names
+	    [id
+	     file
+	     title
+	     level
+	     pos
+	     olp
+	     properties
+	     tags])
+	   (old (not (fboundp 'org-roam-db-map-citations)))
+	   (links-db-rows (if old
+			      (org-roam-ui--separate-ref-links
+			       (org-roam-ui--get-links old))
+			    (seq-concatenate
+			     'list
+			     (org-roam-ui--separate-ref-links
+			      (org-roam-ui--get-cites))
+			     (org-roam-ui--get-links))))
+	   (links-with-empty-refs (org-roam-ui--filter-citations links-db-rows))
+	   (empty-refs (delete-dups (seq-map
+				     (lambda (link)
+				       (nth 1 link))
+				     links-with-empty-refs)))
+	   (nodes-db-rows (org-roam-ui--get-nodes))
+	   (fake-nodes (seq-map #'org-roam-ui--create-fake-node empty-refs))
+	     ;; Try to update real nodes that are reference with a title build
+	     ;; from their bibliography entry. Check configuration here for avoid
+	     ;; unneeded iteration though nodes.
+	   (retitled-nodes-db-rows (if org-roam-ui-retitle-ref-nodes
+				      (seq-map #'org-roam-ui--retitle-node
+					       nodes-db-rows)
+				    nodes-db-rows))
+	   (complete-nodes-db-rows (append retitled-nodes-db-rows fake-nodes))
+	   (response `((nodes . ,(mapcar
+				  (apply-partially
+				   #'org-roam-ui-sql-to-alist
+				   (append nodes-names nil))
+				  complete-nodes-db-rows))
+		       (links . ,(mapcar
+				  (apply-partially
+				   #'org-roam-ui-sql-to-alist
+				   '(source target type))
+				  links-db-rows))
+		       (tags . ,(seq-mapcat
+				 #'seq-reverse
+				 (org-roam-db-query
+				  [:select :distinct tag :from tags]))))))
+      (when old
+	(message "[org-roam-ui] You are not using the latest version of org-roam.
+  This database model won't be supported in the future, please consider upgrading."))
+      (json-encode
+       `((type . "graphdata")
+	 (data . ,response)))))
+#+end_src
+
+#+RESULTS:
+: org-roam-ui--make-graphdata
+
+#+begin_src elisp
+(org-roam-ui--make-graphdata)
+#+end_src
+
+** linkの部分を深掘り
+
+#+begin_src elisp
+  (seq-concatenate
+   'list
+   (org-roam-ui--separate-ref-links
+    (org-roam-ui--get-cites))
+   (org-roam-ui--get-links))
+#+end_src
+
+#+RESULTS:
+| 21cd2a48-a9bb-4564-b42d-6c94b583f0a8 | 873b545f-b959-4299-b44a-fbc13c29a8bf   | ref  |
+| ec164ac0-63a4-4fce-aac7-c1221e193b1e | a2b9b98b-907f-48a7-ac83-f39dae4bc06f   | ref  |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | 5e723cbb-2154-47e3-bea6-255b45385dc3   | ref  |
+| e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | raritanAlternatingCurrentExplained2018 | cite |
+| bbc78695-e3dc-4dfa-90ca-5dab51af77c3 | 3bdb6e54-a072-4c06-a1c6-92441fe03a62   | ref  |
+| 6933d2ab-22fb-4c01-ab81-57f7802729e2 | baumWhatRadicalBehaviorism2011         | cite |
+| 6933d2ab-22fb-4c01-ab81-57f7802729e2 | chomskyReviewVerbalBehavior1959        | cite |
+| e27c7b62-e338-4056-917d-a544725d91aa | 9388f82f-9fff-4a06-9f74-a1e1306f2ce9   | ref  |
+| e27c7b62-e338-4056-917d-a544725d91aa | 71819bef-7529-4ad3-a95b-d6723f581d77   | ref  |
+| e27c7b62-e338-4056-917d-a544725d91aa | 9003695b-ef75-47a9-8377-5889dace643a   | ref  |
+| b5d89e03-594b-4560-952c-121183db28da | 1aaec11d-8414-445e-9c69-180722ef09a2   | ref  |
+| b5d89e03-594b-4560-952c-121183db28da | 9388f82f-9fff-4a06-9f74-a1e1306f2ce9   | ref  |
+| 9ff3fce5-1180-4014-b502-d9107b2cef10 | 5e723cbb-2154-47e3-bea6-255b45385dc3   | ref  |
+| b73304a7-25e1-4b61-bec7-bb7c3ce09e22 | b16e1034-526a-4766-98f1-23b4b51ceb36   | ref  |
+| b73304a7-25e1-4b61-bec7-bb7c3ce09e22 | 5f6da6e5-3670-4cef-a59a-4c0aba050515   | ref  |
+| a2c8c554-858d-46bc-8e0e-0bbbd1b9e58f | 62d3ad0b-a182-4073-ab34-1c59d4c051ec   | ref  |
+| 5e723cbb-2154-47e3-bea6-255b45385dc3 | 70a6e20d-bb58-49b9-b869-ffb7113baef6   | ref  |
+| 71819bef-7529-4ad3-a95b-d6723f581d77 | 9388f82f-9fff-4a06-9f74-a1e1306f2ce9   | ref  |
+| 8f6a9ea8-b658-4967-92cc-76d9c2ad83a1 | 8ecdbfe3-91ba-4196-a539-2db4813be46e   | ref  |
+| 873b545f-b959-4299-b44a-fbc13c29a8bf | raritanAlternatingCurrentExplained2018 | cite |
+| dcd41c7c-2452-48ab-b860-ab6f6cf34282 | 9339d3ae-7fe7-449e-9c88-d8e07fea73e0   | id   |
+| 21cd2a48-a9bb-4564-b42d-6c94b583f0a8 | e73b36c6-55a0-451d-b5b9-0aa49cde7b4c   | id   |
+| c15f9ddd-e04b-4c41-9d15-03ed6a99779d | 3346649d-762d-43b1-ba3a-f60be6bcdc71   | id   |
+| 3346649d-762d-43b1-ba3a-f60be6bcdc71 | d0d3dd54-2c7b-4f75-9fc8-dd5e89895143   | id   |
+| bee530fb-e741-469d-9f22-4053e69c3513 | bee530fb-e741-469d-9f22-4053e69c3513   | id   |
+| 3346649d-762d-43b1-ba3a-f60be6bcdc71 | 00c7e9d1-76cd-4801-883a-11c576b08596   | id   |
+| 93e55fc1-479b-4504-9900-c69b45683bef | fe0e9416-19a3-4348-b76b-73363fdc89e0   | id   |
+| 71f58f7a-aa92-4ee7-a23f-c69930f88f11 | 4b68a874-9d45-4eb6-9b1d-57c500d21a7a   | id   |
+| 71f58f7a-aa92-4ee7-a23f-c69930f88f11 | f1fd751f-5939-4a86-b6fd-e2b82eab6ebb   | id   |
+| 8b4f316f-20fa-4625-a742-2770dac0011b | a2a9f2cc-2e48-4c74-9f58-e4caae4dc267   | id   |
+| d9ea85cd-0b6d-46bd-a3bd-a4f21e94e133 | 1f2728d2-482f-4e66-98b5-ca7348c55e44   | id   |
+| f7833289-8575-47ec-8959-c5701fd705cd | 0c0ade61-f327-45b8-bfce-2a9ea38bbede   | id   |
+| f7833289-8575-47ec-8959-c5701fd705cd | 26f87673-2230-422b-b3e5-82614371be1d   | id   |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | 9ff3fce5-1180-4014-b502-d9107b2cef10   | id   |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | 8b4f316f-20fa-4625-a742-2770dac0011b   | id   |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | b73304a7-25e1-4b61-bec7-bb7c3ce09e22   | id   |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | 00775a4b-e515-42f1-896d-eae818f77481   | id   |
+| 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | f1fd751f-5939-4a86-b6fd-e2b82eab6ebb   | id   |
+| 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | 6cabbe77-ffae-4dc0-aef6-c1d5d486157b   | id   |
+| 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | 1c01a88e-f175-4ba6-bdcc-c1f7cf0e7230   | id   |
+| 92e35bbc-c662-47c2-b441-fd8695fee1f6 | 1c2021de-b9da-4923-99ec-fded17c2ad4c   | id   |
+| 92e35bbc-c662-47c2-b441-fd8695fee1f6 | f615e59a-1b4f-4a36-8d1a-fce49bf683e9   | id   |
+| e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | 83d79a7a-a279-40b7-bc16-48a0320248f3   | id   |
+| e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | 387a1422-ff3c-47a9-9ad5-6e5162caaa39   | id   |
+| bbc78695-e3dc-4dfa-90ca-5dab51af77c3 | bf1b6c25-cd8b-4490-94ed-8097d97f68c5   | id   |
+| bbc78695-e3dc-4dfa-90ca-5dab51af77c3 | fe0e9416-19a3-4348-b76b-73363fdc89e0   | id   |
+| 1aaddec5-7288-4492-bab8-692098a50a58 | ec864691-4d97-490a-9439-ad13e09a6b5d   | id   |
+| 1aaddec5-7288-4492-bab8-692098a50a58 | 92e35bbc-c662-47c2-b441-fd8695fee1f6   | id   |
+| 7b0de39e-0dc0-405b-8587-31064d8f4ab3 | a4653e16-456a-4127-85f5-8c5d536bea16   | id   |
+| 7b0de39e-0dc0-405b-8587-31064d8f4ab3 | 9339d3ae-7fe7-449e-9c88-d8e07fea73e0   | id   |
+| 7b0de39e-0dc0-405b-8587-31064d8f4ab3 | 3e9a61d4-5a60-4ec9-8d61-336d28129a62   | id   |
+| 4d9f5527-4af9-489a-ad9a-559f6e70ab49 | c6e9553e-6262-484a-bc1e-baafdcf4044b   | id   |
+| 6933d2ab-22fb-4c01-ab81-57f7802729e2 | 3145801f-2756-475d-a934-b10d604de7bb   | id   |
+| 6933d2ab-22fb-4c01-ab81-57f7802729e2 | a2a9f2cc-2e48-4c74-9f58-e4caae4dc267   | id   |
+| 6e922ae1-6967-4ba7-b96b-972e006bab3b | d0d3dd54-2c7b-4f75-9fc8-dd5e89895143   | id   |
+| 6e922ae1-6967-4ba7-b96b-972e006bab3b | a2a9f2cc-2e48-4c74-9f58-e4caae4dc267   | id   |
+| 6e922ae1-6967-4ba7-b96b-972e006bab3b | b10cabff-a933-4d6e-aa50-8a63df3e4021   | id   |
+| 6e922ae1-6967-4ba7-b96b-972e006bab3b | b5ad19df-c227-49f0-8079-56d5ff96da00   | id   |
+| 6e922ae1-6967-4ba7-b96b-972e006bab3b | e27c7b62-e338-4056-917d-a544725d91aa   | id   |
+| 85611eff-4d7c-4e5c-8169-dfc70383df0c | 58d3a07b-4925-4ba2-8902-fa6a148d0d16   | id   |
+| 85611eff-4d7c-4e5c-8169-dfc70383df0c | ed1e6f52-b16f-44e0-ab87-a78584045d95   | id   |
+| 9b0b72e9-2759-4a0c-9870-a9ee74c0bbeb | b10cabff-a933-4d6e-aa50-8a63df3e4021   | id   |
+| 9b0b72e9-2759-4a0c-9870-a9ee74c0bbeb | 1aaddec5-7288-4492-bab8-692098a50a58   | id   |
+| 6cabbe77-ffae-4dc0-aef6-c1d5d486157b | f7da64db-82e6-4760-a3c6-7b0ed9a4e7bb   | id   |
+| ec864691-4d97-490a-9439-ad13e09a6b5d | 8ab6b612-c794-4ab8-89d2-1a0613c324e8   | id   |
+| ec864691-4d97-490a-9439-ad13e09a6b5d | 1c2021de-b9da-4923-99ec-fded17c2ad4c   | id   |
+| f1fd751f-5939-4a86-b6fd-e2b82eab6ebb | 988a1f70-6272-4cbf-ad42-6ab03f787e18   | id   |
+| 0c0ade61-f327-45b8-bfce-2a9ea38bbede | f7833289-8575-47ec-8959-c5701fd705cd   | id   |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | bfaf8bce-d719-469b-9d78-2ec3fde0d0f7   | id   |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | e48c630d-f50c-4047-91ed-f1574d9375ce   | id   |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | 29c0e899-9926-4809-8459-98c643753688   | id   |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | e48c630d-f50c-4047-91ed-f1574d9375ce   | id   |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | c1983e31-a653-41ed-9eee-b33d9418bef8   | id   |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | a6dc2318-8b5c-44d9-b1b0-ea25a0645c49   | id   |
+| f7da64db-82e6-4760-a3c6-7b0ed9a4e7bb | 4b68a874-9d45-4eb6-9b1d-57c500d21a7a   | id   |
+| f7da64db-82e6-4760-a3c6-7b0ed9a4e7bb | f615e59a-1b4f-4a36-8d1a-fce49bf683e9   | id   |
+| f7da64db-82e6-4760-a3c6-7b0ed9a4e7bb | 63e7c813-e9e0-4639-9934-90461797b64e   | id   |
+| e48c630d-f50c-4047-91ed-f1574d9375ce | 29c0e899-9926-4809-8459-98c643753688   | id   |
+| e48c630d-f50c-4047-91ed-f1574d9375ce | c1983e31-a653-41ed-9eee-b33d9418bef8   | id   |
+| e48c630d-f50c-4047-91ed-f1574d9375ce | a6dc2318-8b5c-44d9-b1b0-ea25a0645c49   | id   |
+| e48c630d-f50c-4047-91ed-f1574d9375ce | bde38df4-5663-4fb9-8a9f-8dd5733f778b   | id   |
+| 988a1f70-6272-4cbf-ad42-6ab03f787e18 | bbc78695-e3dc-4dfa-90ca-5dab51af77c3   | id   |
+| 988a1f70-6272-4cbf-ad42-6ab03f787e18 | f1fd751f-5939-4a86-b6fd-e2b82eab6ebb   | id   |
+| 988a1f70-6272-4cbf-ad42-6ab03f787e18 | 4b68a874-9d45-4eb6-9b1d-57c500d21a7a   | id   |
+| fa713db8-32e6-4b9d-914a-a7811193087c | b5d89e03-594b-4560-952c-121183db28da   | id   |
+| e4354590-539c-402b-835e-85093a717541 | b5ad19df-c227-49f0-8079-56d5ff96da00   | id   |
+| e27c7b62-e338-4056-917d-a544725d91aa | d38d178f-32c9-41b5-9101-caab35fb8e6b   | id   |
+| e27c7b62-e338-4056-917d-a544725d91aa | 7eec0c51-61c8-42c9-9101-b113b1ad3510   | id   |
+| d38d178f-32c9-41b5-9101-caab35fb8e6b | e27c7b62-e338-4056-917d-a544725d91aa   | id   |
+| d38d178f-32c9-41b5-9101-caab35fb8e6b | 1f2728d2-482f-4e66-98b5-ca7348c55e44   | id   |
+| 3f695d88-e559-4c30-9c69-4e1cc5000580 | d38d178f-32c9-41b5-9101-caab35fb8e6b   | id   |
+| b93567d6-e9a7-46c0-b6ad-a676f9d3322c | 2b3a351a-9dc8-411a-84c9-746f49151541   | id   |
+| b5ad19df-c227-49f0-8079-56d5ff96da00 | 982a2b3c-e3bf-4e5c-9745-f70ae10e7f53   | id   |
+| b5ad19df-c227-49f0-8079-56d5ff96da00 | e2cadf42-7d7f-4751-a14f-c24dd5594a27   | id   |
+| b5ad19df-c227-49f0-8079-56d5ff96da00 | e4354590-539c-402b-835e-85093a717541   | id   |
+| b5ad19df-c227-49f0-8079-56d5ff96da00 | 441cd5d3-ab2e-4ae6-b137-706c7ab162f0   | id   |
+| b5301cfd-7eaa-4594-9859-43f85fa0ab73 | e27c7b62-e338-4056-917d-a544725d91aa   | id   |
+| e2cadf42-7d7f-4751-a14f-c24dd5594a27 | b5ad19df-c227-49f0-8079-56d5ff96da00   | id   |
+| a49c137b-757f-4ff9-b10a-ce95c4ec097b | b5ad19df-c227-49f0-8079-56d5ff96da00   | id   |
+| a49c137b-757f-4ff9-b10a-ce95c4ec097b | 00994f71-0709-4af9-ac22-1e820f281cb0   | id   |
+| 652a67b2-9f94-4327-845e-9e33918c11f1 | b5d89e03-594b-4560-952c-121183db28da   | id   |
+| 26f87673-2230-422b-b3e5-82614371be1d | 0c0ade61-f327-45b8-bfce-2a9ea38bbede   | id   |
+| 9ff3fce5-1180-4014-b502-d9107b2cef10 | 6933d2ab-22fb-4c01-ab81-57f7802729e2   | id   |
+| 8c1f6c70-c956-443a-8ab4-18d97471765f | 00775a4b-e515-42f1-896d-eae818f77481   | id   |
+| 8c1f6c70-c956-443a-8ab4-18d97471765f | 8b4f316f-20fa-4625-a742-2770dac0011b   | id   |
+| 9339d3ae-7fe7-449e-9c88-d8e07fea73e0 | 7b0de39e-0dc0-405b-8587-31064d8f4ab3   | id   |
+| 9339d3ae-7fe7-449e-9c88-d8e07fea73e0 | 7b0de39e-0dc0-405b-8587-31064d8f4ab3   | id   |
+| 7e29602a-e2b1-4573-9695-53361020685e | dcd41c7c-2452-48ab-b860-ab6f6cf34282   | id   |
+| 7e29602a-e2b1-4573-9695-53361020685e | 92dfd3b0-91e2-4e02-b6e1-00afa0c86f6e   | id   |
+| 7e29602a-e2b1-4573-9695-53361020685e | be6298e3-b248-45d6-8b7b-ea49cefb686d   | id   |
+| a4653e16-456a-4127-85f5-8c5d536bea16 | 21cd2a48-a9bb-4564-b42d-6c94b583f0a8   | id   |
+| a4653e16-456a-4127-85f5-8c5d536bea16 | 7b0de39e-0dc0-405b-8587-31064d8f4ab3   | id   |
+| a4653e16-456a-4127-85f5-8c5d536bea16 | 9339d3ae-7fe7-449e-9c88-d8e07fea73e0   | id   |
+| a6160b49-6d42-4207-8359-59bb800ae798 | 3ac1a89a-7720-4790-98f6-3722eb4b545c   | id   |
+| a6160b49-6d42-4207-8359-59bb800ae798 | 71f58f7a-aa92-4ee7-a23f-c69930f88f11   | id   |
+| 8ab6b612-c794-4ab8-89d2-1a0613c324e8 | 4b68a874-9d45-4eb6-9b1d-57c500d21a7a   | id   |
+| 8ab6b612-c794-4ab8-89d2-1a0613c324e8 | ec864691-4d97-490a-9439-ad13e09a6b5d   | id   |
+| 8ab6b612-c794-4ab8-89d2-1a0613c324e8 | 69d1972a-e34e-4508-822a-350505d17b33   | id   |
+| 8ab6b612-c794-4ab8-89d2-1a0613c324e8 | 9339d3ae-7fe7-449e-9c88-d8e07fea73e0   | id   |
+| ed1e6f52-b16f-44e0-ab87-a78584045d95 | 85611eff-4d7c-4e5c-8169-dfc70383df0c   | id   |
+| ed1e6f52-b16f-44e0-ab87-a78584045d95 | f615e59a-1b4f-4a36-8d1a-fce49bf683e9   | id   |
+| ed1e6f52-b16f-44e0-ab87-a78584045d95 | 58d3a07b-4925-4ba2-8902-fa6a148d0d16   | id   |
+| 00775a4b-e515-42f1-896d-eae818f77481 | 8c1f6c70-c956-443a-8ab4-18d97471765f   | id   |
+| 3ac1a89a-7720-4790-98f6-3722eb4b545c | a6160b49-6d42-4207-8359-59bb800ae798   | id   |
+| 1c2021de-b9da-4923-99ec-fded17c2ad4c | fe0e9416-19a3-4348-b76b-73363fdc89e0   | id   |
+| 1c2021de-b9da-4923-99ec-fded17c2ad4c | f7da64db-82e6-4760-a3c6-7b0ed9a4e7bb   | id   |
+| 1c01a88e-f175-4ba6-bdcc-c1f7cf0e7230 | 8ab6b612-c794-4ab8-89d2-1a0613c324e8   | id   |
+| 1c01a88e-f175-4ba6-bdcc-c1f7cf0e7230 | 1c2021de-b9da-4923-99ec-fded17c2ad4c   | id   |
+| 1c01a88e-f175-4ba6-bdcc-c1f7cf0e7230 | 4d9f5527-4af9-489a-ad9a-559f6e70ab49   | id   |
+| 1c01a88e-f175-4ba6-bdcc-c1f7cf0e7230 | 3ac1a89a-7720-4790-98f6-3722eb4b545c   | id   |
+| a2b9b98b-907f-48a7-ac83-f39dae4bc06f | ec164ac0-63a4-4fce-aac7-c1221e193b1e   | id   |
+| ae7ddcb7-5d87-4c15-9eba-5bd16632ec99 | a4653e16-456a-4127-85f5-8c5d536bea16   | id   |
+| ae7ddcb7-5d87-4c15-9eba-5bd16632ec99 | ed1e6f52-b16f-44e0-ab87-a78584045d95   | id   |
+| 3bdb6e54-a072-4c06-a1c6-92441fe03a62 | 175c332b-8650-4375-ad83-21b28bd00ef9   | id   |
+| 3bdb6e54-a072-4c06-a1c6-92441fe03a62 | 93e55fc1-479b-4504-9900-c69b45683bef   | id   |
+| 71819bef-7529-4ad3-a95b-d6723f581d77 | 9003695b-ef75-47a9-8377-5889dace643a   | id   |
+| 8e0a3060-cd4d-41eb-a029-6e3389cd6b03 | a2ec40d1-1895-4431-9c94-148af35774ee   | id   |
+| 83d79a7a-a279-40b7-bc16-48a0320248f3 | e73b36c6-55a0-451d-b5b9-0aa49cde7b4c   | id   |
+| 3e9a61d4-5a60-4ec9-8d61-336d28129a62 | 7b0de39e-0dc0-405b-8587-31064d8f4ab3   | id   |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | f615e59a-1b4f-4a36-8d1a-fce49bf683e9   | id   |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | 4b68a874-9d45-4eb6-9b1d-57c500d21a7a   | id   |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | 71f58f7a-aa92-4ee7-a23f-c69930f88f11   | id   |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | b83058df-677b-4200-bd79-3bd89c0e7221   | id   |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | 9339d3ae-7fe7-449e-9c88-d8e07fea73e0   | id   |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | dcd41c7c-2452-48ab-b860-ab6f6cf34282   | id   |
+| 387a1422-ff3c-47a9-9ad5-6e5162caaa39 | 0c0ade61-f327-45b8-bfce-2a9ea38bbede   | id   |
+| 387a1422-ff3c-47a9-9ad5-6e5162caaa39 | e73b36c6-55a0-451d-b5b9-0aa49cde7b4c   | id   |
+| 92dfd3b0-91e2-4e02-b6e1-00afa0c86f6e | b10cabff-a933-4d6e-aa50-8a63df3e4021   | id   |
+| 92dfd3b0-91e2-4e02-b6e1-00afa0c86f6e | 1aaddec5-7288-4492-bab8-692098a50a58   | id   |
+| b10cabff-a933-4d6e-aa50-8a63df3e4021 | 9b0b72e9-2759-4a0c-9870-a9ee74c0bbeb   | id   |
+| b10cabff-a933-4d6e-aa50-8a63df3e4021 | 00775a4b-e515-42f1-896d-eae818f77481   | id   |
+| b10cabff-a933-4d6e-aa50-8a63df3e4021 | 1aaddec5-7288-4492-bab8-692098a50a58   | id   |
+| b10cabff-a933-4d6e-aa50-8a63df3e4021 | be6298e3-b248-45d6-8b7b-ea49cefb686d   | id   |
+| b10cabff-a933-4d6e-aa50-8a63df3e4021 | 2b3a351a-9dc8-411a-84c9-746f49151541   | id   |
+| 845ba2f2-a5b9-4fce-8e8d-842cad9b02e5 | 17e4cb1f-aa99-4071-947e-519a77e1ae87   | id   |
+| 3145801f-2756-475d-a934-b10d604de7bb | a2c8c554-858d-46bc-8e0e-0bbbd1b9e58f   | id   |
+| d0d3dd54-2c7b-4f75-9fc8-dd5e89895143 | c15f9ddd-e04b-4c41-9d15-03ed6a99779d   | id   |
+| 69d1972a-e34e-4508-822a-350505d17b33 | dcd41c7c-2452-48ab-b860-ab6f6cf34282   | id   |
+| 9D7068AD-090B-4C72-B1D3-AA97E34FF736 | DB5F02DD-8B76-4CDC-98D8-D79385963585   | id   |
+
+#+begin_src elisp
+  (seq-concatenate
+   'list
+   (org-roam-ui--separate-ref-links
+    (org-roam-ui--get-cites))
+   (org-roam-ui--get-links))
+#+end_src
+
+*** org-roam-ui--get-links
+~type~ が"id"のもののみとってきているっぽい
+#+begin_src elisp
+(defun org-roam-ui--get-links (&optional old)
+  "Get the cites and links tables as rows from the org-roam db.
+Optionally set OLD to t to use the old db model (where the cites
+were in the same table as the links)."
+(if (not old)
+    (org-roam-db-query
+     `[:select  [links:source
+                 links:dest
+                 links:type]
+       :from links
+       :where (= links:type "id")])
+  ;; Left outer join on refs means any id link (or cite link without a
+  ;; corresponding node) will have 'nil for the `refs:node-id' value. Any
+  ;; cite link where a node has that `:ROAM_REFS:' will have a value.
+  (org-roam-db-query
+   `[:select [links:source
+              links:dest
+              links:type
+              refs:node-id]
+     :from links
+     :left :outer :join refs :on (= links:dest refs:ref)
+     :where (or
+             (= links:type "id")
+             (like links:type "%cite%"))])))
+#+end_src
+
+#+begin_src elisp
+(org-roam-ui--get-links)
+#+end_src
+
+#+RESULTS:
+| dcd41c7c-2452-48ab-b860-ab6f6cf34282 | 9339d3ae-7fe7-449e-9c88-d8e07fea73e0 | id |
+| 21cd2a48-a9bb-4564-b42d-6c94b583f0a8 | e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | id |
+| c15f9ddd-e04b-4c41-9d15-03ed6a99779d | 3346649d-762d-43b1-ba3a-f60be6bcdc71 | id |
+| 3346649d-762d-43b1-ba3a-f60be6bcdc71 | d0d3dd54-2c7b-4f75-9fc8-dd5e89895143 | id |
+| bee530fb-e741-469d-9f22-4053e69c3513 | bee530fb-e741-469d-9f22-4053e69c3513 | id |
+| 3346649d-762d-43b1-ba3a-f60be6bcdc71 | 00c7e9d1-76cd-4801-883a-11c576b08596 | id |
+| 93e55fc1-479b-4504-9900-c69b45683bef | fe0e9416-19a3-4348-b76b-73363fdc89e0 | id |
+| 71f58f7a-aa92-4ee7-a23f-c69930f88f11 | 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | id |
+| 71f58f7a-aa92-4ee7-a23f-c69930f88f11 | f1fd751f-5939-4a86-b6fd-e2b82eab6ebb | id |
+| 8b4f316f-20fa-4625-a742-2770dac0011b | a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | id |
+| d9ea85cd-0b6d-46bd-a3bd-a4f21e94e133 | 1f2728d2-482f-4e66-98b5-ca7348c55e44 | id |
+| f7833289-8575-47ec-8959-c5701fd705cd | 0c0ade61-f327-45b8-bfce-2a9ea38bbede | id |
+| f7833289-8575-47ec-8959-c5701fd705cd | 26f87673-2230-422b-b3e5-82614371be1d | id |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | 9ff3fce5-1180-4014-b502-d9107b2cef10 | id |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | 8b4f316f-20fa-4625-a742-2770dac0011b | id |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | b73304a7-25e1-4b61-bec7-bb7c3ce09e22 | id |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | 00775a4b-e515-42f1-896d-eae818f77481 | id |
+| 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | f1fd751f-5939-4a86-b6fd-e2b82eab6ebb | id |
+| 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | 6cabbe77-ffae-4dc0-aef6-c1d5d486157b | id |
+| 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | 1c01a88e-f175-4ba6-bdcc-c1f7cf0e7230 | id |
+| 92e35bbc-c662-47c2-b441-fd8695fee1f6 | 1c2021de-b9da-4923-99ec-fded17c2ad4c | id |
+| 92e35bbc-c662-47c2-b441-fd8695fee1f6 | f615e59a-1b4f-4a36-8d1a-fce49bf683e9 | id |
+| e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | 83d79a7a-a279-40b7-bc16-48a0320248f3 | id |
+| e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | 387a1422-ff3c-47a9-9ad5-6e5162caaa39 | id |
+| bbc78695-e3dc-4dfa-90ca-5dab51af77c3 | bf1b6c25-cd8b-4490-94ed-8097d97f68c5 | id |
+| bbc78695-e3dc-4dfa-90ca-5dab51af77c3 | fe0e9416-19a3-4348-b76b-73363fdc89e0 | id |
+| 1aaddec5-7288-4492-bab8-692098a50a58 | ec864691-4d97-490a-9439-ad13e09a6b5d | id |
+| 1aaddec5-7288-4492-bab8-692098a50a58 | 92e35bbc-c662-47c2-b441-fd8695fee1f6 | id |
+| 7b0de39e-0dc0-405b-8587-31064d8f4ab3 | a4653e16-456a-4127-85f5-8c5d536bea16 | id |
+| 7b0de39e-0dc0-405b-8587-31064d8f4ab3 | 9339d3ae-7fe7-449e-9c88-d8e07fea73e0 | id |
+| 7b0de39e-0dc0-405b-8587-31064d8f4ab3 | 3e9a61d4-5a60-4ec9-8d61-336d28129a62 | id |
+| 4d9f5527-4af9-489a-ad9a-559f6e70ab49 | c6e9553e-6262-484a-bc1e-baafdcf4044b | id |
+| 6933d2ab-22fb-4c01-ab81-57f7802729e2 | 3145801f-2756-475d-a934-b10d604de7bb | id |
+| 6933d2ab-22fb-4c01-ab81-57f7802729e2 | a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | id |
+| 6e922ae1-6967-4ba7-b96b-972e006bab3b | d0d3dd54-2c7b-4f75-9fc8-dd5e89895143 | id |
+| 6e922ae1-6967-4ba7-b96b-972e006bab3b | a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | id |
+| 6e922ae1-6967-4ba7-b96b-972e006bab3b | b10cabff-a933-4d6e-aa50-8a63df3e4021 | id |
+| 6e922ae1-6967-4ba7-b96b-972e006bab3b | b5ad19df-c227-49f0-8079-56d5ff96da00 | id |
+| 6e922ae1-6967-4ba7-b96b-972e006bab3b | e27c7b62-e338-4056-917d-a544725d91aa | id |
+| 85611eff-4d7c-4e5c-8169-dfc70383df0c | 58d3a07b-4925-4ba2-8902-fa6a148d0d16 | id |
+| 85611eff-4d7c-4e5c-8169-dfc70383df0c | ed1e6f52-b16f-44e0-ab87-a78584045d95 | id |
+| 9b0b72e9-2759-4a0c-9870-a9ee74c0bbeb | b10cabff-a933-4d6e-aa50-8a63df3e4021 | id |
+| 9b0b72e9-2759-4a0c-9870-a9ee74c0bbeb | 1aaddec5-7288-4492-bab8-692098a50a58 | id |
+| 6cabbe77-ffae-4dc0-aef6-c1d5d486157b | f7da64db-82e6-4760-a3c6-7b0ed9a4e7bb | id |
+| ec864691-4d97-490a-9439-ad13e09a6b5d | 8ab6b612-c794-4ab8-89d2-1a0613c324e8 | id |
+| ec864691-4d97-490a-9439-ad13e09a6b5d | 1c2021de-b9da-4923-99ec-fded17c2ad4c | id |
+| f1fd751f-5939-4a86-b6fd-e2b82eab6ebb | 988a1f70-6272-4cbf-ad42-6ab03f787e18 | id |
+| 0c0ade61-f327-45b8-bfce-2a9ea38bbede | f7833289-8575-47ec-8959-c5701fd705cd | id |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | bfaf8bce-d719-469b-9d78-2ec3fde0d0f7 | id |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | e48c630d-f50c-4047-91ed-f1574d9375ce | id |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | 29c0e899-9926-4809-8459-98c643753688 | id |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | e48c630d-f50c-4047-91ed-f1574d9375ce | id |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | c1983e31-a653-41ed-9eee-b33d9418bef8 | id |
+| 2b3a351a-9dc8-411a-84c9-746f49151541 | a6dc2318-8b5c-44d9-b1b0-ea25a0645c49 | id |
+| f7da64db-82e6-4760-a3c6-7b0ed9a4e7bb | 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | id |
+| f7da64db-82e6-4760-a3c6-7b0ed9a4e7bb | f615e59a-1b4f-4a36-8d1a-fce49bf683e9 | id |
+| f7da64db-82e6-4760-a3c6-7b0ed9a4e7bb | 63e7c813-e9e0-4639-9934-90461797b64e | id |
+| e48c630d-f50c-4047-91ed-f1574d9375ce | 29c0e899-9926-4809-8459-98c643753688 | id |
+| e48c630d-f50c-4047-91ed-f1574d9375ce | c1983e31-a653-41ed-9eee-b33d9418bef8 | id |
+| e48c630d-f50c-4047-91ed-f1574d9375ce | a6dc2318-8b5c-44d9-b1b0-ea25a0645c49 | id |
+| e48c630d-f50c-4047-91ed-f1574d9375ce | bde38df4-5663-4fb9-8a9f-8dd5733f778b | id |
+| 988a1f70-6272-4cbf-ad42-6ab03f787e18 | bbc78695-e3dc-4dfa-90ca-5dab51af77c3 | id |
+| 988a1f70-6272-4cbf-ad42-6ab03f787e18 | f1fd751f-5939-4a86-b6fd-e2b82eab6ebb | id |
+| 988a1f70-6272-4cbf-ad42-6ab03f787e18 | 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | id |
+| fa713db8-32e6-4b9d-914a-a7811193087c | b5d89e03-594b-4560-952c-121183db28da | id |
+| e4354590-539c-402b-835e-85093a717541 | b5ad19df-c227-49f0-8079-56d5ff96da00 | id |
+| e27c7b62-e338-4056-917d-a544725d91aa | d38d178f-32c9-41b5-9101-caab35fb8e6b | id |
+| e27c7b62-e338-4056-917d-a544725d91aa | 7eec0c51-61c8-42c9-9101-b113b1ad3510 | id |
+| d38d178f-32c9-41b5-9101-caab35fb8e6b | e27c7b62-e338-4056-917d-a544725d91aa | id |
+| d38d178f-32c9-41b5-9101-caab35fb8e6b | 1f2728d2-482f-4e66-98b5-ca7348c55e44 | id |
+| 3f695d88-e559-4c30-9c69-4e1cc5000580 | d38d178f-32c9-41b5-9101-caab35fb8e6b | id |
+| b93567d6-e9a7-46c0-b6ad-a676f9d3322c | 2b3a351a-9dc8-411a-84c9-746f49151541 | id |
+| b5ad19df-c227-49f0-8079-56d5ff96da00 | 982a2b3c-e3bf-4e5c-9745-f70ae10e7f53 | id |
+| b5ad19df-c227-49f0-8079-56d5ff96da00 | e2cadf42-7d7f-4751-a14f-c24dd5594a27 | id |
+| b5ad19df-c227-49f0-8079-56d5ff96da00 | e4354590-539c-402b-835e-85093a717541 | id |
+| b5ad19df-c227-49f0-8079-56d5ff96da00 | 441cd5d3-ab2e-4ae6-b137-706c7ab162f0 | id |
+| b5301cfd-7eaa-4594-9859-43f85fa0ab73 | e27c7b62-e338-4056-917d-a544725d91aa | id |
+| e2cadf42-7d7f-4751-a14f-c24dd5594a27 | b5ad19df-c227-49f0-8079-56d5ff96da00 | id |
+| a49c137b-757f-4ff9-b10a-ce95c4ec097b | b5ad19df-c227-49f0-8079-56d5ff96da00 | id |
+| a49c137b-757f-4ff9-b10a-ce95c4ec097b | 00994f71-0709-4af9-ac22-1e820f281cb0 | id |
+| 652a67b2-9f94-4327-845e-9e33918c11f1 | b5d89e03-594b-4560-952c-121183db28da | id |
+| 26f87673-2230-422b-b3e5-82614371be1d | 0c0ade61-f327-45b8-bfce-2a9ea38bbede | id |
+| 9ff3fce5-1180-4014-b502-d9107b2cef10 | 6933d2ab-22fb-4c01-ab81-57f7802729e2 | id |
+| 8c1f6c70-c956-443a-8ab4-18d97471765f | 00775a4b-e515-42f1-896d-eae818f77481 | id |
+| 8c1f6c70-c956-443a-8ab4-18d97471765f | 8b4f316f-20fa-4625-a742-2770dac0011b | id |
+| 9339d3ae-7fe7-449e-9c88-d8e07fea73e0 | 7b0de39e-0dc0-405b-8587-31064d8f4ab3 | id |
+| 9339d3ae-7fe7-449e-9c88-d8e07fea73e0 | 7b0de39e-0dc0-405b-8587-31064d8f4ab3 | id |
+| 7e29602a-e2b1-4573-9695-53361020685e | dcd41c7c-2452-48ab-b860-ab6f6cf34282 | id |
+| 7e29602a-e2b1-4573-9695-53361020685e | 92dfd3b0-91e2-4e02-b6e1-00afa0c86f6e | id |
+| 7e29602a-e2b1-4573-9695-53361020685e | be6298e3-b248-45d6-8b7b-ea49cefb686d | id |
+| a4653e16-456a-4127-85f5-8c5d536bea16 | 21cd2a48-a9bb-4564-b42d-6c94b583f0a8 | id |
+| a4653e16-456a-4127-85f5-8c5d536bea16 | 7b0de39e-0dc0-405b-8587-31064d8f4ab3 | id |
+| a4653e16-456a-4127-85f5-8c5d536bea16 | 9339d3ae-7fe7-449e-9c88-d8e07fea73e0 | id |
+| a6160b49-6d42-4207-8359-59bb800ae798 | 3ac1a89a-7720-4790-98f6-3722eb4b545c | id |
+| a6160b49-6d42-4207-8359-59bb800ae798 | 71f58f7a-aa92-4ee7-a23f-c69930f88f11 | id |
+| 8ab6b612-c794-4ab8-89d2-1a0613c324e8 | 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | id |
+| 8ab6b612-c794-4ab8-89d2-1a0613c324e8 | ec864691-4d97-490a-9439-ad13e09a6b5d | id |
+| 8ab6b612-c794-4ab8-89d2-1a0613c324e8 | 69d1972a-e34e-4508-822a-350505d17b33 | id |
+| 8ab6b612-c794-4ab8-89d2-1a0613c324e8 | 9339d3ae-7fe7-449e-9c88-d8e07fea73e0 | id |
+| ed1e6f52-b16f-44e0-ab87-a78584045d95 | 85611eff-4d7c-4e5c-8169-dfc70383df0c | id |
+| ed1e6f52-b16f-44e0-ab87-a78584045d95 | f615e59a-1b4f-4a36-8d1a-fce49bf683e9 | id |
+| ed1e6f52-b16f-44e0-ab87-a78584045d95 | 58d3a07b-4925-4ba2-8902-fa6a148d0d16 | id |
+| 00775a4b-e515-42f1-896d-eae818f77481 | 8c1f6c70-c956-443a-8ab4-18d97471765f | id |
+| 3ac1a89a-7720-4790-98f6-3722eb4b545c | a6160b49-6d42-4207-8359-59bb800ae798 | id |
+| 1c2021de-b9da-4923-99ec-fded17c2ad4c | fe0e9416-19a3-4348-b76b-73363fdc89e0 | id |
+| 1c2021de-b9da-4923-99ec-fded17c2ad4c | f7da64db-82e6-4760-a3c6-7b0ed9a4e7bb | id |
+| 1c01a88e-f175-4ba6-bdcc-c1f7cf0e7230 | 8ab6b612-c794-4ab8-89d2-1a0613c324e8 | id |
+| 1c01a88e-f175-4ba6-bdcc-c1f7cf0e7230 | 1c2021de-b9da-4923-99ec-fded17c2ad4c | id |
+| 1c01a88e-f175-4ba6-bdcc-c1f7cf0e7230 | 4d9f5527-4af9-489a-ad9a-559f6e70ab49 | id |
+| 1c01a88e-f175-4ba6-bdcc-c1f7cf0e7230 | 3ac1a89a-7720-4790-98f6-3722eb4b545c | id |
+| a2b9b98b-907f-48a7-ac83-f39dae4bc06f | ec164ac0-63a4-4fce-aac7-c1221e193b1e | id |
+| ae7ddcb7-5d87-4c15-9eba-5bd16632ec99 | a4653e16-456a-4127-85f5-8c5d536bea16 | id |
+| ae7ddcb7-5d87-4c15-9eba-5bd16632ec99 | ed1e6f52-b16f-44e0-ab87-a78584045d95 | id |
+| 3bdb6e54-a072-4c06-a1c6-92441fe03a62 | 175c332b-8650-4375-ad83-21b28bd00ef9 | id |
+| 3bdb6e54-a072-4c06-a1c6-92441fe03a62 | 93e55fc1-479b-4504-9900-c69b45683bef | id |
+| 71819bef-7529-4ad3-a95b-d6723f581d77 | 9003695b-ef75-47a9-8377-5889dace643a | id |
+| 8e0a3060-cd4d-41eb-a029-6e3389cd6b03 | a2ec40d1-1895-4431-9c94-148af35774ee | id |
+| 83d79a7a-a279-40b7-bc16-48a0320248f3 | e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | id |
+| 3e9a61d4-5a60-4ec9-8d61-336d28129a62 | 7b0de39e-0dc0-405b-8587-31064d8f4ab3 | id |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | f615e59a-1b4f-4a36-8d1a-fce49bf683e9 | id |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | 4b68a874-9d45-4eb6-9b1d-57c500d21a7a | id |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | 71f58f7a-aa92-4ee7-a23f-c69930f88f11 | id |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | b83058df-677b-4200-bd79-3bd89c0e7221 | id |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | 9339d3ae-7fe7-449e-9c88-d8e07fea73e0 | id |
+| 1e8804b5-bcad-4065-9a2a-d48ab29a6c3a | dcd41c7c-2452-48ab-b860-ab6f6cf34282 | id |
+| 387a1422-ff3c-47a9-9ad5-6e5162caaa39 | 0c0ade61-f327-45b8-bfce-2a9ea38bbede | id |
+| 387a1422-ff3c-47a9-9ad5-6e5162caaa39 | e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | id |
+| 92dfd3b0-91e2-4e02-b6e1-00afa0c86f6e | b10cabff-a933-4d6e-aa50-8a63df3e4021 | id |
+| 92dfd3b0-91e2-4e02-b6e1-00afa0c86f6e | 1aaddec5-7288-4492-bab8-692098a50a58 | id |
+| b10cabff-a933-4d6e-aa50-8a63df3e4021 | 9b0b72e9-2759-4a0c-9870-a9ee74c0bbeb | id |
+| b10cabff-a933-4d6e-aa50-8a63df3e4021 | 00775a4b-e515-42f1-896d-eae818f77481 | id |
+| b10cabff-a933-4d6e-aa50-8a63df3e4021 | 1aaddec5-7288-4492-bab8-692098a50a58 | id |
+| b10cabff-a933-4d6e-aa50-8a63df3e4021 | be6298e3-b248-45d6-8b7b-ea49cefb686d | id |
+| b10cabff-a933-4d6e-aa50-8a63df3e4021 | 2b3a351a-9dc8-411a-84c9-746f49151541 | id |
+| 845ba2f2-a5b9-4fce-8e8d-842cad9b02e5 | 17e4cb1f-aa99-4071-947e-519a77e1ae87 | id |
+| 3145801f-2756-475d-a934-b10d604de7bb | a2c8c554-858d-46bc-8e0e-0bbbd1b9e58f | id |
+| d0d3dd54-2c7b-4f75-9fc8-dd5e89895143 | c15f9ddd-e04b-4c41-9d15-03ed6a99779d | id |
+| 69d1972a-e34e-4508-822a-350505d17b33 | dcd41c7c-2452-48ab-b860-ab6f6cf34282 | id |
+| 9D7068AD-090B-4C72-B1D3-AA97E34FF736 | DB5F02DD-8B76-4CDC-98D8-D79385963585 | id |
+
+*** (org-roam-ui--separate-ref-links (org-roam-ui--get-cites))
+
+**** (org-roam-ui--get-cites)
+#+begin_src elisp
+(defun org-roam-ui--get-cites ()
+  "Get the citations when using the new db-model."
+  (org-roam-db-query
+   `[:select [citations:node-id citations:cite-key refs:node-id]
+     :from citations
+     :left :outer :join refs :on (= citations:cite-key refs:ref)]))
+#+end_src
+
+#+begin_src elisp
+(org-roam-ui--get-cites)
+#+end_src
+
+#+RESULTS:
+| 21cd2a48-a9bb-4564-b42d-6c94b583f0a8 | raritanThreePhasePowerExplained2018        | 873b545f-b959-4299-b44a-fbc13c29a8bf |
+| ec164ac0-63a4-4fce-aac7-c1221e193b1e | nosowitzAskedLeadingEntomologists0400      | a2b9b98b-907f-48a7-ac83-f39dae4bc06f |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | frankishCambridgeHandbookCognitive2012     | 5e723cbb-2154-47e3-bea6-255b45385dc3 |
+| e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | raritanAlternatingCurrentExplained2018     | nil                                  |
+| bbc78695-e3dc-4dfa-90ca-5dab51af77c3 | kuvinasaydakiAmazingMathColors2022         | 3bdb6e54-a072-4c06-a1c6-92441fe03a62 |
+| 6933d2ab-22fb-4c01-ab81-57f7802729e2 | baumWhatRadicalBehaviorism2011             | nil                                  |
+| 6933d2ab-22fb-4c01-ab81-57f7802729e2 | chomskyReviewVerbalBehavior1959            | nil                                  |
+| e27c7b62-e338-4056-917d-a544725d91aa | parfitPersonalIdentity1971                 | 9388f82f-9fff-4a06-9f74-a1e1306f2ce9 |
+| e27c7b62-e338-4056-917d-a544725d91aa | olsonPersonalIdentity2023                  | 71819bef-7529-4ad3-a95b-d6723f581d77 |
+| e27c7b62-e338-4056-917d-a544725d91aa | coseruMindIndianBuddhist2017               | 9003695b-ef75-47a9-8377-5889dace643a |
+| b5d89e03-594b-4560-952c-121183db28da | bloomEmpathyCaseRational2016               | 1aaec11d-8414-445e-9c69-180722ef09a2 |
+| b5d89e03-594b-4560-952c-121183db28da | parfitPersonalIdentity1971                 | 9388f82f-9fff-4a06-9f74-a1e1306f2ce9 |
+| 9ff3fce5-1180-4014-b502-d9107b2cef10 | frankishCambridgeHandbookCognitive2012     | 5e723cbb-2154-47e3-bea6-255b45385dc3 |
+| b73304a7-25e1-4b61-bec7-bb7c3ce09e22 | shannonMathematicalTheoryCommunication1948 | b16e1034-526a-4766-98f1-23b4b51ceb36 |
+| b73304a7-25e1-4b61-bec7-bb7c3ce09e22 | shannonMathematicalTheoryCommunication1998 | 5f6da6e5-3670-4cef-a59a-4c0aba050515 |
+| a2c8c554-858d-46bc-8e0e-0bbbd1b9e58f | bennettBriefHistoryIntelligence2023        | 62d3ad0b-a182-4073-ab34-1c59d4c051ec |
+| 5e723cbb-2154-47e3-bea6-255b45385dc3 | frankishCambridgeHandbookArtificial2014    | 70a6e20d-bb58-49b9-b869-ffb7113baef6 |
+| 71819bef-7529-4ad3-a95b-d6723f581d77 | parfitPersonalIdentity1971                 | 9388f82f-9fff-4a06-9f74-a1e1306f2ce9 |
+| 8f6a9ea8-b658-4967-92cc-76d9c2ad83a1 | deutschPsychologyMusic2013                 | 8ecdbfe3-91ba-4196-a539-2db4813be46e |
+| 873b545f-b959-4299-b44a-fbc13c29a8bf | raritanAlternatingCurrentExplained2018     | nil                                  |
+
+**** org-roam-ui--separate-ref-links
+#+begin_example
+既存の参照ノードを持つLINKSに対して、個別のエントリーを作成します。
+必要に応じてOLDをtに設定し、古い引用データベースモデルをサポートします。
+関連する参照を持つノードがある引用リンクを、ref'タイプのIDベースのリンクに変換します。 同時に、他のすべてのリンクから'nil refs:node-id'を削除します。
+#+end_example
+
+- 引数として渡ってくる ~links~ は ~org-roam-ui--get-cites~ の返り値
+  -> [citations:node-id citations:cite-key refs:node-id]
+     on citations.cite-key = refs.ref
+
+#+begin_src elisp
+(defun org-roam-ui--separate-ref-links (links &optional old)
+  "Create separate entries for LINKS with existing reference nodes.
+Optionally set OLD to t to support old citations db-model.
+
+Convert any cite links that have nodes with associated refs to an
+id based link of type `ref' while removing the 'nil `refs:node-id'
+from all other links."
+
+ (if (not old)
+    (seq-map
+     (lambda (link)
+       (pcase-let ((`(,source ,dest ,node-id) link))
+         (if node-id
+             (list source node-id "ref")
+           (list source dest "cite"))))
+     links)
+
+   (seq-map
+    (lambda (link)
+      (pcase-let ((`(,source ,dest ,type ,node-id) link))
+        (if node-id
+            (list source node-id "ref")
+          (list source dest type))))
+    links)))
+#+end_src
+
+#+begin_src elisp
+(org-roam-ui--separate-ref-links (org-roam-ui--get-cites))
+#+end_src
+
+#+RESULTS:
+| 21cd2a48-a9bb-4564-b42d-6c94b583f0a8 | 873b545f-b959-4299-b44a-fbc13c29a8bf   | ref  |
+| ec164ac0-63a4-4fce-aac7-c1221e193b1e | a2b9b98b-907f-48a7-ac83-f39dae4bc06f   | ref  |
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | 5e723cbb-2154-47e3-bea6-255b45385dc3   | ref  |
+| e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | raritanAlternatingCurrentExplained2018 | cite |
+| bbc78695-e3dc-4dfa-90ca-5dab51af77c3 | 3bdb6e54-a072-4c06-a1c6-92441fe03a62   | ref  |
+| 6933d2ab-22fb-4c01-ab81-57f7802729e2 | baumWhatRadicalBehaviorism2011         | cite |
+| 6933d2ab-22fb-4c01-ab81-57f7802729e2 | chomskyReviewVerbalBehavior1959        | cite |
+| e27c7b62-e338-4056-917d-a544725d91aa | 9388f82f-9fff-4a06-9f74-a1e1306f2ce9   | ref  |
+| e27c7b62-e338-4056-917d-a544725d91aa | 71819bef-7529-4ad3-a95b-d6723f581d77   | ref  |
+| e27c7b62-e338-4056-917d-a544725d91aa | 9003695b-ef75-47a9-8377-5889dace643a   | ref  |
+| b5d89e03-594b-4560-952c-121183db28da | 1aaec11d-8414-445e-9c69-180722ef09a2   | ref  |
+| b5d89e03-594b-4560-952c-121183db28da | 9388f82f-9fff-4a06-9f74-a1e1306f2ce9   | ref  |
+| 9ff3fce5-1180-4014-b502-d9107b2cef10 | 5e723cbb-2154-47e3-bea6-255b45385dc3   | ref  |
+| b73304a7-25e1-4b61-bec7-bb7c3ce09e22 | b16e1034-526a-4766-98f1-23b4b51ceb36   | ref  |
+| b73304a7-25e1-4b61-bec7-bb7c3ce09e22 | 5f6da6e5-3670-4cef-a59a-4c0aba050515   | ref  |
+| a2c8c554-858d-46bc-8e0e-0bbbd1b9e58f | 62d3ad0b-a182-4073-ab34-1c59d4c051ec   | ref  |
+| 5e723cbb-2154-47e3-bea6-255b45385dc3 | 70a6e20d-bb58-49b9-b869-ffb7113baef6   | ref  |
+| 71819bef-7529-4ad3-a95b-d6723f581d77 | 9388f82f-9fff-4a06-9f74-a1e1306f2ce9   | ref  |
+| 8f6a9ea8-b658-4967-92cc-76d9c2ad83a1 | 8ecdbfe3-91ba-4196-a539-2db4813be46e   | ref  |
+| 873b545f-b959-4299-b44a-fbc13c29a8bf | raritanAlternatingCurrentExplained2018 | cite |
+
+***** seq-map
+sequenceの各要素にfunctionを適用した結果をリターンする。リターン値はリスト。
+#+begin_src elisp
+(seq-map #'1+ '(2 4 6))
+#+end_src
+
+#+RESULTS:
+| 3 | 5 | 7 |
+
+***** pcase-let
+#+begin_src elisp
+  (seq-map
+     (lambda (link)
+       (pcase-let ((`(,source ,dest ,node-id) link))
+	 (if node-id
+	     (list source node-id "ref")
+	   (list source dest "cite"))))
+     (list
+      ;;    | source                              | dest                                   | node-id                             |
+      (list "a2a9f2cc-2e48-4c74-9f58-e4caae4dc267" "frankishCambridgeHandbookCognitive2012" "5e723cbb-2154-47e3-bea6-255b45385dc3")
+      (list "e73b36c6-55a0-451d-b5b9-0aa49cde7b4c" " raritanAlternatingCurrentExplained2018" nil)))
+
+#+end_src
+
+#+RESULTS:
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | 5e723cbb-2154-47e3-bea6-255b45385dc3   | ref  |
+| e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | raritanAlternatingCurrentExplained2018 | cite |
+
+| cite.node_id -> source               | dest(cite.citeKey) or ref.node_id -> target | type |
+|--------------------------------------+---------------------------------------------+------|
+| a2a9f2cc-2e48-4c74-9f58-e4caae4dc267 | 5e723cbb-2154-47e3-bea6-255b45385dc3        | ref  |
+| e73b36c6-55a0-451d-b5b9-0aa49cde7b4c | raritanAlternatingCurrentExplained2018      | cite |
+
+
+* JSON
+https://github.com/MElemental/miscIssueFiles/blob/main/graphdata.json
+#+begin_src js
+console.log("hello")
+#+end_src

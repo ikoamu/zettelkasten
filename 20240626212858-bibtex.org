@@ -1,0 +1,57 @@
+:PROPERTIES:
+:ID:       BD3DF030-002D-4DD0-AC74-B36F0D717601
+:END:
+#+title: BibTex
+
+[[id:C711AD8B-7879-40DB-9F82-C14993BC26A2][LaTeX]]における文献のデータベース
+
+https://qiita.com/SUZUKI_Masaya/items/14f9727845e020f8e7e9
+
+* 使い方
+1. データベースファイル(~hoge.bib~)を作成する
+2. 本文中の参考文系を出力したい位置に記述を追加する
+   #+begin_src tex
+   \bibliography{hoge} %hoge.bibから拡張子を外した名前
+   \bibliographystyle{junsrt} %参考文献出力スタイル
+   #+end_src
+
+   参考文献の出力スタイル
+   | 欧文用 | 和文用  | 特徴                         |
+   |-------+--------+-----------------------------|
+   | plain | jplain | 参考文献をアルファベット順で出力 |
+   | unsrt | junsrt | 参考文献を引用された順で出力する |
+
+** データベースに参考文献を追加する
+*** 学術論文を追加する方法
+*** Webページを参考文献として追加する方法
+*** 手で追加する方法
+
+* 書き方
+- 著者が複数いる場合には ~and~ で繋げる
+- ~van Valin~ のように姓にスペースが入る場合は「姓,名」で記述する
+  (e.g. Robert van Valin -> ~van Valin, Robert~)
+- Robert York IIIのような場合、 ~York, III, Robert~ の順番で記述する
+- 姓は先頭のみ大文字にして記述すると良い
+  (e.g. ~Suzuki~)
+- デフォルトではBiBTeX内の *大文字は全て小文字として出力* されてしまうため、\
+  文字列を ~{}~ で囲って記述すると良いでしょう。
+
+* 例
+** .bib
+#+begin_src tex
+@inproceedings{
+  KyTea, %文献参照名
+  title={Pointwise prediction for robust, adaptable Japanese morphological analysis},
+  author={Neubig, Graham and Nakata, Yosuke and Mori, Shinsuke},
+  booktitle={Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies: short papers-Volume 2},
+  pages={529--533},
+  year={2011},
+  organization={Association for Computational Linguistics}
+}
+#+end_src
+
+** 本文
+#+begin_src tex
+%\cite{文献参照名}で引用
+Neubigら\cite{KyTea}は...
+#+end_src

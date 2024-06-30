@@ -1,0 +1,35 @@
+:PROPERTIES:
+:ID:       C075B7E9-BA1F-4596-A918-20F13D5D323E
+:END:
+#+title: seq-concatenate
+#+filetags: :elisp:
+
+https://ayatakesi.github.io/lispref/26.3/html/Sequence-Functions.html
+
+- [[id:45C6278B-128A-4266-B328-7C04C677EAD9][elisp]]の関数。
+- この関数は[[id:A96A94BB-8C25-4A8D-A52D-A366987DB22E][sequences]]を結合して作成されたtype型のシーケンスをリターンする。
+- typeは ~vector~ 、 ~list~  、 ~string~ のいずれか。
+
+#+begin_src elisp
+(seq-concatenate 'list
+		 '(1 2)
+		 '(3 4)
+		 '(5 6 7))
+#+end_src
+
+#+RESULTS:
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+
+#+begin_src elisp
+(seq-concatenate 'string "Hello" " "  "world")
+#+end_src
+
+#+RESULTS:
+: Hello world
+
+#+begin_src elisp
+(seq-concatenate 'list "Hello" " "  "world")
+#+end_src
+
+#+RESULTS:
+| 72 | 101 | 108 | 108 | 111 | 32 | 119 | 111 | 114 | 108 | 100 |

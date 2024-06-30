@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       A96A94BB-8C25-4A8D-A52D-A366987DB22E
+:END:
+#+title: sequences
+#+filetags: :elisp:

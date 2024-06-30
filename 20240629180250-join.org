@@ -1,0 +1,107 @@
+:PROPERTIES:
+:ID:       164B0598-6CA1-4072-ADB6-E83AA24DA2F2
+:END:
+#+title: JOIN
+#+filetags: :sql:
+
+https://zenn.dev/naoki_mochizuki/articles/60603b2cdc273cd51c59
+
+* テーブル結合とは
+複数のテーブルをまとめること
+
+* 内部結合と外部結合
+以下のテーブルを例として説明
+*dogs*
+| id | name   | owner_id |
+|----+--------+----------|
+|  1 | aka    |        1 |
+|  2 | ao     |        2 |
+|  3 | schiro |        1 |
+|  4 | kuro   |        4 |
+*owners*
+| id | name   |
+|----+--------|
+|  1 | ichiro |
+|  2 | jiro   |
+|  3 | saburo |
+
+
+** 内部結合(INNER JOIN)
+テーブルの指定したカラムの値が一致するものだけを結合する
+
+#+begin_src sql
+SELECT カラム名1, カラム名2, ... FROM テーブル名１
+  INNER JOIN テーブル名2 ON 結合の条件
+#+end_src
+
+*** e.g.
+#+begin_src sql
+SELECT * FROM dogs
+  INNER JOIN owners ON dogs.owner_id = owners.id;
+#+end_src
+| id | name  | owner_id | id | name   |
+|----+-------+----------+----+--------|
+|  1 | aka   |        1 |  1 | ichiro |
+|  3 | shiro |        1 |  1 | ichiro |
+|  2 | ao    |        2 |  2 | jiro   |
+※ id=4のownerが存在しないため、kuroがいない
+
+*内部結合の場合、ベースとなるテーブルから条件にマッチするレコードがないものは削除される*
+
+* 外部結合(OUTER JOIN)
+内部結合のようにそれぞれのテーブルの指定したカラムの値が一致するものを結合するのに加え、
+*どちらかのテーブルにしか存在しないものに関しても取得します。*
+#+begin_src sql
+SELECT カラム名1, カラム名2, ...,FROM テーブル1 
+  LEFT(RIGHT) OUTER JOIN テーブル名2 ON 結合の条件
+#+end_src
+
+** LEFT OUTER JOIN
+
+#+begin_src sql
+SELECT * FROM dogs		
+  LEFT OUTER JOIN owners ON dogs.owner_id = owners.id;
+#+end_src
+| id | name  | owner_id |   id | name   |
+|----+-------+----------+------+--------|
+|  1 | aka   |        1 |    1 | ichiro |
+|  3 | shiro |        1 |    1 | ichiro |
+|  2 | ao    |        2 |    2 | jiro   |
+|  4 | kuro  |        4 | null | null   |
+※ 内部結合の際は一致するデータが無かったためにテーブルから削除されていたkuroが、外部結合の場合はデータとして残っている
+
+** RIGHT OUTER JOIN
+#+begin_src sql
+SELECT * FROM dogs
+  RIGHT OUTER JOIN owners  ON dogs.owner_id = owners.id;
+#+end_src
+|   id | name  | owner_id |   id | name   |
+|------+-------+----------+------+--------|
+|    1 | aka   |        1 |    1 | ichiro |
+|    3 | shiro |        1 |    1 | ichiro |
+|    2 | ao    |        2 |    2 | jiro   |
+| null | null  |     null |    3 | saburo |
+
+* 交差結合(CROSS JOIN)
+直積結合とも呼ばれる
+条件をしていせずに両方のレコードを全て掛け合わせて取得する
+#+begin_src sql
+SELECT * FROM dogs CROSS JOIN owners;
+#+end_src
+| id | name   | owner_id | id | name   |
+|----+--------+----------+----+--------|
+|  1 | aka    |        1 |  1 | ichiro |
+|  1 | aka    |        1 |  2 | jiro   |
+|  1 | aka    |        1 |  3 | saburo |
+|----+--------+----------+----+--------|
+|  2 | ao     |        2 |  1 | ichiro |
+|  2 | ao     |        2 |  2 | jiro   |
+|  2 | ao     |        2 |  3 | saburo |
+|----+--------+----------+----+--------|
+|  3 | schiro |        1 |  1 | ichiro |
+|  3 | schiro |        1 |  2 | jiro   |
+|  3 | schiro |        1 |  3 | saburo |
+|----+--------+----------+----+--------|
+|  4 | kuro   |        4 |  1 | ichiro |
+|  4 | kuro   |        4 |  2 | jiro   |
+|  4 | kuro   |        4 |  3 | saburo |
