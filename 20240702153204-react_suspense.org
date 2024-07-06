@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       561BE9A0-F446-4406-9D6E-85C9C3DF8EE7
+:END:
+#+title: React Suspense
+#+filetags: :React:frontend:
+
+- 子が読み込みを完了するまでフォールバックUIを表示する機能
+  コンポーネントで発生した非同期データ取得の「読み込み中」表示を宣言的に記述できる
+- エラー発生時の表示は[[id:68C45440-AF44-47D3-A2C4-9B3E31A1568A][Error Boundary]]に委ねる
+
+#+begin_src jsx
+<Suspense fallback={<Spinner />}
+  <Comments />
+</Suspense>
+#+end_src

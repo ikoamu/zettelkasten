@@ -1,0 +1,18 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/aokisusumutarou/zettelkasten/20240704220548-org_attach.org
+
+
+* case1. デスクトップに保存したスクリーンショットをattachmentとして設定する
+:PROPERTIES:
+:ARCHIVE_TIME: 2024-07-04 Thu 23:20
+:ARCHIVE_FILE: ~/zettelkasten/20240704220548-org_attach.org
+:ARCHIVE_OLPATH: 実際に使ってみる
+:ARCHIVE_CATEGORY: 20240704220548-org_attach
+:ARCHIVE_ITAGS: org-mode
+:END:
+1. [[id:5D1DC3B0-CCD9-4D71-8EB7-1182CA68EFDB][CleanShot]]を使ってスクリーンショットをデスクトップに保存
+   -> ~~/Desktop/CleanShot\ 2024-07-04\ at\ 23.16.45@2x.png~
+2. ~org-attach~ を起動
+3. 

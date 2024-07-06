@@ -4,3 +4,4 @@
 #+title: org-mode
 #+filetags: :org-mode:emacs:
 
+https://takaxp.github.io/org-ja.html

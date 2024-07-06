@@ -148,5 +148,79 @@ export default async function Page({ params, searchParams }: Props) {
   - ~{cache: "no-store"}~ 
 - 動的関数を使用する場合
 - Dynamic Segmentを使用する場合
+
 * AppRouterの規約
 
+** Segment構成ファイル
+| 名称       | 拡張子         | 用途                           |
+|-----------+---------------+-------------------------------|
+| layout    | .js .jsx .tsx | Segmentとその子の共有UI         |
+| page      | .js .jsx .tsx | Segment独自のUI                |
+| loading   | .js .jsx .tsx | Segmentとその子の読み込みUI      |
+| not-found | .js .jsx .tsx | Segmentとその子の404UI          |
+| error     | .js .jsx .tsx | Segmentとその子のエラーUI        |
+| route     | .js .ts       | サーバーサイドAPIエンドポイント   |
+| template  | .js .jsx .tsx | 際レンダリングされるレイアウトUI   |
+| default   | .js .jsx .tsx | Parallel routeのフォールバックUI |
+
+Segment構成ファイルは[[id:561BE9A0-F446-4406-9D6E-85C9C3DF8EE7][React Suspense]]を前提としたコンポーネントツリーを構築する
+
+e.g.
+#+begin_example
+dashboard
+|- layout.tsx
+|- template.tsx
+|- error.tsx
+|- loading.tsx
+|- not-found.tsx
+-- page.tsx
+#+end_example
+
+このPathへのリクエストとして次のようなReactツリーが自動構築され、RouteのUIとして提供される
+
+#+begin_src jsx
+<Layout>
+  <Template>
+    <ErrorBoundary fallback={<Error/>}>
+      <Suspense fallback={<Loading />}>
+        <ErrorBoundary fallback={<NotFound/>}>
+          <Page />
+        </ErrorBoundary>
+      </Suspense>
+    </ErrorBoundary>
+  </Template>  
+</Layout>
+#+end_src
+
+子Segmentと親Segmentの関係
+#+begin_example
+dashboard
+|- layout.tsx
+|- error.tsx
+|- loading.tsx
+-- settings
+   |- layout.tsx
+   |- error.tsx
+   |- loading.tsx
+   -- page.tsx
+#+end_example
+
+#+begin_src jsx
+<Layout>
+  <ErrorBoundary fallback={<Error/>}>
+    <Suspense fallback={<Loading />}>
+      {/* ここからsettings Segment  */}
+      <Layout>
+        <ErrorBoundary fallback={<Error/>}>
+          <Suspense fallback={<Loading />}
+            <Page />
+          </Suspense>
+        </ErrorBoundary>
+      </Layout>
+      {/* ----- */}
+    </Suspense>
+  </ErrorBoundary>
+</Layout>
+#+end_src
+
+** Segment構成フォルダ

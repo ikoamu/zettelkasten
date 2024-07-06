@@ -1,0 +1,13 @@
+:PROPERTIES:
+:ID:       1F9504B0-D608-4186-A837-731C134C0B84
+:END:
+#+title: publish-org-roam-uiのissue
+
+[[id:4ED39C6C-F151-4EA2-AF4E-B77718959ED3][publish-org-roam-ui]]にissuのメモを書き溜めていたが、思った以上に起票されており、ファイルが大きくなり始めたので別で切り出す
+
+* Bug
+
+** TODO [[id:60A8CB9A-C55B-4D69-8E83-5D8D7C26F2BE][org-attach]]のサポート
+https://github.com/ikoamu/publish-org-roam-ui/issues/22
+
+* Feature

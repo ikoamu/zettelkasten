@@ -21,7 +21,7 @@ https://zenn.dev/ikoamu/articles/7193dbcf62fff8
 - 
 * forkしたリポジトリ
 https://github.com/ikoamu/org-roam-ui
-
+* [[id:1F9504B0-D608-4186-A837-731C134C0B84][publish-org-roam-uiのissue]]
 * 追加機能
 
 ** DONE インラインコードのスタイルもう少しかっこよくしたい
@@ -42,8 +42,7 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
   - コメントアウトしたら治った
 ** TODO [[id:AE463A5A-5D42-4A6C-A1CF-3365C66A0326][org-cite]]サポート
 [[id:9D7068AD-090B-4C72-B1D3-AA97E34FF736][org-roam-uiのgraphdata]]で[[id:AE463A5A-5D42-4A6C-A1CF-3365C66A0326][org-cite]]と[[id:3AA03F38-BE5D-4BFB-9E0C-458939005A98][org-ref]]をサポートしていなかったためサポートする
-
-  
+** TODO 
 ** TODO ファビコン設定
 
 ** DONE ノードに特定のURLをつける

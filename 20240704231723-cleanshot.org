@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       5D1DC3B0-CCD9-4D71-8EB7-1182CA68EFDB
+:END:
+#+title: CleanShot
+

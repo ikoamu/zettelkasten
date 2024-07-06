@@ -1,0 +1,117 @@
+:PROPERTIES:
+:ID:       60A8CB9A-C55B-4D69-8E83-5D8D7C26F2BE
+:END:
+#+title: org-attach
+#+filetags: :org-mode:
+
+- https://orgmode.org/manual/Attachments.html
+- https://ueeda.sakura.ne.jp/misc/manage_attachments_in_org-mode.html
+
+- [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]において、参照すべきものを[[id:F003B9E8-36C9-4ABB-83C6-0F0DF1A5A377][outline]]ノートやタスクと連携させることは大抵役に立つ。
+- 小さなプレーンテキストの塊は単純にプロジェクトのサブツリーとして保存可能。
+- [[id:AAD718D8-A700-405D-A4E3-86C1320C9FEF][hyperlink]]はローカルやクラウド上にあるファイルとの連携を確立できる
+
+* [[id:AAD718D8-A700-405D-A4E3-86C1320C9FEF][hyperlink]]とは別の参照方法として *attachments* がある
+- アウトラインノードの属するディレクトリにあるファイルを参照する方法
+- ~data~ ディレクトリ内に配置される
+  #+begin_src elisp
+  (print org-attach-directory)
+  #+end_src
+
+  #+RESULTS:
+  : data/
+
+* コマンド
+** [[id:60A8CB9A-C55B-4D69-8E83-5D8D7C26F2BE][org-attach]] (C-c C-a)
+Attachmentシステムに関連するコマンドの選択画面。
+これらのキーの後にコマンドのリストが表示され、さらに選択する([[id:50EA3B03-F318-4EBB-90BB-00FDE6090B17][magit]]みたいな感じ)
+** org-attach-attach (a)
+:PROPERTIES:
+:ID:       5404432B-F244-412A-B57D-89DCBCFDE509
+:END:
+- ファイルを選択してそれをタスクの添付ディレクトリへ移動する
+- ファイルは [[id:F2871A66-B977-4335-9BE0-8CD68C7C0D03][org-attach-method (c/m/l)]] によって複製、移動、リンクされる
+
+** org-attach-method (c/m/l)
+:PROPERTIES:
+:ID:       F2871A66-B977-4335-9BE0-8CD68C7C0D03
+:END:
+- copy / move / linkが選択できる
+- コピー/移動/リンクメソッドを使ってファイルを添付します
+
+** org-attach-new (n)
+:PROPERTIES:
+:ID:       B878A64B-8034-4464-BA26-6B117BAE284E
+:END:
+- [[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]のバッファとして新しいattachmentを作成する
+
+** org-attach-sync (z)
+:PROPERTIES:
+:ID:       65BAFC71-B9E5-44BF-A2BD-D2EE1F1ACDC0
+:END:
+- attachmentを追加した場合に、現在のタスクをその添付ディレクトリと同期する
+
+** org-attach-open (o)
+:PROPERTIES:
+:ID:       688E4E86-67C0-4E2A-AC4D-09E1AA59B195
+:END:
+- 現在のタスクに関するattachmentを開く
+- 1つ以上ある場合はファイル名の入力を要求される
+  - 開き方は[[id:BE69A7B3-EAF2-4BCC-A5F3-76D2AB553EDF][org-file-apps]]に従う
+
+** org-attach-open-in-emacs (O)
+:PROPERTIES:
+:ID:       AF82199C-F2A9-4C2D-BDC8-59D98BF620B2
+:END:
+- 現在のタスクに関するattachmentを開く
+- ファイルは[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]で強制的に開かれる
+
+** org-attach-reveal (f)
+:PROPERTIES:
+:ID:       BE345A34-5235-4944-A907-9AF82C50B228
+:END:
+- 現在のタスクの添付ディレクトリを開く
+
+** org-attach-reveal-in-emacs (F)
+:PROPERTIES:
+:ID:       BD71524C-100E-457F-B98D-D0A35F50BD01
+:END:
+- 現在のタスクの添付ディレクトリを[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]で開く
+
+** org-attach-delete-one (d)
+:PROPERTIES:
+:ID:       C9ADAF9F-BDA3-4CCC-91AE-9D55B5A19F3F
+:END:
+- attachmentを1つ削除する
+
+** org-attach-delete-all (D)
+:PROPERTIES:
+:ID:       5683BAB4-3965-4EFD-8688-02A3FF92F8DF
+:END:
+- タスクに関連する添付をすべて削除する
+- 安全な方法は[[id:812EB16C-B9DC-42E7-A0C3-13C65DE2D2E0][dired]]を用いてディレクトリを開き、そこから削除する
+
+** org-attach-set-directory (s)
+:PROPERTIES:
+:ID:       5F333242-8338-4B72-A1EF-775A975E8887
+:END:
+- 特定のディレクトリをエントリーの添付ディレクトリーに指定する
+- これはディレクトリのパスを ~ATTAH_DIR~ プロパティに代入することで動作る
+
+** org-attach-set-inherit (i)
+- ~ATTACH_DIR_INHERIT~ プロパティをセットする
+- これによって子も親と同じディレクトリを添付として使用します。
+
+* 実際に使ってみる
+
+** case1. デスクトップに保存したスクリーンショットをattachmentとして設定する
+1. [[id:5D1DC3B0-CCD9-4D71-8EB7-1182CA68EFDB][CleanShot]]を使ってスクリーンショットをデスクトップに保存
+   -> ~~/Desktop/CleanShot\ 2024-07-04\ at\ 23.16.45@2x.png~
+2. ヘッドラインを作成
+3. 作成したヘッドライン上で ~org-attach~ を起動
+   -> ~:ATTACH:~ がタグで設定され、 ~ID~ が払い出される
+4. 
+*** test                                                             :ATTACH:
+:PROPERTIES:
+:ID:       EBBDB60D-A9D3-480C-9DE6-CE2109621183
+:END:
