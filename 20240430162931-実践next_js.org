@@ -224,3 +224,141 @@ dashboard
 #+end_src
 
 ** Segment構成フォルダ
+
+*** Dynamic Route Segment
+- パスに含まれるパラメータを参照できる
+- フォルダ名称を ~[slug]~ のように[]で囲むことでパスパラメータに応じた画面を提供できるようになる
+
+**** 基本
+| Route                    | URLのリクエスト例 | params      |
+|--------------------------+-----------------+-------------|
+| app/blog/[slug]/page.tsx | /blog/a         | {slug: 'a'} |
+| app/blog/[slug]/page.tsx | /blog/b         | {slug: 'b'} |
+| app/blog/[slug]/page.tsx | /blog/c         | {slug: 'c'} |
+
+**** Catch-all Segment
+:PROPERTIES:
+:ID:       D46B7F37-40B3-4301-AAF9-01EE69626E4D
+:END:
+- ~[...slug]~ という命名規則でフォルダを定義する
+- ネストされたPathに対応し、配列としてパスパラメータを参照できる
+
+| Route                       | URLのリクエスト例 | params                  |
+|-----------------------------+-----------------+-------------------------|
+| app/shop/[...slug]/page.tsx | /shop/a         | {slug: ['a']}           |
+| app/shop/[...slug]/page.tsx | /shop/a/b       | {slug: ['a', 'b']}      |
+| app/shop/[...slug]/page.tsx | /shop/a/b/c     | {slug: ['a', 'b', 'c']} |
+
+**** Optional Catch-all Segment
+:PROPERTIES:
+:ID:       A7C95EF3-147D-4884-A7D6-1D1608C2182E
+:END:
+- ~[[...slug]]~ という命名規則でフォルダを定義する
+- [[id:D46B7F37-40B3-4301-AAF9-01EE69626E4D][Catch-all Segment]]との違いは１行目の ~/shop~ リクエストにも応じる点
+
+| Route                       | URLのリクエスト例 | params                  |
+|-----------------------------+-----------------+-------------------------|
+| app/shop/[...slug]/page.tsx | /shop           | {}                      |
+| app/shop/[...slug]/page.tsx | /shop/a         | {slug: ['a']}           |
+| app/shop/[...slug]/page.tsx | /shop/a/b       | {slug: ['a', 'b']}      |
+| app/shop/[...slug]/page.tsx | /shop/a/b/c     | {slug: ['a', 'b', 'c']} |
+
+
+*** Route Groups
+:PROPERTIES:
+:ID:       F48AE891-BADD-4C04-9447-7A095A381DED
+:END:
+- フォルダの階層構造は通常、URL Pathに影響を与える
+- フォルダの一部をURL Pathから除外したい時に使える
+- フォルダ名を ~(feature)~ のように()で囲むことでRoute Groupsとして識別される
+
+**** e.g.
+- アプリケーション用に ~(site)~
+  - ~/photo~ : 投稿写真閲覧画面
+  - ~/categories~ : カテゴリー一覧画面
+- 情報提供用に ~(static)~
+  - ~/company-info~ : 企業概要画面
+  - ~privacy-policy~ : 利用規約画面
+
+#+begin_example
+src
+└── app
+    ├── (site)
+    │   ├── photo
+    │   │   └── ...
+    │   └── categories
+    │       └── ...
+    ├── (static)
+    │   ├── company-info
+    │   │   └── ...
+    │   └── privacy-info
+    │       └── ...
+    ├── layout.tsx
+    └── page.tsx
+#+end_example
+
+**** Route Groups専用レイアウトをネストすることもできる
+
+#+begin_example
+src
+└── app
+    ├── (site)
+    │   ├── layout.tsx
+    │   ├── photo
+    │   │   └── ...
+    │   └── categories
+    │       └── ...
+    ├── (static)
+    │   ├── layout.tsx
+    │   ├── company-info
+    │   │   └── ...
+    │   └── privacy-info
+    │       └── ...
+    ├── layout.tsx
+    └── page.tsx
+#+end_example    
+
+*** Private Folderと[[id:1F92098A-F591-46F9-994C-62C7C957C6BE][Co-location]]
+- appディレクトリ内にRouteに影響を与えないファイルを配置できる
+- フォルダの先頭に ~_~ をつけることで、含まれるすべてのファイルをルーティング対象外にできる
+
+
+** [[id:7339784D-88CA-4C6A-849A-744057EEBB5F][Parallel Route]]と[[id:E5AD78CC-CE44-4698-91E0-93EDF6A619D4][Intercepting Route]]
+:PROPERTIES:
+:ID:       EF14DF29-D73D-42B0-9C33-1C398D7D2E21
+:END:
+
+*** [[id:7339784D-88CA-4C6A-849A-744057EEBB5F][Parallel Route]]
+- Segmentではない
+**** e.g.
+#+begin_example
+├── layout.tsx
+├── @users
+│   ├── default.tsx
+│   └── accounts
+│       └── page.tsx
+├── accounts
+│   └── page.tsx
+└── photos
+    └── page.tsx
+#+end_example
+
+[[id:F581B8C4-23D6-470A-A9EB-D5F1A84B4C34][React]] Componentにおいて、「children」はよく知られた特別なProps。
+SlotはLayoutにおいて、childrenと同じようにPropsとして渡される
+
+#+begin_src tsx
+export default function Layout(props: {
+  children: React.ReactNode;
+  users: React.ReactNode;
+}) {
+  return (
+    <>
+      {props.children}
+      {props.users}
+    </>
+  );
+}
+#+end_src
+
+この ~props.users~ は常にレンダリングされるとは限らない。
+~@users~ をRootとしたSubtreeと表示した

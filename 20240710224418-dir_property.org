@@ -1,0 +1,18 @@
+:PROPERTIES:
+:ID:       E31B2E7A-6376-41A4-BADE-9CF3A3966C64
+:END:
+#+title: DIR property
+#+filetags: :org-mode:
+
+- [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]のプロパティ
+- ファイルやディレクトリの場所を指定するために使用されるプロパティ
+- [[id:5F333242-8338-4B72-A1EF-775A975E8887][org-attach-set-directory (s)]]で設定できる
+
+* 主な目的
+- ファイルリンクの基準ディレクトリを設定する
+- [[id:60A8CB9A-C55B-4D69-8E83-5D8D7C26F2BE][org-attach]]の保存先ディレクトリを指定する
+
+* 記述
+#+begin_src org
+#+PROPERTY: DIR /path/to/directory
+#+end_src

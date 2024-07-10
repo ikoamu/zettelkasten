@@ -76,3 +76,5 @@ https://zenn.dev/tak_dcxi/articles/f464f90a24f754b15dd9
 * バグ修正
 ** DONE [[id:A0578F9C-C1B6-4DB6-B27D-914E01E101FF][publish-org-roam-uiのヘッダーに設定している値でActionが失敗する]]
 ** DONE [[id:F5612736-833B-433C-A032-F77234784C06][publish-org-roam-uiでタイムスタンプがないファイルに対応]]
+* issue
+[[id:1F9504B0-D608-4186-A837-731C134C0B84][publish-org-roam-uiのissue]]

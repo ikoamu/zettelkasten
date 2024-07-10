@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       A710373E-0001-425F-82EB-594360D260B0
+:END:
+#+title: org-insert-link
+#+filetags: :org-mode:
+

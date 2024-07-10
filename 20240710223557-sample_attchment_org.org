@@ -1,0 +1,16 @@
+:PROPERTIES:
+:ID:       481E1424-6124-4B93-B60C-C2F5CB54DF10
+:DIR:      ./img
+:END:
+#+title: sample-attchment-org
+
+[[id:E31B2E7A-6376-41A4-BADE-9CF3A3966C64][DIR property]]
+
+
+1. [[id:5F333242-8338-4B72-A1EF-775A975E8887][org-attach-set-directory (s)]]で[[id:E31B2E7A-6376-41A4-BADE-9CF3A3966C64][DIR property]]を付与
+2. 手で絶対パスから相対パスに変更（いいのか？）
+3. [[id:A710373E-0001-425F-82EB-594360D260B0][org-insert-link]]で ~Link:attachment~ を選択
+4. imgディレクトリ内のファイルを選択できるようになる
+   
+[[attachment:test.png]]
+

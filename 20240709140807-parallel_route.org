@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       7339784D-88CA-4C6A-849A-744057EEBB5F
+:END:
+#+title: Parallel Route
+#+filetags: :nextjs:
+
+- Parallel Routeは「Slot」と呼ばれるものを使用して作成する
+- Slotは ~@folder~ というフォルダ名名規則を使用する
+- このフォルダは *Segmentではない* こと特徴

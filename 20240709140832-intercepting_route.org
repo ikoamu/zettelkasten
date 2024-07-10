@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       E5AD78CC-CE44-4698-91E0-93EDF6A619D4
+:END:
+#+title: Intercepting Route
+#+filetags: :nextjs:
+
