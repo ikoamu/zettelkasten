@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       30896637-F9A3-40F3-8EAD-F5B51EB5BECF
+:END:
+#+title: minio
+

@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       C1F7A6DE-D537-4500-A6C3-60AF97F0FC60
+:END:
+#+title: オブジェクト指向
+

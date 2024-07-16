@@ -1,0 +1,25 @@
+:PROPERTIES:
+:ID:       A6B8CAAE-4125-4A8B-80FB-67BDEE98C93A
+:END:
+#+title: Prisma
+
+- [[id:DD155CB4-4AC6-411A-958E-0407C3934E1E][Node.js]]の[[id:687D7E26-807E-4D92-BCCE-FA112C92EFCF][ORM]]の１つ
+- 型安全なデータベースアクセスが特徴
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]との相性がいい
+
+* Prisma Client
+:PROPERTIES:
+:ID:       90032A9B-FDB4-4927-BE21-D05701358E5F
+:END:
+[[id:DD155CB4-4AC6-411A-958E-0407C3934E1E][Node.js]] および[[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]用の自動生成された型安全なクエリビルダー
+
+* Prisma Migrate
+:PROPERTIES:
+:ID:       084E3902-4CA8-4258-BC46-3B8887114519
+:END:
+宣言型データモデリングおよび移行システム
+* Prisma Studio
+:PROPERTIES:
+:ID:       AFEB60B7-0739-4C10-94AB-91CAE916C3EB
+:END:
+データベース内のデータを表示および編集するためのGUI

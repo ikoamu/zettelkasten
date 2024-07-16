@@ -49,6 +49,9 @@ e.g. example.com/profile/settings
 *** ハードナビゲーション
 - ブラウザが画面を再読み込みする画面遷移
 *** ソフトナビゲーション
+:PROPERTIES:
+:ID:       88C8DBC2-BE2A-4A37-B963-AD5CAE2600DC
+:END:
 - ブラウザが画面を再読み込みしない画面遷移
 - 画面全体を再描画せずに、必要な箇所だけ再レンダリングする
 - 一度取得したデータやレンダリングした画面をキャッシュとして活用できる
@@ -70,7 +73,6 @@ AppRouterは変更されたRouteSegmentのみが再レンダリングされる
   -> 子Segmentが親SegmentLayoutの影響を受ける
 
 * [[id:4066AB86-2395-4A96-AC7D-AB626B960B4E][ServerComponent]]と[[id:529502BE-9536-4339-A7AD-91BA86438899][ClientComponent]]
-
 ** 使い分け
 *** ServerComponent
 - データを取得する
@@ -360,5 +362,55 @@ export default function Layout(props: {
 }
 #+end_src
 
-この ~props.users~ は常にレンダリングされるとは限らない。
-~@users~ をRootとしたSubtreeと表示した
+- この ~props.users~ は常にレンダリングされるとは限らない。
+- ~@users~ をRootとしたSubtreeと、表示しているRoute Segmentが一致したタイミングで表示される
+
+*** [[id:E5AD78CC-CE44-4698-91E0-93EDF6A619D4][Intercepting Route]]
+- 名前の通りRouteを横取りする（インターセプトする）ためのRoute定義
+- 通常定義されたSegmentをインターセプトし、このフォルダ内に格納された異なるSegment定義を画面として提供する
+- Interceptiong Routesを活用すると「[[id:88C8DBC2-BE2A-4A37-B963-AD5CAE2600DC][ソフトナビゲーション]]でモーダル画面を表示する」といったUI実装が可能になる
+
+**** 規則
+| 規則      | 横取りするSegment     |
+|----------+---------------------|
+| (.)      | 同じレベル            |
+| (..)     | 1つ上の階層           |
+| (..)(..) | 2つ上の階層           |
+| (...)    | appディレクトリのroot |
+
+**** e.g.
+
+#+begin_example
+├── @modal
+│   └── (.)photos
+│       └── [photoId]
+│           └── page.tsx
+├── layout.tsx
+└── photos
+    └── [photoId]
+        └── page.tsx
+#+end_example
+* サンプルアプリの概要
+** 使ってる技術
+- [[id:FDCE6523-729C-49D9-9041-CC46F0DA0D23][Docker]]
+- [[id:A6B8CAAE-4125-4A8B-80FB-67BDEE98C93A][Prisma]]
+- [[id:5ED18B48-8BA7-4845-9003-D9B3F602010F][PostgresSQL]]
+- [[id:30896637-F9A3-40F3-8EAD-F5B51EB5BECF][minio]]
+** ざっくりプロジェクト構成
+
+| プロジェクト    | サーバー種別               | 接続するDBサーバー        | 使用する章 |
+|---------------+--------------------------+------------------------+----------|
+| sns-api-1     | Web API サーバー           | DBなし                  |        6 |
+| sns-api-2     | Web API サーバー           | ps-db-data(投稿者新情報) |      6-9 |
+| sns-web-1     | Web アプリケーションサーバー | DBなし                  |        6 |
+| sns-web-2     | Web アプリケーションサーバー | ps-db-user(ユーザー情報) |      6-9 |
+| sns-web-3     | Web アプリケーションサーバー | ps-db-user(ユーザー情報) |      6-9 |
+| sns-shared-ui | UIライブラリ               | DBなし                  |      5-9 |
+
+
+** コンテナ起動
+
+#+begin_src shell
+$ cd applications
+$ docker compose up -d
+#+end_src

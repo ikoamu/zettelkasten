@@ -1,0 +1,35 @@
+:PROPERTIES:
+:ID:       2BD15337-02A4-49FD-BC84-E87A19806C6A
+:END:
+#+title: org-roamをgitでpullしたとき
+#+filetags: :org-roam:
+
+
+#+begin_src elisp
+  (defun org-roam-pull ()
+    (interactive)
+    (org-roam-db-clear-all)
+    (org-roam-db-sync))
+#+end_src
+
+#+RESULTS:
+: org-roam-pull
+
+#+begin_src elisp
+  (org-roam-pull)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src elisp
+(org-roam-db-clear-all)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src elisp
+(print org-roam-directory)
+#+end_src
+
+#+RESULTS:
+: ~/zettelkasten
