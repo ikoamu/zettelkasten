@@ -7,7 +7,7 @@
 
 * Bug
 
-** TODO [[id:60A8CB9A-C55B-4D69-8E83-5D8D7C26F2BE][org-attach]]のサポート
+** DONE [[id:60A8CB9A-C55B-4D69-8E83-5D8D7C26F2BE][org-attach]]のサポート
 - https://github.com/ikoamu/publish-org-roam-ui/issues/22
 
 
@@ -16,3 +16,13 @@
 - [[id:481E1424-6124-4B93-B60C-C2F5CB54DF10][sample-attchment-org]]で添付してみるとうまくいった
 - [[id:63A0834E-B3E9-471F-9094-DCD0BEECB96A][GitHub Pages]]ではどうか？
   - pushしてみる
+  - うまくいった
+- org-dir直下ではなく、 ~reference~ サブディレクトリに作成しているのが原因？
+- org-roam.dbの設定が良くなかったみたい。設定し直したら画像が表示できた。
+- [[id:78096CE0-AFB5-4903-BDFA-11C4CA31DCFA][org-roamを複数ディレクトリで管理]]
+
+* Improve
+
+** TODO 検索機能のパフォーマンス改善
+
+- パフォーマンスがどれくらい良くなったかの指標を作った方がいい？

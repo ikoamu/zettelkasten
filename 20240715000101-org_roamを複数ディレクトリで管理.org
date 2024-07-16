@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       78096CE0-AFB5-4903-BDFA-11C4CA31DCFA
+:END:
+#+title: org-roamを複数ディレクトリで管理
+
+[[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]で複数のディレクトリにメモを分けることができる
+
+https://jethrokuan.github.io/org-roam-guide/
