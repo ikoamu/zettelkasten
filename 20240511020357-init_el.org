@@ -89,6 +89,14 @@ counselのインストールも必要
   (require 'org-roam-ui)
 #+end_src
 
+*** [[id:2BD15337-02A4-49FD-BC84-E87A19806C6A][org-roamをgitでpullしたとき]]
+#+begin_src elisp
+(defun org-roam-update-after-pull ()
+  (interactive)
+  (org-roam-db-clear-all)
+  (org-roam-db-sync))
+#+end_src
+
 *** [[id:71A58D04-253A-4118-90AD-584AF5AAC935][hydra(emacs)]]で[[id:DB5F02DD-8B76-4CDC-98D8-D79385963585][org-roam]]をつかいやすく
 :PROPERTIES:
 :ID:       7F02F36E-8C2B-4E87-89BF-2E6A061787E2
@@ -100,8 +108,9 @@ counselのインストールも必要
     ("i" org-roam-node-insert " insert")
     ("l" org-roam-buffer-toggle " toggle")
     ("c" org-id-get-create " create id")
-    )
-   (global-set-key (kbd "C-q") 'hydra-roam/body)
+    ("p" org-roam-update-after-pull " pull-update"))
+
+  (global-set-key (kbd "C-q") 'hydra-roam/body)
 #+end_src
 
 ** [[id:5CF0090E-0459-4122-96A7-BD3DF14FF332][org-tempo]]

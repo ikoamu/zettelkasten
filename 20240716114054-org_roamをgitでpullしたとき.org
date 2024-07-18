@@ -4,6 +4,9 @@
 #+title: org-roamをgitでpullしたとき
 #+filetags: :org-roam:
 
+- pushの自動化もしたい
+  -> [[id:48C966F2-BE28-43D9-86EE-BC27B2DD63FA][org-roamをpushするとき]]
+
 
 #+begin_src elisp
   (defun org-roam-pull ()
