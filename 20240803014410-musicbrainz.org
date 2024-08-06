@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       A2448F13-FF99-4ED3-A0EB-21FC0F975789
+:END:
+#+title: musicbrainz
+
+共同で音楽データベースを構築することを目的としたプロジェクト
+MetaBrainz Foundationによって運営されている

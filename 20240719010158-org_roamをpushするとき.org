@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       48C966F2-BE28-43D9-86EE-BC27B2DD63FA
+:END:
+#+title: org-roamをpushするとき
+#+filetags: :org-roam:
+
+* やりたいこと（MVP）
+1. コミットメッセージを入力
+2. リポジトリのファイルをすべてステージ
+3. 入力したコミットメッセージでcommit
+4. remoteにpush
+
+* 横着しないとき
+[[id:50EA3B03-F318-4EBB-90BB-00FDE6090B17][magit]]の楽なコマンド覚えた方が良さそう
+

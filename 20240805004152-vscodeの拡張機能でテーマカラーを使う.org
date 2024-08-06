@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       7BBF73D2-5F9A-428C-8C27-16588823C783
+:END:
+#+title: VSCodeの拡張機能でテーマカラーを使う
+
+https://code.visualstudio.com/api/references/theme-color#editor-colors

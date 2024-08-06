@@ -2,4 +2,11 @@
 :ID:       57F9C724-6064-4503-B20F-E273006F9254
 :END:
 #+title: last.fm api
+* mbidって？
+https://www.last.fm/api/show/album.getInfo
 
+#+begin_quote
+The musicbrainz id for the track
+#+end_quote
+
+[[id:A2448F13-FF99-4ED3-A0EB-21FC0F975789][musicbrainz]]のID。登録されていない場合があるため、Optional(Nullable) 
