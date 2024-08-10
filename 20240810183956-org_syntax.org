@@ -1,0 +1,23 @@
+:PROPERTIES:
+:ID:       8FC47852-963C-4AC0-AD07-1B65DCA461B3
+:END:
+#+title: org-syntax
+#+filetags: :org-mode:
+
+https://orgmode.org/worg/org-syntax.html
+
+[[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]のプレーンテキストを装飾するシンタックス
+
+* オブジェクトとエレメント
+
+orgの構文の構成要素は２つ
+- Object
+- Element
+
+この二つの要素についてよりよく理解するためには「段落」を１つの単位として考える。
+エレメントは段落と同じかそれ以上のスコープで存在する構文コンポーネントであり、
+
+* org-code と org-verbatim
+
+- =org-verbatim=
+- ~org-code~

@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       BC1E3266-6136-40A9-BE42-D003DB69F16B
+:END:
+#+title: VSCodeのWebViewでIcon表示
+* 一覧
+https://microsoft.github.io/vscode-codicons/dist/codicon.html
+* サンプル
+https://github.com/microsoft/vscode-extension-samples/tree/main/webview-codicons-sample
