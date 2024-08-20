@@ -3,3 +3,7 @@
 :END:
 #+title: Copilot
 
+* Copilot Chat
+:PROPERTIES:
+:ID:       1328DD64-4736-41BA-8C47-6A8C0FDA57FA
+:END:

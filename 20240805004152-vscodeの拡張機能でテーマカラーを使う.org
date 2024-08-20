@@ -4,3 +4,6 @@
 #+title: VSCodeの拡張機能でテーマカラーを使う
 
 https://code.visualstudio.com/api/references/theme-color#editor-colors
+
+[[id:96FBF824-EB08-45A5-AEFA-C0FDB5A6F493][VSCode]]のテーマを使って拡張機能を作ることで、ユーザーが設定しているテーマカラーに自然に合うような拡張機能を作ることができる。
+そして何より自分で色を考えなくていいので楽

@@ -2,4 +2,13 @@
 :ID:       3CE2FB8C-25D6-436E-8155-CDD6FCBC7000
 :END:
 #+title: nonce
-ノンスは、暗号通信で用いられる、使い捨てのランダムな値のことである。
+- ノンスは、暗号通信で用いられる、使い捨てのランダムな値のこと
+- ~nomber used once~ の略
+
+* nonce属性
+https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/nonce
+
+- [[id:9102AF70-548B-4F59-8F83-B9864DA1630F][html]]のscriptタグに付与することのできる属性
+- [[id:4EA335AC-69A0-4727-9B0C-DA305B417B3A][XSS]]攻撃などで不正なスクリプトが実行されないようにするために利用する
+- nonce属性に乱数を設定し、ページを読み込むたびに再設定されるようにする
+  - [[id:E7293D0C-B160-4B2B-8AE1-68C79CEDB383][Content Security Policy(CSP)]]にも同じ値を設定し、それと同じnonce値が設定されているscriptのみ実行対象とする

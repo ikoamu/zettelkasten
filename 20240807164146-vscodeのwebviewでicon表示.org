@@ -6,3 +6,19 @@
 https://microsoft.github.io/vscode-codicons/dist/codicon.html
 * サンプル
 https://github.com/microsoft/vscode-extension-samples/tree/main/webview-codicons-sample
+
+* publishしたらアイコンが消えている
+Debugモードだとiconが表示されているが、publishしたものだとアイコンが非表示になっている
+
+Developerツールを見ると以下のエラーが発生していた
+#+begin_example
+Failed to load resource: the server responded with a status of 404 ()
+
+Error: Unable to read file '/Users/aokisusumutarou/.vscode/extensions/ikoamu.side-clipboard-0.0.1/node_modules/@vscode/codicons/dist/codicon.css' (Error: Unable to resolve nonexistent file '/Users/aokisusumutarou/.vscode/extensions/ikoamu.side-clipboard-0.0.1/node_modules/@vscode/codicons/dist/codicon.css')
+#+end_example
+
+おそらくこれ？
+https://github.com/microsoft/vscode-extension-samples/issues/692
+
+-> codiconがdevDependenciesにいたからっぽい？
+https://github.com/microsoft/vscode-extension-samples/pull/1005/files

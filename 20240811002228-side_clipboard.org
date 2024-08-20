@@ -1,0 +1,58 @@
+:PROPERTIES:
+:ID:       1D353271-D6F8-46B5-B7D9-EE9F388D3A4E
+:END:
+#+title: Side Clipboard
+#+filetags: :mywork:vscode:
+
+自分で作った[[id:96FBF824-EB08-45A5-AEFA-C0FDB5A6F493][VSCode]]の拡張機能
+
+- Marketplace
+  https://marketplace.visualstudio.com/items?itemName=ikoamu.side-clipboard
+- Repository
+  https://github.com/ikoamu/side-clipboard
+
+* つくった経緯
+今のプロジェクトで使うコマンドが多すぎて覚えられない。
+-> いちいちREADMEを見てコピぺしている
+そこで、よく使うコマンドを登録しておき、VSCodeのサイドメニューに一覧で出しておくと便利かも？
+なんならそのコマンドをターミナルに１ボタンで貼り付けて実行できるとかなりいいのでは？
+という感じで作った。※ 自分用に
+
+
+* それっぽい見た目にしたい
+
+今回、以下のような拡張機能を作りたかった
+（UIの命名は[[id:3ED24AF9-1DCD-4152-9D16-CFF1A672C326][VSCode用語集]]を参照）
+
+- Activity Bar(VSCodeの左端のExploreや拡張機能のアイコン)に自分が作成した拡張機能のアイコン（クリップボードアイコン）を表示する
+- クリップボードアイコンをクリックすると、Primary SideBarに以下のものが表示される
+  - コマンド登録Input
+  - 登録したコマンド一覧
+- 登録したコマンドはカードで表示
+  - 削除ボタン
+  - クリップボードにコピーするボタン
+  - ターミナルにペーストするボタン
+
+上記のような要件の場合、自分でhtml,js,cssをゴリゴリに書いた方が良さそうだったので、[[https://code.visualstudio.com/api/extension-guides/webview][WebViewAPI]] を使った。
+とりあえずInputやカードを実装してみると。。。
+
+（ださい。。。）
+
+** VSCodeのテーマカラーを使う
+[[id:7BBF73D2-5F9A-428C-8C27-16588823C783][VSCodeの拡張機能でテーマカラーを使う]]
+
+** codiconを使う
+テーマをVSCodeに合わせたので、使うiconもVSCode上で使われている codiconを使いたい。
+
+
+*** WebView
+[[id:BC1E3266-6136-40A9-BE42-D003DB69F16B][
+VSCodeのWebViewでIcon表示]]
+
+*** ViewContainer
+
+* nonce?
+[[id:3CE2FB8C-25D6-436E-8155-CDD6FCBC7000][nonce]]
+* さまざまな状況下でもターミナルに貼り付けたい
+
+* コマンドからWebViewを変更したい

@@ -5,4 +5,13 @@
 
 * [[id:E69DB8E7-398D-453B-A69C-4AC9B1D85E39][VSCodeの拡張機能作成]]
 
-* 
+* VSCode用語集
+:PROPERTIES:
+:ID:       3ED24AF9-1DCD-4152-9D16-CFF1A672C326
+:END:
+
+https://code.visualstudio.com/docs/getstarted/userinterface
+
+
+** Codelens
+https://code.visualstudio.com/blogs/2017/02/12/code-lens-roundup
