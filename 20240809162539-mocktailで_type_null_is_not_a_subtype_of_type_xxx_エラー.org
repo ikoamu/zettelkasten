@@ -1,0 +1,134 @@
+:PROPERTIES:
+:ID:       19BD53D7-D0FD-40DC-A3ED-381391287B95
+:END:
+#+title: mocktailで type 'Null' is not a subtype of type 'XXX' エラー
+#+filetags: :Flutter:
+
+* プロダクトコード
+
+#+begin_src dart
+final request = GraphQLRequest<PaginatedResult<MyModel>>(
+      modelType: const PaginatedModelType(MyModel.classType),
+      authorizationMode: APIAuthorizationType.iam,
+      decodePath: 'myQuery',
+      variables: {},
+      document: document,
+    );
+
+final result = await amplifyApi.query(request: firstRequest).response;
+#+end_src
+
+* テストコード
+
+** 最初のテストコード
+#+begin_src dart
+class MockAPICategory with Mock implements APICategory {}
+
+late final MockAPICategory amplifyApi;
+
+setUpAll(() async {
+  amplifyApi = MockAPICategory();
+});
+
+test("query test", async () {
+  when(
+    () => amplifyApi.query(
+      request: any(named: 'request'),
+    ),
+  ).thenAnswer(
+    (_) => GraphQLOperation()
+  );
+});
+#+end_src
+
+実行すると以下のエラーが発生する
+#+begin_quote
+  Bad state: A test tried to use `any` or `captureAny` on a parameter of type `GraphQLRequest<PaginatedResult<Announcement>>`, but
+  registerFallbackValue was not previously called to register a fallback value for `GraphQLRequest<PaginatedResult<Announcement>>`.
+  
+  To fix, do:
+  
+  ```
+  void main() {
+    setUpAll(() {
+      registerFallbackValue(/* create a dummy instance of `GraphQLRequest<PaginatedResult<Announcement>>` */);
+    });
+  }
+  ```
+  
+  This instance of `GraphQLRequest<PaginatedResult<Announcement>>` will only be passed around, but never be interacted with.
+  Therefore, if `GraphQLRequest<PaginatedResult<Announcement>>` is a function, it does not have to return a valid object and
+  could throw unconditionally.
+  If you cannot easily create an instance of `GraphQLRequest<PaginatedResult<Announcement>>`, consider defining a `Fake`:
+  
+  ```
+  class MyTypeFake extends Fake implements MyType {}
+  
+  void main() {
+    setUpAll(() {
+      registerFallbackValue(MyTypeFake());
+    });
+  }
+  ```
+#+end_quote
+ 
+** エラーメッセージを参考にFakeを作成し、 ~registerFallbackValue~ を ~setUpAll()~ で実行してみる
+
+#+begin_src dart
+class MockAPICategory with Mock implements APICategory {}
+
+class FakeGraphqlRequest<T> extends Fake implements GraphQLRequest<T> {}
+
+late final MockAPICategory amplifyApi;
+
+setUpAll(() async {
+  amplifyApi = MockAPICategory();
+  registerFallbackValue(
+    FakeGraphqlRequest<PaginatedResult<MyModel>>(),
+  );
+});
+
+test("query test", async () {
+  when(
+    () => amplifyApi.query(
+      request: any(named: 'request'),
+    ),
+  ).thenAnswer(
+    (_) => GraphQLOperation()
+  );
+});
+#+end_src
+
+実行すると以下のエラーが発生する
+#+begin_quote
+type 'Null' is not a subtype of type 'GraphQLOperation<PaginatedResult<MyModel>>'
+#+end_quote
+
+** ~any()~ にジェネリクスをつけてみる
+
+#+begin_src dart
+class MockAPICategory with Mock implements APICategory {}
+
+class FakeGraphqlRequest<T> extends Fake implements GraphQLRequest<T> {}
+
+late final MockAPICategory amplifyApi;
+
+setUpAll(() async {
+  amplifyApi = MockAPICategory();
+  registerFallbackValue(
+    FakeGraphqlRequest<PaginatedResult<MyModel>>(),
+  );
+});
+
+test("query test", async () {
+  when(
+    () => amplifyApi.query(
+      request: any<GraphQLRequest<PaginatedResult<MyModel>>>(named: 'request'),
+    ),
+  ).thenAnswer(
+    (_) => GraphQLOperation()
+  );
+});
+#+end_src
+
+これでエラー解消

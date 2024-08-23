@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       AF3CA5B3-0B26-4AA5-A941-E2962B05E887
+:END:
+#+title: トランスパイル
+
+あるプログラミング言語を別の言語に変換すること
+[[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]] -> [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]

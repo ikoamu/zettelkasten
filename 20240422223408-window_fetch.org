@@ -1,5 +1,6 @@
 :PROPERTIES:
 :ID:       09C3E1C9-55DF-4CCB-972B-A3023FF570AB
+:ROAM_ALIASES: fetch
 :END:
 #+title: window.fetch
 #+filetags: :web:

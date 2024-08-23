@@ -361,8 +361,7 @@ export default function Layout(props: {
   );
 }
 #+end_src
-
-- この ~props.users~ は常にレンダリングされるとは限らない。
+ ~props.users~ は常にレンダリングされるとは限らない。
 - ~@users~ をRootとしたSubtreeと、表示しているRoute Segmentが一致したタイミングで表示される
 
 *** [[id:E5AD78CC-CE44-4698-91E0-93EDF6A619D4][Intercepting Route]]
@@ -391,6 +390,8 @@ export default function Layout(props: {
         └── page.tsx
 #+end_example
 * サンプルアプリの概要
+[[https://github.com/practical-nextjs-book/applications][Photo Share]]
+
 ** 使ってる技術
 - [[id:FDCE6523-729C-49D9-9041-CC46F0DA0D23][Docker]]
 - [[id:A6B8CAAE-4125-4A8B-80FB-67BDEE98C93A][Prisma]]
@@ -407,6 +408,10 @@ export default function Layout(props: {
 | sns-web-3     | Web アプリケーションサーバー | ps-db-user(ユーザー情報) |      6-9 |
 | sns-shared-ui | UIライブラリ               | DBなし                  |      5-9 |
 
+- サンプルアプリの[[https://github.com/practical-nextjs-book/applications][Photo Share]]のUIコンポーネントは[[https://github.com/practical-nextjs-book/applications/tree/main/packages/sns-shared-ui][sns-shared-ui]]で共通化している
+  - [[id:E522835E-62BD-46CC-B9D3-7AF6DCE7BC00][Storybook]]でUIを確認できる
+- 上記のプロジェクトからなる[[id:E45215F5-ED0D-40AF-A683-A760FD54DFBE][monorepo]]構成
+  - モノレポにおける[[id:2268258C-DC8F-4459-A48C-0F342BD80E2E][Next.js]]は、別のNext.jsプロジェクトのコードを直接importして[[id:AF3CA5B3-0B26-4AA5-A941-E2962B05E887][トランスパイル]]できる
 
 ** コンテナ起動
 
@@ -414,3 +419,7 @@ export default function Layout(props: {
 $ cd applications
 $ docker compose up -d
 #+end_src
+
+* 第6章 データ取得とキャッシュ
+
+** [[id:09C3E1C9-55DF-4CCB-972B-A3023FF570AB][fetch]]関数でのデータ取得

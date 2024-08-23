@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       3FC60205-F960-446B-8046-EA74C5741B99
+:END:
+#+title: cocoapods
+#+filetags: :ios:
+
+- [[id:44527B5E-A8A5-447A-9FD5-CEA9F8BFECDE][Swift]]と[[id:B75E0F5D-4729-4254-8917-45F44F78BA27][Objective-C]]のCocoaプロジェクトのための依存関係マネージャー
+- [[id:97DE19D0-807C-4BFC-82AE-EE5FC2F3CA00][iOS]]/[[id:84568E69-00BD-42F4-A27A-0CBE1C31D9B7][Mac]]向けアプリを作成する際に利用する
