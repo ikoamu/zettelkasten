@@ -1,0 +1,190 @@
+:PROPERTIES:
+:ID:       C28C4EAE-E86F-4788-B8FE-2A3F60CBE30B
+:END:
+#+title: org-modeとLiveCoding
+#+filetags: :tidalcycles:org-mode:
+
+#+begin_src elisp :results silent
+(setq org-image-actual-width nil)
+#+end_src
+
+* soundcheck
+
+#+begin_src tidal :results silent
+d1 $ sound "test"
+#+end_src
+
+#+begin_src tidal :results silent
+hush
+#+end_src
+
+* 発表の前に
+#+ATTR_ORG: :width 250
+[[file:./img/kitchen_aoki.png]]
+
+- 名前:
+  - 青木将太郎
+  - ~ikoamu~
+
+- 入社して:
+  - ７年目（２０１８年入社）
+
+- 会社で今やってること
+  - Flutterでモバイルアプリ開発、Enabling Guild
+  
+- ※一斉会議での発表は新入社員ぶり
+
+- 好きなもの
+  - Emacs、org-mode、音楽
+
+* 今日発表すること
+好きなもの
+
+** org-mode
+- この謎のテキストファイル
+- Markdownっぽいやつ
+
+** TidalCycles
+- プログラミングで音楽を作成・演奏するやつ
+
+* [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]とは
+- Emacsというテキストエディタ内でノート、計画、[[id:6FA91BA4-13E3-4877-9AE7-5E1524032C39][オーサリング]]のために設計された、
+  文書の編集、書式設定、および整理をするモードである
+- なんでもできるメモ帳くん
+  - でも、ただのプレーンテキスト
+
+** Markdownっぽく文字を装飾できる
+*太字*
+~インラインコード~
+/イタリック/
+#+begin_quote
+クオート
+#+end_quote
+
+#+begin_src shell
+#コードブロック
+echo "hello world"
+#+end_src
+
+リスト
+- 親
+  - 子供
+    - 孫
+  - 子供２
+    - 孫２
+- [ ] チェックボックス
+
+テーブル
+| id | name   |
+|----+--------|
+|  1 | apple  |
+|  2 | banana |
+|  3 | grape  |
+|  4 | orange |
+
+** To-doリスト
+*** 今週やること [0/3]
+**** TODO 卵を買う
+**** TODO ごみを捨てる[0/3]
+- [ ] 燃えるゴミ
+- [ ] 燃えないゴミ
+- [ ] 粗大ゴミ
+**** TODO お風呂に入る
+期限も設定できる: ~org-deadline~
+
+* 何に使ってる？
+- 考えの整理
+- 学習ノート
+https://ikoamu.github.io/zettelkasten/#5D582188-304B-4FA7-986A-550A70484936
+
+* org-modeのいいところ
+- カスタマイズ性がすごい
+- org-babelがすごい  
+- （なぜか）書き味がいい
+
+* カスタマイズ性がすごい
+- ~org-mode~ は ~Emacs~ 上で使える
+- ~Emacs~ 上では ~Emacs Lisp~ という謎の言語が動くので、コレを使ってさまざまな機能が実現できている
+
+*つまり、 ~Emacs Lisp~ で自分だけの最強のメモ帳がつくれる！*
+
+** 拡張機能も充実
+世界中のorg-mode好き
+
+* [[id:48D91596-EF2D-4AEC-91D8-4731EDB69336][org-babel]]とは
+- [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]のコードブロックをそのまま実行できる機能
+
+#+begin_src shell
+echo "hello world"
+#+end_src
+
+設定次第で色々書ける
+#+begin_src sql
+SELECT * FROM HOGE;
+#+end_src
+
+** org-babelでEmacs Lispを実行もできる
+(そんなことする人はあまりいないかもしれないけど・・・)
+
+#+begin_src elisp :results silent
+;; 指定した文字列の色を変更する関数
+(highlight-regexp
+  "そんなことする人はあまりいないかもしれないけど・・・"
+  'hi-yellow)
+#+end_src
+
+* ということで
+*org-babelを使ってTidalCyclesのライブコーディングをorg-modeでやります!*
+
+* [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][tidalcycles]]とは 
+- 音楽の即興演奏や作曲用に設計されたライブコーディング環境
+- Alex McLeanさんが開発したOSS
+
+** 専門的な説明（ややこしい）
+
+[[file:./img/tidalcycle_system.png]]
+
+~SuperCollider~ という音響生成エンジン(プログラミング環境)上にインストールされた
+~SuperDirt~ というサンプル音源やシンセサイザーを演奏するためのフレームワークを
+~Emacs~ や ~VSCode~ などのテキストエディタから操作することができる
+~Haskell~ のライブラリ
+
+* さっそく音を鳴らしてみる
+
+#+begin_src tidal :results silent
+d1 $ sound "bd:0 sn:1"
+#+end_src
+
+- bd: バスドラム
+- sn: スネア
+
+* tidalcyclesの見方
+
+#+begin_src tidal :results silent
+d1 $ sound "bd:0 sn:1"
+#+end_src
+
+** d1
+  - トラック名
+  - トラックはd1~d9まである
+    - 同時に9個のトラックを使って音楽を演奏する
+
+** sound
+  - 引数(~bd:0 sn:1~)の音声を鳴らす
+
+** bd, sn
+  - ~bdファイルの0番目の音声データ~ を流した後に ~snファイルの1番目の音声データ~ を流す
+  - 音声データ（サンプル音源）はSuperDirtインストール時に大量にダウンロードされている
+
+  #+begin_src bash :results silent
+  open ~/Library/Application\ Support/SuperCollider/downloaded-quarks/Dirt-Samples 
+  #+end_src
+
+基本的にはこんな感じ
+
+* tidalcyclesを使った複雑なリズムパターン
+
+* シンセサイザーも鳴らせる
+
+* 
+

@@ -1,0 +1,37 @@
+:PROPERTIES:
+:ID:       D0CD1F17-50B0-484A-840D-2D9E4F41A9D4
+:END:
+#+title: org-babel実行時にコードブロックをハイライト
+#+filetags: :elisp:
+
+[[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]上でプレゼンを行うときに、[[id:48D91596-EF2D-4AEC-91D8-4731EDB69336][org-babel]]を実行したときにコードブロックをハイライトさせたい
+
+#+begin_src elisp
+(defvar-local org-babel-highlight-overlay nil
+  "Overlay to highlight the current org-babel code block.")
+
+(defun org-babel-highlight-code-block ()
+  "Highlight the current org-babel code block."
+  (when (org-babel-where-is-src-block-head)
+    (let ((element (org-element-at-point)))
+      (when (eq (org-element-type element) 'src-block)
+        (let ((start (org-element-property :begin element))
+              (end (org-element-property :end element)))
+          (if org-babel-highlight-overlay
+              (move-overlay org-babel-highlight-overlay start end)
+            (setq org-babel-highlight-overlay (make-overlay start end)))
+          (overlay-put org-babel-highlight-overlay 'face '(:background "dark violet"))
+          (run-with-timer 0.5 nil 'org-babel-remove-highlight-overlay))))))
+
+(defun org-babel-remove-highlight-overlay ()
+  "Remove the highlight overlay from the org-babel code block."
+  (when org-babel-highlight-overlay
+    (delete-overlay org-babel-highlight-overlay)
+    (setq org-babel-highlight-overlay nil)))
+
+(add-hook 'org-babel-after-execute-hook 'org-babel-highlight-code-block)
+#+end_src
+
+#+RESULTS:
+| org-babel-highlight-code-block |
+

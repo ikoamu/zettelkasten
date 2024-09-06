@@ -1,0 +1,21 @@
+:PROPERTIES:
+:ID:       D7D6D7EE-BBD8-4C60-A60A-EBA85EE884AD
+:END:
+#+title: 画面共有でPC音声を共有する
+
+- [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][tidalcycles]]を[[id:17DA2F97-FF70-4B84-BA8A-51320BCB0727][meet]]や[[id:69F1EF30-9695-4EC7-A21F-B3D52585D7FB][zoom]]で配信したい(音声を共有したい)
+  - [[id:C28C4EAE-E86F-4788-B8FE-2A3F60CBE30B][org-modeとLiveCoding]]を発表したい
+- とりあず[[id:84568E69-00BD-42F4-A27A-0CBE1C31D9B7][Mac]]でできるようにしたい
+
+
+* 必要そうなアプリ
+- [[id:981C5493-1C5D-4D35-B3B8-0D35B5706E72][BlackHole]]
+  - 今回は2chを利用
+
+* 記事を参考にやってみる
+https://note.com/yano_ya/n/nf16c6b8d9f89
+-> 簡単にできたっぽい？
+
+* 設定
+- マイク：BlackHoke Input
+- スピーカー: BlackHole 16ch

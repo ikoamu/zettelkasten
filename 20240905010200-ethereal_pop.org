@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       C8EAF86D-44E8-4E14-8CAD-119A83A1BC7E
+:END:
+#+title: ethereal pop
+#+filetags: :genre(music):music:
+
+- 幽玄なポップ
+- [[id:BC2C2A9E-63CD-4559-A0BA-9DB239D9E867][Labyrinth Ear]]が自身のジャンルをそう呼んでいたので知った
+- [[id:44D74EDE-5CC3-4C47-A43C-419E5AF452F5][ethereal wave]]の派生と思われる

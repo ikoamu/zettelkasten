@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       1B2DB5A8-F0F2-4879-A3A7-DFFCD0C81614
+:END:
+#+title: シンタックスハイライト
+

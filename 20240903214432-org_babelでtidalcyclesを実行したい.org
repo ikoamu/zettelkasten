@@ -1,0 +1,30 @@
+:PROPERTIES:
+:ID:       AEF7141A-E509-4A6C-A245-490511B97AAA
+:END:
+#+title: org-babelでtidalcyclesを実行したい
+#+filetags: :org-mode:tidalcycles:
+
+https://github.com/ikoamu/ob-tidalcycles/blob/main/ob-tidalcycles.el
+
+#+begin_src elisp
+(defun org-babel-execute:tidal (body params)
+  "Execute a block of Tidal Cycles code with org-babel.
+This function is called by `org-babel-execute-src-block'"
+  (interactive)
+  (let ((result (ignore-errors
+		  (tidal-send-string "hush") t)))
+    (unless result (tidal-start-haskell)))
+  (tidal-send-string ":{")
+  (tidal-send-string body)
+  (tidal-send-string ":}")
+  ;; result is always tidal>
+  "tidal>")
+#+end_src
+
+#+begin_src tidal
+  -- d1 $ sound "bd"
+  hush
+#+end_src
+
+#+RESULTS:
+: tidal>

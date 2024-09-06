@@ -7,3 +7,16 @@
 
 - [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]内で実行できる
 - テキスト内でコードの実行ができる
+
+* org-babelで[[id:6691E529-585A-4856-B1AC-C24DCCB4C2E7][JSX]]をハイライトする
+:PROPERTIES:
+:ID:       9C080FE3-A508-4EA4-93DF-8D33984C5FD4
+:END:
+
+https://emacs.stackexchange.com/questions/54507/how-does-org-mode-implement-syntax-highlighting-for-code-blocks
+
+[[id:48D91596-EF2D-4AEC-91D8-4731EDB69336][org-babel]]で[[id:1B2DB5A8-F0F2-4879-A3A7-DFFCD0C81614][シンタックスハイライト]]を実装するためにはまず[[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]でハイライトする必要があるのでは？
+https://tagomoris.hatenablog.com/entry/2023/01/24/102616 をみてみる
+
+-> [[id:E547C054-A434-4290-8886-23426F9BE8E2][web-mode]]を使うっぽい
+

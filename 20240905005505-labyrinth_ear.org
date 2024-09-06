@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       BC2C2A9E-63CD-4559-A0BA-9DB239D9E867
+:END:
+#+title: Labyrinth Ear
+#+filetags: :artist:music:
+
+https://www.labyrinthear.com/
+
+- [[id:FDC0A9D7-9505-4DC6-A5E4-BFE9BC59880C][ベルリン]]と[[id:C1FFC130-2697-4A49-8EA3-CF701E4808FB][イギリス]]出身の音楽グループ
+- エリミーとトムによるデュオ
+- [[id:C8EAF86D-44E8-4E14-8CAD-119A83A1BC7E][ethereal pop]]

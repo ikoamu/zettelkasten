@@ -3,4 +3,5 @@
 :END:
 #+title: org-roam-uiのコードブロックにシンタックスハイライトを実装する
 #+filetags: :frontend:org-roam:
-[[id:B2AB7269-9667-4815-9806-D20CB48A8DEC][uniorg]]でできる
+
+[[id:1B2DB5A8-F0F2-4879-A3A7-DFFCD0C81614][シンタックスハイライト]]は[[id:B2AB7269-9667-4815-9806-D20CB48A8DEC][uniorg]]でできる
