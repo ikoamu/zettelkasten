@@ -1,0 +1,34 @@
+:PROPERTIES:
+:ID:       FF0353F0-34DC-4086-977A-E94382649D30
+:END:
+#+title: Hono
+
+- [[id:1AF10292-7A4F-4332-B43D-7E0068162850][Web標準]]に基づいて構築された小さくシンプルで超高速なWebフレームワーク
+  - 多くのプラットフォームで動作する
+- [[id:88C5205B-A67B-4AA0-A957-DD111636E96C][Express]]に似たシンプルなWebアプリケーションフレームワーク
+- [[id:B253B21D-47B4-4435-A2B5-CFDDB7B0317B][CDN Edge]]上で動作する
+- 作者は[[id:D3093261-F060-4B71-8CFC-9CAA6FEE8EA1][Cloudflare Workers]]に特化したWebアプリを作るためのフレームワークとして開発した
+  - Cloudflareのflareからhono(炎)
+- マジで速いらしい
+  - https://blog.ringoxd.dev/blog/i-started-hono/
+  - そう言えばAPIのレスポンスってどれくらいが妥当なんだろう？
+
+* ユースケース
+- Web APIの構築
+- バックエンドサーバのプロキシ
+- [[id:01707DE6-A267-43D6-8396-4C98160BA777][CDN]]のフロント
+- Edgeアプリケーション
+- ライブラリのベースサーバ
+- フルスタックアプリケーション
+
+* HonoX
+:PROPERTIES:
+:ID:       0923CEA9-85F5-414F-8F50-BF9EFFACD38B
+:END:
+- [[id:FF0353F0-34DC-4086-977A-E94382649D30][Hono]]と[[id:53B1D45C-0BA9-4F6E-A91E-9D73352D1A71][Vite]]をベースにしたフルスタックWebフレームワーク
+
+* Example
+公式ドキュメントにHonoを使ってアプリケーションを作成するための実践的な例がある
+https://hono.dev/examples/
+これをやっていくのがよさそう
+

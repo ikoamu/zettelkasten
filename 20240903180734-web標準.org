@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       1AF10292-7A4F-4332-B43D-7E0068162850
+:END:
+#+title: Web標準
+
+https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
