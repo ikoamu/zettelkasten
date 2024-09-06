@@ -3,3 +3,16 @@
 :END:
 #+title: tidalcycles
 
+#+begin_src tidal
+d1 $ sound "bd"
+#+end_src
+
+#+RESULTS:
+: tidal>
+
+#+begin_src tidal
+hush
+#+end_src
+
+#+RESULTS:
+: tidal>

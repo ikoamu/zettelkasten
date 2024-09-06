@@ -5,7 +5,8 @@
 #+filetags: :tidalcycles:org-mode:
 
 #+begin_src elisp :results silent
-(setq org-image-actual-width nil)
+  (setq org-image-actual-width nil)
+  (org-toggle-inline-images)
 #+end_src
 
 * soundcheck
@@ -18,7 +19,7 @@ d1 $ sound "test"
 hush
 #+end_src
 
-* 発表の前に
+* 自己紹介(新入社員ぶり)
 #+ATTR_ORG: :width 250
 [[file:./img/kitchen_aoki.png]]
 
@@ -35,112 +36,125 @@ hush
 - ※一斉会議での発表は新入社員ぶり
 
 - 好きなもの
-  - Emacs、org-mode、音楽
+  - org-mode、音楽
 
 * 今日発表すること
 好きなもの
 
 ** org-mode
 - この謎のテキストファイル
-- Markdownっぽいやつ
-
-** TidalCycles
-- プログラミングで音楽を作成・演奏するやつ
-
-* [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]とは
-- Emacsというテキストエディタ内でノート、計画、[[id:6FA91BA4-13E3-4877-9AE7-5E1524032C39][オーサリング]]のために設計された、
-  文書の編集、書式設定、および整理をするモードである
 - なんでもできるメモ帳くん
-  - でも、ただのプレーンテキスト
-
-** Markdownっぽく文字を装飾できる
-*太字*
-~インラインコード~
-/イタリック/
-#+begin_quote
-クオート
-#+end_quote
-
-#+begin_src shell
-#コードブロック
-echo "hello world"
-#+end_src
-
-リスト
-- 親
-  - 子供
-    - 孫
-  - 子供２
-    - 孫２
-- [ ] チェックボックス
-
-テーブル
-| id | name   |
-|----+--------|
-|  1 | apple  |
-|  2 | banana |
-|  3 | grape  |
-|  4 | orange |
-
-** To-doリスト
-*** 今週やること [0/3]
-**** TODO 卵を買う
-**** TODO ごみを捨てる[0/3]
-- [ ] 燃えるゴミ
-- [ ] 燃えないゴミ
-- [ ] 粗大ゴミ
-**** TODO お風呂に入る
-期限も設定できる: ~org-deadline~
-
-* 何に使ってる？
-- 考えの整理
-- 学習ノート
-https://ikoamu.github.io/zettelkasten/#5D582188-304B-4FA7-986A-550A70484936
-
-* org-modeのいいところ
-- カスタマイズ性がすごい
-- org-babelがすごい  
-- （なぜか）書き味がいい
-
-* カスタマイズ性がすごい
+*** Markdownっぽいやつ
+  - *太字*
+  - ~インラインコード~
+  - /イタリック/
+  - クオート
+    #+begin_quote
+    hogehoge
+    #+end_quote
+  - コードブロック
+    #+begin_src shell
+    echo "hello world"
+    #+end_src
+  - [ ] チェックボックス
+  - テーブル
+    | id | name   |
+    |----+--------|
+    |  1 | apple  |
+    |  2 | banana |
+    |  3 | grape  |
+    |  4 | orange |
+*** 拡張性がすごい
 - ~org-mode~ は ~Emacs~ 上で使える
 - ~Emacs~ 上では ~Emacs Lisp~ という謎の言語が動くので、コレを使ってさまざまな機能が実現できている
+- *つまり、 ~Emacs Lisp~ で自分だけの最強のメモ帳がつくれる！*
+ 
+**** 拡張機能も充実
 
-*つまり、 ~Emacs Lisp~ で自分だけの最強のメモ帳がつくれる！*
+***** ~org-agenda~
+org-modeでタスク・スケジュール管理機能する機能
 
-** 拡張機能も充実
-世界中のorg-mode好き
+****** demo[3/3]
+******* DONE ご飯食べる
+******* DONE お風呂に入る
+******* DONE 掃除する[3/3]
+- [X] 風呂
+- [X] キッチン
+- [X] リビング
 
-* [[id:48D91596-EF2D-4AEC-91D8-4731EDB69336][org-babel]]とは
+***** ~org-journal~
+org-modeで日記を書く機能
+
+***** ~org-present~
+org-modeでプレゼンする機能
+
+***** ~org-chef~
+org-modeで料理のレシピを書く機能
+  
+***** ~ox-zenn~
+org-modeでzennの記事を書く機能
+
+*** [[id:48D91596-EF2D-4AEC-91D8-4731EDB69336][org-babel]]がすごい
 - [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]のコードブロックをそのまま実行できる機能
 
 #+begin_src shell
-echo "hello world"
+echo "hello world!!!!"
 #+end_src
 
-設定次第で色々書ける
+#+RESULTS:
+: hello world!!!!
+
+#+name: categories
+#+header: :engine postgres
+#+header: :dbhost localhost :dbport 5433 :database app-db
+#+header: :dbuser root :dbpassword password
 #+begin_src sql
-SELECT * FROM HOGE;
+SELECT * FROM "Category";
 #+end_src
 
-** org-babelでEmacs Lispを実行もできる
-(そんなことする人はあまりいないかもしれないけど・・・)
+#+tblname: categories-result
+#+RESULTS: categories
+| id | createdAt               | name       | label      | description | imageUrl                               |
+|----+-------------------------+------------+------------+-------------+----------------------------------------|
+|  1 | 2024-09-06 05:42:14.104 | flower     | 花          | description | http://127.0.0.1:9000/photos/00301.jpg |
+|  2 | 2024-09-06 05:42:14.104 | ornament   | 雑貨        | description | http://127.0.0.1:9000/photos/00105.jpg |
+|  3 | 2024-09-06 05:42:14.104 | vehicle    | 乗り物      | description | http://127.0.0.1:9000/photos/01517.jpg |
+|  4 | 2024-09-06 05:42:14.104 | nature     | 自然        | description | http://127.0.0.1:9000/photos/00204.jpg |
+|  5 | 2024-09-06 05:42:14.104 | animal     | 動物        | description | http://127.0.0.1:9000/photos/00901.jpg |
+|  6 | 2024-09-06 05:42:14.104 | landscape  | 風景        | description | http://127.0.0.1:9000/photos/00705.jpg |
+|  7 | 2024-09-06 05:42:14.104 | travel     | 旅行        | description | http://127.0.0.1:9000/photos/01510.jpg |
+|  8 | 2024-09-06 05:42:14.104 | gourmet    | グルメ      | description | http://127.0.0.1:9000/photos/00500.jpg |
+|  9 | 2024-09-06 05:42:14.104 | theme-park | テーマパーク | description | http://127.0.0.1:9000/photos/00210.jpg |
 
-#+begin_src elisp :results silent
-;; 指定した文字列の色を変更する関数
-(highlight-regexp
-  "そんなことする人はあまりいないかもしれないけど・・・"
-  'hi-yellow)
+**** 結果を別のコードブロックの引数に渡して実行もできる！
+
+#+header: :var result=categories-result
+#+begin_src python :results output
+  for row in result:
+    print(f'[{row[0]}]: {row[3]}({row[2]})')
 #+end_src
 
-* ということで
+#+RESULTS:
+: [1]: 花(flower)
+: [2]: 雑貨(ornament)
+: [3]: 乗り物(vehicle)
+: [4]: 自然(nature)
+: [5]: 動物(animal)
+: [6]: 風景(landscape)
+: [7]: 旅行(travel)
+: [8]: グルメ(gourmet)
+: [9]: テーマパーク(theme-park)
+
+
+*** ということで
 *org-babelを使ってTidalCyclesのライブコーディングをorg-modeでやります!*
 
-* [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][tidalcycles]]とは 
+** [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][tidalcycles]]とは
+https://tidalcycles.org/
 - 音楽の即興演奏や作曲用に設計されたライブコーディング環境
 - Alex McLeanさんが開発したOSS
 
-** 専門的な説明（ややこしい）
+*** 専門的な説明（ややこしい）
 
 [[file:./img/tidalcycle_system.png]]
 
@@ -149,7 +163,7 @@ SELECT * FROM HOGE;
 ~Emacs~ や ~VSCode~ などのテキストエディタから操作することができる
 ~Haskell~ のライブラリ
 
-* さっそく音を鳴らしてみる
+*** さっそく音を鳴らしてみる
 
 #+begin_src tidal :results silent
 d1 $ sound "bd:0 sn:1"
@@ -158,21 +172,21 @@ d1 $ sound "bd:0 sn:1"
 - bd: バスドラム
 - sn: スネア
 
-* tidalcyclesの見方
+*** tidalcyclesの見方
 
 #+begin_src tidal :results silent
 d1 $ sound "bd:0 sn:1"
 #+end_src
 
-** d1
+**** d1
   - トラック名
   - トラックはd1~d9まである
     - 同時に9個のトラックを使って音楽を演奏する
 
-** sound
+**** sound
   - 引数(~bd:0 sn:1~)の音声を鳴らす
 
-** bd, sn
+**** bd, sn
   - ~bdファイルの0番目の音声データ~ を流した後に ~snファイルの1番目の音声データ~ を流す
   - 音声データ（サンプル音源）はSuperDirtインストール時に大量にダウンロードされている
 

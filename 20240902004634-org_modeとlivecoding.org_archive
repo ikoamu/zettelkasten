@@ -1,0 +1,43 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/shotaroaoki/zettelkasten/20240902004634-org_modeとlivecoding.org
+
+
+* [[id:48D91596-EF2D-4AEC-91D8-4731EDB69336][org-babel]]がすごい
+:PROPERTIES:
+:ARCHIVE_TIME: 2024-09-06 Fri 18:09
+:ARCHIVE_FILE: ~/zettelkasten/20240902004634-org_modeとlivecoding.org
+:ARCHIVE_OLPATH: 今日発表すること/org-mode
+:ARCHIVE_CATEGORY: 20240902004634-org_modeとlivecoding
+:ARCHIVE_ITAGS: tidalcycles org-mode
+:END:
+- [[id:848FDA07-7706-4D0E-9A31-6C71D0F579A2][org-mode]]のコードブロックをそのまま実行できる機能
+
+#+begin_src shell
+echo "hello world!!!!"
+#+end_src
+
+#+RESULTS:
+: hello world!!!!
+
+#+name: categories
+#+header: :engine postgres
+#+header: :dbhost localhost :dbport 5433 :database app-db
+#+header: :dbuser root :dbpassword password
+#+begin_src sql
+SELECT * FROM "Category";
+#+end_src
+
+#+tblname: categories-result
+#+RESULTS: categories
+
+** 結果を別のコードブロックの引数に渡して実行もできる！
+
+#+header: :var result=categories-result
+#+begin_src python :results output
+  for row in result:
+    print(f'[{row[0]}]: {row[3]}({row[2]})')
+#+end_src
+
+
