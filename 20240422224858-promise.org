@@ -6,6 +6,8 @@
 
 [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]のオブジェクト
 
+https://azu.github.io/promises-book/#chapter1-what-is-promise をいつか読みたい
+
 * Promise.all
 :PROPERTIES:
 :ID:       95D0A141-FBE2-4A24-8B7B-BC5D89DA11D2

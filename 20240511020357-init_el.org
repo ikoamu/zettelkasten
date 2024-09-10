@@ -161,3 +161,222 @@ counselのインストールも必要
   ;; Load the theme of your choice.
   (load-theme 'modus-vivendi :no-confirm))
 #+end_src
+
+
+* <2024-09-10 Tue> private init.el
+#+begin_src elisp
+;;; package管理系
+(require 'package)
+;; package-archivesを上書き
+(setq package-archives
+      '(("melpa" . "https://melpa.org/packages/")
+        ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")
+        ("gnu" . "https://elpa.gnu.org/packages/")))
+(require 'tar-mode)
+;; 初期化
+(package-initialize)
+;;; 基本設定 (表示系)
+(setq mac-option-modifier 'meta)
+;; メニューバーを非表示
+(menu-bar-mode 0)
+;; ツールバーを非表示
+(tool-bar-mode 0)
+;; default scroll bar消去
+(scroll-bar-mode -1)
+;; 現在ポイントがある関数名をモードラインに表示
+(which-function-mode 1)
+;; 対応する括弧をハイライト
+(show-paren-mode 1)
+;; emacsの起動時のメッセージを消す
+(setq inhibit-startup-message t)
+;; 中華フォントっぽくなるのを防ぐ(mac)
+;; (set-language-environment "Japanese")
+;; (create-fontset-from-ascii-font
+;;  "Menlo-14:weight=normal:slant=normal"
+;;  nil
+;;  "menlokakugo")
+
+;;; 基本設定 (自動保存)
+;; *.~ とかのバックアップファイルを作らない
+(setq make-backup-files nil)
+;; .#* とかのバックアップファイルを作らない
+(setq auto-save-default nil)
+;;; 基本設定 (キーバインド)
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+(global-set-key (kbd "C-z") 'undo)
+;;; 基本設定（その他）
+(set-default-coding-systems 'utf-8)
+(prefer-coding-system 'utf-8)
+
+;;; dashboard
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+
+;;; ivy(ミニバッファ補完)
+(use-package ivy
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-height 30)
+  (setq ivy-extra-directories nil)
+  (setq ivy-re-builders-alist
+	'((t . ivy--regex-plus)))
+  (setq counsel-find-file-ignore-regexp (regexp-opt '("./" "../")))
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x C-f" . 'counsel-find-file))
+  :init
+  (ivy-mode 1))
+
+;;; org-roam
+(use-package org-roam
+  :config
+  (setq org-roam-v2-ack t)
+  (setq org-roam-db-location "~/zettelkasten/org-roam.db")
+  ;; (setq org-roam-db-location "/Users/aokisusumutarou/dev/emacs/orui/MElemental.github.io/org-roam.db")
+  ;; (setq org-roam-db-loacation "~/dev/emacs/orui/publish-org-roam-ui/example/org-roam.db")
+  (setq org-roam-directory "~/zettelkasten")
+  ;; (setq org-roam-directory "/Users/aokisusumutarou/dev/emacs/orui/MElemental.github.io")
+  ;; (setq org-roam-directory "~/dev/emacs/orui/publish-org-roam-ui/example/")
+  (setq org-roam-graph-executable "/opt/homebrew/bin/dot")
+  (setq org-roam-graph-link-hidden-types '("file" "http" "https"))
+  (setq org-roam-graph-extra-config '(("rankdir" . "LR")))
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:30}" 'face 'org-tag)))
+  (org-roam-db-autosync-enable)
+
+  ;; 日記用のテンプレート設定
+  ;; (setq org-roam-dailies-directory "daily/")
+  ;; (setq org-roam-dailies-capture-templates
+  ;;     '(("d" "default" entry
+  ;;        "* %?"
+  ;;        :target (file+head "%<%Y-%m-%d>.org"
+  ;;                           "#+title: %<%Y-%m-%d>\n"))))
+  
+  :bind (("C-c n l" . 'org-roam-buffer-toggle)
+         ("C-c n f" . 'org-roam-node-find)
+         ("C-c n g" . 'org-roam-graph)
+         ("C-c n i" . 'org-roam-node-insert)
+         ("C-c n s" . 'org-roam-db-sync)
+	 ("C-c n t" . 'org-roam-tag-add)
+	 ("C-c n r" . 'org-roam-ref-add)
+         ("C-c n d" . 'org-roam-dailies-capture-today)))
+;; (add-to-list 'load-path "~/dev/emacs/orui/org-roam-ui")
+;; (require 'org-roam-ui)
+
+(defun org-roam-update-after-pull ()
+  (interactive)
+  (org-roam-db-clear-all)
+  (org-roam-db-sync))
+
+;; org-mode
+(require 'org-tempo)
+(setq org-confirm-babel-evaluate nil)
+;; org-agenda
+(require 'org-agenda)
+(setq org-agenda-files '("~/zettelkasten" "~/org"))
+(define-key global-map "\C-ca" 'org-agenda)
+;;org-babel
+(add-to-list 'org-babel-tangle-lang-exts '("gentree"))
+(defun org-babel-execute:gentree (body params)
+  "description"
+  (interactive)
+  "test")
+(require 'ob-js)
+(org-babel-do-load-languages 'org-babel-load-languages
+    '(
+        (shell . t)
+        (python . t)
+        (emacs-lisp . t)
+	(js . t)
+	(sql . t)
+    ))
+(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
+(add-to-list 'org-babel-tangle-lang-exts '("js" . "js"))
+
+
+(use-package org-sidebar)
+
+;; magit
+(global-set-key (kbd "C-x g") 'magit-status)
+
+;; tidal
+(require 'haskell-mode)
+(use-package tidal
+  :config
+  (setq tidal-interpreter "~/.ghcup/bin/ghci")
+  (setq tidal-boot-script-path "~/.cabal/share/aarch64-osx-ghc-9.2.5/tidal-1.9.4/BootTidal.hs"))
+(defun org-babel-execute:tidal (body params)
+  "Execute a block of Tidal Cycles code with org-babel.
+This function is called by `org-babel-execute-src-block'"
+  (interactive)
+  (let ((result (ignore-errors
+		  (tidal-send-string "hush") t)))
+    (unless result (tidal-start-haskell)))
+  (tidal-send-string ":{")
+  (tidal-send-string
+   (if tidal-literate-p
+       (tidal-unlit body)
+     body)
+   )
+  (tidal-send-string ":}")
+  ;; result is always tidal>
+  (tidal-see-output))
+
+;; all-the-icons
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+;; hydra
+(defhydra hydra-roam (:Color pink :hint nil :exit t)
+  ":::roam:::"
+  ("f" org-roam-node-find " find")
+  ("i" org-roam-node-insert " insert")
+  ("l" org-roam-buffer-toggle " toggle")
+  ("c" org-id-get-create " create id")
+  ("t" org-roam-tag-add " tag")
+  ;("q" org-sidebar-tree " sidebar")
+  ("p" org-roam-update-after-pull " pull-update")
+  )
+(global-set-key (kbd "C-q") 'hydra-roam/body)
+
+;; web
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.ts[x]?\\'" . web-mode))
+(add-hook 'web-mode-hook 'lsp)
+  
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+
+;; modus
+;;; For packaged versions which must use `require'.
+(use-package modus-themes
+  :ensure t
+  :config
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil)
+
+  ;; Maybe define some palette overrides, such as by using our presets
+  (setq modus-themes-common-palette-overrides
+        modus-themes-preset-overrides-intense)
+
+  ;; Load the theme of your choice.
+  (load-theme 'modus-vivendi :no-confirm))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(lsp-mode web-mode org-sidebar org-roam-ui modus-themes all-the-icons hydra websocket simple-httpd tidal dashboard org-roam magit counsel ivy)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+#+end_src
