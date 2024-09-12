@@ -180,7 +180,7 @@ https://tidalcycles.org/
 ** さっそく音を鳴らしてみる
 
 #+begin_src tidal :results silent
-d1 $ sound "bd:0 sd:1"
+d1 $ sound "bd sd"
 #+end_src
 
 - bd: バスドラム
@@ -192,6 +192,7 @@ d1 $ sound "bd:0 sd:1"
 d1 $ sound "bd sd"
 #+end_src
 
+#+ATTR_ORG: :width 700
 [[file:./img/bd_sn.svg]]
 
 *** tidalcyclesのサイクルという概念
@@ -209,7 +210,7 @@ d1 $ sound "bd sd"
     d1 $ sound "bd"
 
     -- ベース
-    d2 $ sound "bd"
+    -- d2 $ sound "bd"
     -- メロディー
     --d3 $ sound "cp"
   #+end_src
@@ -218,7 +219,7 @@ d1 $ sound "bd sd"
   : tidal>
 
 #+begin_src tidal :results silent
-setcps (155/60/4)
+setcps (150/60/4)
 #+end_src
 
 基本的にはこんな感じ
