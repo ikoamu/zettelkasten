@@ -1,0 +1,35 @@
+:PROPERTIES:
+:ID:       C3C060D7-9C66-424E-9BE0-B7E31F1B1AA3
+:END:
+#+title: CloudFormationでネストされたスタックのみUPDATE_ROLLBACK_FAILEDになっている
+#+filetags: :CloudFormation:AWS:
+
+* 事象
+
+[[id:D55F1AAC-759C-423D-9CA1-3FDD06C11C2F][Amplify]]のデプロイが失敗した際に、再度デプロイしようとしたところ以下のエラーが発生していた
+
+#+begin_quote
+Event Type: update
+Reason: Stack:arn:aws:cloudformation:ap-northeast-1:<ACCOUNT_ID>:stack/amplify-<APP_ID>-<ENV>-XXXX/XXXX is in UPDATE_ROLLBACK_FAILED state and can not be updated.
+#+end_quote
+
+そのため、[[id:AABC5657-3C2F-4B53-8FC2-C0D979132279][CloudFormation]]のContinueUpdateRollbackオペレーションで
+スタックのStatusを ~UPDATE_ROLLBACK_COMPLETE~ に変更しようとした。
+https://repost.aws/ja/knowledge-center/cloudformation-update-rollback-failed
+
+しかし、 ~UPDATE_ROLLBACK_FAILED~ になっているスタックがネストされたスタックであるため、変更できなかった。
+また、失敗しているスタックのルートスタックが ~UPDATE_ROLLBACK_COMPLETE~ になっていたため、
+ルートスタックからContinueUpdateRollbackオペレーションもできなかった。
+
+* 解決法
+コンソール上ではネストされたスタックに対してContinueUpdateRollbackをすることができなかったが、
+[[id:0DDB4F46-E71F-4A73-BBBE-6ECA238249B0][aws cli]]で直接コマンドを実行したらうまくいった。( ~UPDATE_ROLLBACK_COMPLETE~ になった )
+
+#+begin_src bash
+aws cloudformation continue-update-rollback \
+    --stack-name <NESTED_STACK_NAME>
+#+end_src
+
+* 別案
+https://stackoverflow.com/questions/58168051/aws-amplify-resource-is-not-in-the-state-stackupdatecomplete
+で解決したかも？

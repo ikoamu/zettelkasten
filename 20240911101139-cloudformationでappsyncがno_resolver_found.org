@@ -1,0 +1,47 @@
+:PROPERTIES:
+:ID:       9F76DAF9-67F7-4BDE-8E90-22BCCFC9D826
+:END:
+#+title: CloudFormationでAppSyncがNo resolver found
+#+filetags: :AWS:
+
+- [[id:D55F1AAC-759C-423D-9CA1-3FDD06C11C2F][Amplify]]のデプロイ時に発生
+- [[id:AABC5657-3C2F-4B53-8FC2-C0D979132279][CloudFormation]]で[[id:9D30EC16-5595-409A-AA17-F77E89684985][AppSync]]のスタックがエラー
+
+#+begin_quote
+Resource handler returned message: "No resolver found. (Service:
+AppSync, Status Code: 404, Request ID: XXX)" (RequestToken: XXX,
+HandlerErrorCode: NotFound)
+#+end_quote
+
+* 解決法
+参考:
+https://github.com/aws-amplify/amplify-category-api/issues/2157
+
+** 1. 失敗したリゾルバーの特定
+1. amplify-<app>-<env>-0000-<api>-XXXXXが失敗
+2. コンソールから「リソース」タブを確認すると、失敗したスタックが確認できる
+3. ~Resource update cancelled~ で ~UPDATE_FAILED~ になっているものと、そうでないものがある
+4. そうでないものが対象
+   #+begin_quote
+   Embedded stack
+   arn:aws:cloudformation:ap-northeast-1:ACCOUNT_ID:stack/amplify-<app>-<env>-0000-<api>-XXXXX-<TABLE_NAME>-XXX/XXXXX
+   was not successfully updated. Currently in
+   UPDATE_ROLLBACK_IN_PROGRESS with reason: The following resource(s)
+   failed to create: [Sync<TABLE>Resolver]. The following resource(s)
+   failed to update: [Delete<TABLE>Resolver, List<TABLE>Resolver,
+   Update<TABLE>Resolver, Get<TABLE>Resolver, Create<TABLE>Resolver].
+   #+end_quote
+5. 上記の失敗しているスタックの「イベント」タブをコンソール上で確認し作成に失敗しているリゾルバーを確認する
+   | タイムスタンプ        | 論理ID               | ステータス      | 詳細ステータス | 状況の理由                                               |
+   |---------------------+---------------------+---------------+--------------+--------------------------------------------------------|
+   | 2024-09-11 XX:XX:XX | Sync<TABLE>Resolver | CREATE_FAILED | -            | Resource creation cancelled                            |
+   | 2024-09-11 XX:XX:XX | Get<TABLE>Resolver  | UPDATE_FAILED | -            | Resource handler returned message: "No resolver found. |
+   | 2024-09-11 XX:XX:XX | List<TABLE>Resolver | UPDATE_FAILED | -            | Resource handler returned message: "No resolver found. |
+
+6. AppSyncのコンソールからUPDATEしようとしたが、リゾルバーがアタッチされていないものを確認する
+   コンソールのAppSync -> スキーマ
+   [[file:./img/attach_appsync_resolver.png]]
+
+* 別案
+https://stackoverflow.com/questions/58168051/aws-amplify-resource-is-not-in-the-state-stackupdatecomplete
+で解決したかも？

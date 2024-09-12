@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       9D30EC16-5595-409A-AA17-F77E89684985
+:END:
+#+title: AppSync
+#+filetags: :AWS:
+
+- [[id:3F0F9663-0BB4-4B5D-8865-D7DD0ECB94BE][GraphQL]]および[[id:5CD79F20-DA74-4E62-A58E-F287CD138093][Pub/Sub]]APIを使用して複数のデータソースを統合し、安全にアクセス・操作できるサービス

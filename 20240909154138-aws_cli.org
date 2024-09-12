@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       0DDB4F46-E71F-4A73-BBBE-6ECA238249B0
+:END:
+#+title: aws cli
+

@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       AABC5657-3C2F-4B53-8FC2-C0D979132279
+:END:
+#+title: CloudFormation
+
