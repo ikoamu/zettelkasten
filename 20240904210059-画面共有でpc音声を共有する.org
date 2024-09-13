@@ -7,15 +7,7 @@
   - [[id:C28C4EAE-E86F-4788-B8FE-2A3F60CBE30B][org-modeとLiveCoding]]を発表したい
 - とりあず[[id:84568E69-00BD-42F4-A27A-0CBE1C31D9B7][Mac]]でできるようにしたい
 
+* 参考
+https://scsynth.org/t/sharing-supercollider-in-video-conferences/3140
 
-* 必要そうなアプリ
-- [[id:981C5493-1C5D-4D35-B3B8-0D35B5706E72][BlackHole]]
-  - 今回は2chを利用
-
-* 記事を参考にやってみる
-https://note.com/yano_ya/n/nf16c6b8d9f89
--> 簡単にできたっぽい？
-
-* 設定
-- マイク：BlackHoke Input
-- スピーカー: BlackHole 16ch
+* 

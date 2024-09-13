@@ -11,6 +11,7 @@
   Server.local.options.outDevice_("BlackHole 16ch");
   Server.local.options.numOutputBusChannels = 2;
   Server.local.options.numOutputBusChannels_(8);
+  s.makeWindow;
 )
 #+end_src
 
@@ -38,10 +39,14 @@ Number of Devices: 10
       0  channels 16
 #+end_example
 * setup
+- [ ] 画像を表示する
 #+begin_src elisp :results silent
   (setq org-image-actual-width nil)
   (org-toggle-inline-images)
 #+end_src
+- [ ] CODEBLOCKの結果を消しておく
+- [ ] 音声が正しく出せるかを確認する
+- [ ] 全てのツリーを閉じる
 
 * soundcheck
 - 発表でPC音声を鳴らしたいのでサウンドチェックします
