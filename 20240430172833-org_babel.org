@@ -20,3 +20,26 @@ https://tagomoris.hatenablog.com/entry/2023/01/24/102616 をみてみる
 
 -> [[id:E547C054-A434-4290-8886-23426F9BE8E2][web-mode]]を使うっぽい
 
+* 色々なコマンドがNot Foundになってしまう
+** [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]
+https://emacs.stackexchange.com/questions/63947/emacs-cant-find-node-when-node-was-installed-using-nvm-again
+原因はnodeを[[id:B5791833-BAC3-4E25-8A69-CC305EF4BF13][nvm]]でinstallしていたため。
+
+[[https://github.com/purcell/exec-path-from-shell][exec-path-from-shell]]を使ってユーザーの(.zshrc等で設定した)環境変数を利用できるようにしたら上手くいった
+#+begin_src elisp
+(use-package exec-path-from-shell
+   :config (exec-path-from-shell-initialize))
+#+end_src
+
+#+begin_src js :results output
+console.log("hello world")
+#+end_src
+
+#+RESULTS:
+: hello world
+
+#+begin_src bash
+node --version
+#+end_src
+
+#+RESULTS:

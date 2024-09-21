@@ -8,7 +8,15 @@ tidalcycleで[[id:5BB91630-A572-4A92-BC7F-432BE4E5525B][音階(scale)]]を表現
 
 https://tidalcycles.org/docs/reference/harmony_melody/#scales
 
-| ド | レ | ミ | ファ｜ソ | ラ | シ |
-| C | D | E | F      | G | A | B |
+#+tblname: table
+| do | re | mi | fa | so | ra | si |
+|----+----+----+----+----+----+----|
+|  0 |  2 |  4 |  5 |  7 |  9 | 11 |
+| 12 | 14 | 16 | 17 | 19 | 21 | 23 |
 
+#+begin_src python :results output :var tbl=table
+print(tbl)
+#+end_src
 
+#+RESULTS:
+: [[0, 2, 4, 5, 7, 9, 11], [12, 14, 16, 17, 19, 23, 23]]

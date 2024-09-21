@@ -10,4 +10,64 @@
 * 参考
 https://scsynth.org/t/sharing-supercollider-in-video-conferences/3140
 
-* 
+* [[id:981C5493-1C5D-4D35-B3B8-0D35B5706E72][BlackHole]] + [[id:B5B4D4C9-FE3E-4163-891F-AE38FF39D994][LadioCast]]
+
+** 1. BlackHoleをインストールする
+~brew install blackhole-16ch~
+今回は16chをインストール
+
+** 2. LadioCastをインストールする
+AppStoreでインストールできる
+
+
+** 3. LadioCastの設定を行う
+- 入力1: ~マイク~
+  - 通話用
+  - 初期設定だとLにのみ音が出力される状態なので、Rも1chに設定して[[id:36C9D0A5-A16B-472A-A3DD-DB5A63192251][モノラル]]にする
+- 出力メイン: ~BlackHole 16ch~
+- 入力2: ~BlackHole 16ch~
+  - この出力をmeet等の設定で入力として設定する
+  - Aux(オグジュアリ)を１にする
+- 出力 Aux 1:
+  - 外部ヘッドフォン
+
+** 4. [[id:646F6AC3-AC7A-47EF-B031-BCC0A62792AC][SuperCollider]]の設定を行う
+#+begin_src scd
+( 
+  Server.local.options.memSize = 1000000;
+  Server.local.options.outDevice_("BlackHole 16ch");
+  Server.local.options.numOutputBusChannels = 2;
+  Server.local.options.numOutputBusChannels_(8);
+  s.makeWindow;
+)
+#+end_src
+
+file:./img/mixer.png
+
+#+begin_example
+Number of Devices: 10
+   0 : "EX-LD4K271D"
+   1 : "‎Shotaro AokiのiPhone"
+   2 : "USB PnP Audio Device"
+   3 : "BlackHole 16ch"
+   4 : "外部"
+   5 : "MacBook Airの"
+   6 : "MacBook Airのス"
+   7 : "Microsoft Teams Audio"
+   8 : "機器"
+   9 : "multi-output"
+
+"MacBook Airの" Input Device
+   Streams: 1
+      0  channels 1
+
+"BlackHole 16ch" Output Device
+   Streams: 1
+      0  channels 16
+#+end_example
+
+
+* [[id:5B63D182-7EE7-45D7-9B22-55E340F38539][Loopback]]
+
+** TODO mermaindでグラフを作る
+

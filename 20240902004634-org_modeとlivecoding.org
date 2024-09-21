@@ -4,40 +4,6 @@
 #+title: org-modeとLiveCoding
 #+filetags: :tidalcycles:org-mode:
 
-* memo
-#+begin_src scd
-( 
-  Server.local.options.memSize = 1000000;
-  Server.local.options.outDevice_("BlackHole 16ch");
-  Server.local.options.numOutputBusChannels = 2;
-  Server.local.options.numOutputBusChannels_(8);
-  s.makeWindow;
-)
-#+end_src
-
-file:./img/mixer.png
-
-#+begin_example
-Number of Devices: 10
-   0 : "EX-LD4K271D"
-   1 : "‎Shotaro AokiのiPhone"
-   2 : "USB PnP Audio Device"
-   3 : "BlackHole 16ch"
-   4 : "外部"
-   5 : "MacBook Airの"
-   6 : "MacBook Airのス"
-   7 : "Microsoft Teams Audio"
-   8 : "機器"
-   9 : "multi-output"
-
-"MacBook Airの" Input Device
-   Streams: 1
-      0  channels 1
-
-"BlackHole 16ch" Output Device
-   Streams: 1
-      0  channels 16
-#+end_example
 * setup
 - [ ] 画像を表示する
 #+begin_src elisp :results silent
@@ -53,7 +19,7 @@ Number of Devices: 10
 - 音が鳴っていたらリアクションして欲しいです！
 
 #+begin_src tidal :results silent
-d1 $ sound "test"
+d1 $ sound "bd"
 #+end_src
 
 #+begin_src tidal :results silent
@@ -64,7 +30,7 @@ hush
 #+ATTR_ORG: :width 250
 [[file:./img/kitchen_aoki.png]]
 
-- ※一斉会議での発表は新入社員ぶり(多分)
+- ~※一斉会議での発表は新入社員ぶり(多分)~
 
 - 名前:
   - 青木将太郎
@@ -81,13 +47,24 @@ hush
   - org-mode
   - TidalCycles(音楽プログラミング)
 
+（発表資料作ったら全然10分じゃ収まらなかったので超駆け足で話します）
+
 * org-modeとは
 - この謎のテキストファイル
 - なんでもできるメモ帳くん
-- 僕が入社して初めて参画したプロジェクトで使われてた
-  - （まだあの.orgファイルあるのかな？）
+- 青木が１年目の時に初めてOJTで参画したプロジェクトで使われてた
+  - SVNに１ファイルだけorg-modeのファイルが保存されていた
+    - （まだあの.orgファイルあるのかな？）
+  - 多分某Hさんが作ったと思う
+    #+ATTR_ORG: :width 200
+    file:./img/hsan.png
+- 昔、一斉会議でorg-modeを使って発表する人がいた
+  - 某Nさん
+    #+ATTR_ORG: :width 200
+    file:./img/nsan.png
+    
 
-** Markdownっぽいやつ
+** 書き方はMarkdownっぽい
   - *太字*
   - ~インラインコード~
   - /イタリック/
@@ -95,11 +72,14 @@ hush
     #+begin_quote
     hogehoge
     #+end_quote
+
   - コードブロック
     #+begin_src shell
     echo "hello world"
     #+end_src
+
   - [ ] チェックボックス
+
   - テーブル
     | id | name   |
     |----+--------|
@@ -124,7 +104,7 @@ org-modeで日記を書く機能
 org-modeでプレゼンする機能
 
 *** ~org-ai~
-org-modeでChatGPTなどを使う機能
+org-modeでChatGPTなどのAIを使う機能
 
 *** ~org-chef~
 org-modeで料理のレシピを書く機能
@@ -142,7 +122,8 @@ org-modeでZennの記事を書く機能
 echo "hello world"
 #+end_src
 
-*** SQL 
+*** SQL
+Next.js勉強会の教材で使っているDBに接続してみる
 #+name: categories
 #+header: :engine postgres
 #+header: :dbhost localhost :dbport 5433 :database app-db
@@ -159,19 +140,20 @@ SELECT * FROM "Category";
 
 *結果を別のコードブロックの引数に渡して実行もできる！*
 
-#+header: :var result=categories-result
+#+header: :var hoge=categories-result
 #+begin_src python :results output
-  for row in result:
+  for row in hoge:
     print(f'[{row[0]}]: {row[3]}({row[2]})')
 #+end_src
 
+このメモ帳凄くないですか？
+
 * ということで
-*org-babelを使ってTidalCyclesのライブコーディングをorg-modeでやります!*
+~org-babel~ と ~TidalCycles~ を使って ~org-mode~ で音楽を作れるようにしてみたので
+ライブコーディングします！*
 
 * [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][tidalcycles]]とは
-https://tidalcycles.org/
-- 音楽の即興演奏や作曲用に設計されたライブコーディング環境
-- Alex McLeanさんが開発したOSS
+音楽の即興演奏や作曲用に設計されたライブコーディング環境
 
 ** 専門的な説明（ややこしい）
 
@@ -185,62 +167,77 @@ https://tidalcycles.org/
 ** さっそく音を鳴らしてみる
 
 #+begin_src tidal :results silent
-d1 $ sound "bd sd"
+  d1 $ sound "bass1:2"
 #+end_src
 
-- bd: バスドラム
-- sd: スネア
+- ~sound~ 指定した音声ファイルを鳴らす命令
+  #+begin_src shell :results silent
+  open ~/Library/Application\ Support/SuperCollider/downloaded-quarks/Dirt-Samples
+  #+end_src
+- ~bd~
+  - バスドラム
+  - ~bd~ ディレクトリの0番目の音声ファイルが流れる
 
-** tidalcyclesの見方
+** TidalCyclesの「サイクル」
+#+begin_src tidal :results silent
+d1 $ sound "bd:0"
+#+end_src
+指定した音は周期的に（繰り返し）鳴る
+
+#+ATTR_ORG: :width 700
+[[file:./img/bd.svg]]
+** １サイクルの速度を変更する
 
 #+begin_src tidal :results silent
-d1 $ sound "bd sd"
+-- bpm:120  
+setcps (130/60/4)
+#+end_src
+
+** 1サイクルに複数の音を出す
+#+begin_src tidal :results silent
+d1 $ sound "bd:0 sd:1"
 #+end_src
 
 #+ATTR_ORG: :width 700
-[[file:./img/bd_sn.svg]]
+[[file:./img/bd_sd.svg]]
 
-*** tidalcyclesのサイクルという概念
+~*~ を使って連続で音を鳴らす
 
-*** sound
-  - 引数(~bd:0 sn:1~)の音声を鳴らす
-
-*** d1
-  - トラック(音を出す)
-  - トラックはd1~d9まである
-    - 同時に9個のトラックを使って音楽を演奏する
-
-  #+begin_src tidal :results silent
-    -- ドラム
-    d1 $ sound "bd"
-
-    -- ベース
-    -- d2 $ sound "bd"
-    -- メロディー
-    --d3 $ sound "cp"
-  #+end_src
-
-  #+RESULTS:
-  : tidal>
-
-#+begin_src tidal :results silent
-setcps (150/60/4)
+#+begin_src tidal
+--   sound "bass bass bass bass" と同じリズムになる
+d2 $ sound "bass*4"
 #+end_src
 
-基本的にはこんな感じ
-
-** tidalcyclesを使った複雑なリズムパターン
+** 複雑なリズムパターンを作れる
 
 ** シンセサイザーも鳴らせる
 
-*** シンセサイザーが好きな人向け
+#+begin_src tidal :results silent
+  d3 $ slow 4
+    -- f'maj7 = Fメジャー7というコード（和音）
+    -- _ = 一つ前の音を伸ばす
+    $ n "f'maj7 _ e'dom7 _ a'min7*2 c'dom7 _"
+    -- soundに音声のファイルではなく、あらかじめ設定されている音色を指定する
+    # sound "superpiano"
+    -- # sound "supermandolin"
+#+end_src
+
+** いままで作った音を同時に鳴らすとそれっぽくなる
+
+#+begin_src tidal :results silent
+hush
+#+end_src
 
 * ということで
  - org-modeとTidalCycles面白いです！暇な人触ってみてください。
    - 仕事ではあまり役に立たない技術だと思いますが面白いおもちゃです。
+   - かなりハードルが高い（環境構築がクソめんどくさい）ので
+     やってみたい方がいればお手伝いします
    
  - LTSさんとのLT大会が楽しかったので、もっと自分の好きなことの話をしようと思って
    久々に発表しました。
+
+   TidalCyalesを学ぶために買った本に（個人的に）凄くいいことが書いてあった
    #+ATTR_ORG: :width 250
    [[file:./img/show_your_screen.png]]
    #+begin_quote
@@ -259,9 +256,12 @@ setcps (150/60/4)
    #+end_quote
 
  - 一斉会議でみなさんも自分の好きなことの話を話しませんか？
-   （多分仕事とあんまり関係なくていいと思います（多分））
+   - たまにはこういう発表もあったら嬉しいなと思ってます
+     （だから６年ぶりくらいに発表してみました）
+   - （多分仕事とあんまり関係なくていいと思います（多分））
 
 * おわり
+ご清聴ありがとうございました！！！！！！
 #+begin_src tidal :results silent
 once $ s "bd" #gain 1.2
 #+end_src
