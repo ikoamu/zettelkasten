@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       36C9D0A5-A16B-472A-A3DD-DB5A63192251
+:END:
+#+title: モノラル
+
