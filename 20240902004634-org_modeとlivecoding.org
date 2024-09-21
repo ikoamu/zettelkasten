@@ -51,17 +51,14 @@ hush
 
 * org-modeとは
 - この謎のテキストファイル
+
 - なんでもできるメモ帳くん
+
 - 青木が１年目の時に初めてOJTで参画したプロジェクトで使われてた
   - SVNに１ファイルだけorg-modeのファイルが保存されていた
     - （まだあの.orgファイルあるのかな？）
-  - 多分某Hさんが作ったと思う
-    #+ATTR_ORG: :width 200
-    file:./img/hsan.png
+
 - 昔、一斉会議でorg-modeを使って発表する人がいた
-  - 某Nさん
-    #+ATTR_ORG: :width 200
-    file:./img/nsan.png
     
 
 ** 書き方はMarkdownっぽい
@@ -134,25 +131,23 @@ SELECT * FROM "Category";
 
 #+tblname: categories-result
 #+RESULTS: categories
-|---|
 
-*** python
+*** JavaScript
 
 *結果を別のコードブロックの引数に渡して実行もできる！*
 
 #+header: :var hoge=categories-result
-#+begin_src python :results output
-  for row in hoge:
-    print(f'[{row[0]}]: {row[3]}({row[2]})')
+#+begin_src js :results output
+console.log(hoge)
 #+end_src
 
-このメモ帳凄くないですか？
+すごい
 
 * ということで
 ~org-babel~ と ~TidalCycles~ を使って ~org-mode~ で音楽を作れるようにしてみたので
-ライブコーディングします！*
+ライブコーディングします！
 
-* [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][tidalcycles]]とは
+* [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][TidalCycles]]とは
 音楽の即興演奏や作曲用に設計されたライブコーディング環境
 
 ** 専門的な説明（ややこしい）
@@ -166,8 +161,9 @@ SELECT * FROM "Category";
 
 ** さっそく音を鳴らしてみる
 
+*** サンプル再生
 #+begin_src tidal :results silent
-  d1 $ sound "bass1:2"
+  d1 $ sound "bd"
 #+end_src
 
 - ~sound~ 指定した音声ファイルを鳴らす命令
@@ -177,25 +173,20 @@ SELECT * FROM "Category";
 - ~bd~
   - バスドラム
   - ~bd~ ディレクトリの0番目の音声ファイルが流れる
+  - ~bd:1~ ディレクトリの1番目の音声ファイルが流れる
 
 ** TidalCyclesの「サイクル」
 #+begin_src tidal :results silent
-d1 $ sound "bd:0"
+  d1 $ sound "bd:0"
 #+end_src
 指定した音は周期的に（繰り返し）鳴る
 
 #+ATTR_ORG: :width 700
 [[file:./img/bd.svg]]
-** １サイクルの速度を変更する
 
+** 1サイクルを分割する
 #+begin_src tidal :results silent
--- bpm:120  
-setcps (130/60/4)
-#+end_src
-
-** 1サイクルに複数の音を出す
-#+begin_src tidal :results silent
-d1 $ sound "bd:0 sd:1"
+  d1 $ sound "bd:0 sd:1"
 #+end_src
 
 #+ATTR_ORG: :width 700
@@ -203,28 +194,72 @@ d1 $ sound "bd:0 sd:1"
 
 ~*~ を使って連続で音を鳴らす
 
-#+begin_src tidal
---   sound "bass bass bass bass" と同じリズムになる
-d2 $ sound "bass*4"
+#+begin_src tidal :results silent
+  -- sound "bass bass bass bass" と同じリズムになる
+  d2 $ sound "bass*4"
 #+end_src
 
-** 複雑なリズムパターンを作れる
+~は休符
+
+
+** 複雑なリズムパターンを作る
+*** stackを使って複数の音をひとつのトラックで鳴らす
+#+begin_src tidal :results silent
+  d1 $ stack [
+     -- バスドラム
+     sound "bd*4"
+     -- スネアドラム
+     , sound "~ sn:3" # speed 0.9
+     -- ハイハット
+     , sound "~ hc ~ hc ~ hc ~ hc" -- # speed 1.2
+   ]
+    # gain 0.8
+    # shape 0.3
+#+end_src
+
+~speed~ は音声サンプルの再生速度
+~shape~ 音をまとめて音圧を出すエフェクト（コンプレッサー）
+~gain~ は音の大きさ(~shape~ で音量が少し大きくなるので調整している)
+
+
+*** ランダムに音を変える
+#+begin_src tidal :results silent
+  d2
+    $ sound "bass1:2*8"
+    -- # up 2
+    # up (choose [0, 2, 3]) -- choose関数で音程の高さをランダムにする  
+    # legato 1
+    # gain 0.8
+#+end_src
+
+- ~up~: 音程を変化させる
+- ~legato~: 音の長さを
+  - 1だと次の音に重ならない
 
 ** シンセサイザーも鳴らせる
 
 #+begin_src tidal :results silent
-  d3 $ slow 4
-    -- f'maj7 = Fメジャー7というコード（和音）
-    -- _ = 一つ前の音を伸ばす
-    $ n "f'maj7 _ e'dom7 _ a'min7*2 c'dom7 _"
-    -- soundに音声のファイルではなく、あらかじめ設定されている音色を指定する
-    # sound "superpiano"
-    -- # sound "supermandolin"
+  d4
+    $ slow 4
+    $ n "c5'maj7 c5'sus4 a4'min7 c5'sus4"
+    # sound "superhoover"
+    -- # legato 1
+    -- # sustain "0.8 0.3 0.5 0.5"
+    -- # lpf (range 100 8000 $rand)
+    -- # resonance 1 -- "0.3"
+    # lpf 1500
+    # hpf 500
+    -- # decay 0.7
+    -- # accelerate -0.01
+    -- # slide -0.5
+    # delay 0.7
+    # delaytime 0.1
+    # room 0.25
+    # size 0.5
+    # gain 0.7
 #+end_src
 
-** いままで作った音を同時に鳴らすとそれっぽくなる
-
-#+begin_src tidal :results silent
+#+begin_src tidal :silent
 hush
 #+end_src
 
@@ -232,7 +267,7 @@ hush
  - org-modeとTidalCycles面白いです！暇な人触ってみてください。
    - 仕事ではあまり役に立たない技術だと思いますが面白いおもちゃです。
    - かなりハードルが高い（環境構築がクソめんどくさい）ので
-     やってみたい方がいればお手伝いします
+     やってみたい方がいれば助太刀します
    
  - LTSさんとのLT大会が楽しかったので、もっと自分の好きなことの話をしようと思って
    久々に発表しました。
