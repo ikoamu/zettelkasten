@@ -1,0 +1,21 @@
+:PROPERTIES:
+:ID:       B765DEFF-2848-4396-88E2-848D56DC7215
+:END:
+#+title: ABACとRBAC
+
+* ABAC
+:PROPERTIES:
+:ID:       314DC515-F687-4E07-ADA8-5FA6B7D014E7
+:END:
+
+- 属性(Attribute)に基づいたアクセス許可
+- Attribute-Based Access Control
+- タグベースのアクセス制御
+
+* RBAC
+:PROPERTIES:
+:ID:       27040234-492E-4134-BB37-2CBC6ED04E5B
+:END:
+
+- 役割(Role)に基づいたアクセス許可  
+- Role-Based Access Control
