@@ -5,7 +5,7 @@
 #+filetags: :tidalcycles:org-mode:
 
 * setup
-- [ ] 画像を表示する
+- [X] 画像を表示する
 #+begin_src elisp :results silent
   (setq org-image-actual-width nil)
   (org-toggle-inline-images)
@@ -13,13 +13,25 @@
 - [ ] CODEBLOCKの結果を消しておく
 - [ ] 音声が正しく出せるかを確認する
 - [ ] 全てのツリーを閉じる
+- [ ] SuperDirtをstart
+- [ ] tidalをstart
+  #+begin_src elisp
+    (tidal-start-haskell)
+  #+end_src
+
+  #+RESULTS:
+  : #<buffer *tidal*>
 
 * soundcheck
 - 発表でPC音声を鳴らしたいのでサウンドチェックします
-- 音が鳴っていたらリアクションして欲しいです！
-
+- 私の声とPCから出ている音楽が聞こえますか？
 #+begin_src tidal :results silent
-d1 $ sound "bd"
+  d1
+    $ n "[d3(3,8) f3(3,8) e3(5,8,2) a3(5,8,2)]/2"
+    # s "superpiano"
+    # room 0.5 # sz 0.6
+    # gain 0.8
+    # lpf (range 1000 8000 $ slow 2 $ sine)
 #+end_src
 
 #+begin_src tidal :results silent
@@ -50,16 +62,10 @@ hush
 （発表資料作ったら全然10分じゃ収まらなかったので超駆け足で話します）
 
 * org-modeとは
-- この謎のテキストファイル
-
 - なんでもできるメモ帳くん
-
+- この謎のテキストファイル
 - 青木が１年目の時に初めてOJTで参画したプロジェクトで使われてた
-  - SVNに１ファイルだけorg-modeのファイルが保存されていた
-    - （まだあの.orgファイルあるのかな？）
-
 - 昔、一斉会議でorg-modeを使って発表する人がいた
-    
 
 ** 書き方はMarkdownっぽい
   - *太字*
@@ -87,7 +93,8 @@ hush
 
 ** 拡張性がすごい
 - ~org-mode~ は ~Emacs~ 上で使える
-- ~Emacs~ 上では ~Emacs Lisp~ という謎の言語が動くので、コレを使ってさまざまな機能が実現できている
+- ~Emacs~ 上では ~Emacs Lisp~ という謎の言語が動くので、コレを使ってさ
+  まざまな機能が実現できている
 - *つまり、 ~Emacs Lisp~ で自分だけの最強のメモ帳がつくれる！*
  
 ** 拡張機能(パッケージ)も充実
@@ -99,9 +106,6 @@ org-modeで日記を書く機能
 
 *** ~org-present~
 org-modeでプレゼンする機能
-
-*** ~org-ai~
-org-modeでChatGPTなどのAIを使う機能
 
 *** ~org-chef~
 org-modeで料理のレシピを書く機能
@@ -118,6 +122,9 @@ org-modeでZennの記事を書く機能
 #+begin_src shell
 echo "hello world"
 #+end_src
+
+#+RESULTS:
+: hello world
 
 *** SQL
 Next.js勉強会の教材で使っているDBに接続してみる
@@ -141,11 +148,13 @@ SELECT * FROM "Category";
 console.log(hoge)
 #+end_src
 
-すごい
-
 * ということで
 ~org-babel~ と ~TidalCycles~ を使って ~org-mode~ で音楽を作れるようにしてみたので
 ライブコーディングします！
+
+#+begin_src tidal :results silent
+  d1 $ sound "bd*4"
+#+end_src
 
 * [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][TidalCycles]]とは
 音楽の即興演奏や作曲用に設計されたライブコーディング環境
@@ -159,25 +168,9 @@ console.log(hoge)
 ~Emacs~ や ~VSCode~ などのテキストエディタから操作することができる
 ~Haskell~ のライブラリ(????????)
 
-** さっそく音を鳴らしてみる
-
-*** サンプル再生
-#+begin_src tidal :results silent
-  d1 $ sound "bd"
-#+end_src
-
-- ~sound~ 指定した音声ファイルを鳴らす命令
-  #+begin_src shell :results silent
-  open ~/Library/Application\ Support/SuperCollider/downloaded-quarks/Dirt-Samples
-  #+end_src
-- ~bd~
-  - バスドラム
-  - ~bd~ ディレクトリの0番目の音声ファイルが流れる
-  - ~bd:1~ ディレクトリの1番目の音声ファイルが流れる
-
 ** TidalCyclesの「サイクル」
 #+begin_src tidal :results silent
-  d1 $ sound "bd:0"
+  d1 $ sound "bd" -- bd=バスドラム
 #+end_src
 指定した音は周期的に（繰り返し）鳴る
 
@@ -186,89 +179,99 @@ console.log(hoge)
 
 ** 1サイクルを分割する
 #+begin_src tidal :results silent
-  d1 $ sound "bd:0 sd:1"
+  d1 $ sound "bd sd bd sd"
 #+end_src
+
+~*~ を使って連続で音を鳴らすこともできる
 
 #+ATTR_ORG: :width 700
 [[file:./img/bd_sd.svg]]
 
-~*~ を使って連続で音を鳴らす
-
+** 別トラックで違う音をならす
 #+begin_src tidal :results silent
-  -- sound "bass bass bass bass" と同じリズムになる
   d2 $ sound "bass*4"
 #+end_src
 
-~は休符
-
-
-** 複雑なリズムパターンを作る
-*** stackを使って複数の音をひとつのトラックで鳴らす
+** ~hush~ がサイクルを一時停止する命令
 #+begin_src tidal :results silent
-  d1 $ stack [
-     -- バスドラム
-     sound "bd*4"
-     -- スネアドラム
-     , sound "~ sn:3" # speed 0.9
-     -- ハイハット
-     , sound "~ hc ~ hc ~ hc ~ hc" -- # speed 1.2
-   ]
-    # gain 0.8
-    # shape 0.3
-#+end_src
-
-~speed~ は音声サンプルの再生速度
-~shape~ 音をまとめて音圧を出すエフェクト（コンプレッサー）
-~gain~ は音の大きさ(~shape~ で音量が少し大きくなるので調整している)
-
-
-*** ランダムに音を変える
-#+begin_src tidal :results silent
-  d2
-    $ sound "bass1:2*8"
-    -- # up 2
-    # up (choose [0, 2, 3]) -- choose関数で音程の高さをランダムにする  
-    # legato 1
-    # gain 0.8
-#+end_src
-
-- ~up~: 音程を変化させる
-- ~legato~: 音の長さを
-  - 1だと次の音に重ならない
-
-** シンセサイザーも鳴らせる
-
-#+begin_src tidal :results silent
-  d4
-    $ slow 4
-    $ n "c5'maj7 c5'sus4 a4'min7 c5'sus4"
-    # sound "superhoover"
-    -- # legato 1
-    -- # sustain "0.8 0.3 0.5 0.5"
-    -- # lpf (range 100 8000 $rand)
-    -- # resonance 1 -- "0.3"
-    # lpf 1500
-    # hpf 500
-    -- # decay 0.7
-    -- # accelerate -0.01
-    -- # slide -0.5
-    # delay 0.7
-    # delaytime 0.1
-    # room 0.25
-    # size 0.5
-    # gain 0.7
-#+end_src
-
-#+begin_src tidal :silent
 hush
 #+end_src
 
-* ということで
- - org-modeとTidalCycles面白いです！暇な人触ってみてください。
-   - 仕事ではあまり役に立たない技術だと思いますが面白いおもちゃです。
-   - かなりハードルが高い（環境構築がクソめんどくさい）ので
-     やってみたい方がいれば助太刀します
+** 複雑なリズムパターンを作る
+*** stack関数を使って複数の音をひとつのトラックで鳴らす
+#+begin_src tidal :results silent
+  -- stackで１つのトラックに複数のサイクルを作成できる
+  d1 $ stack [
+     -- バスドラム
+     sound "bd*4" -- 四つ打ち
+     -- スネアドラム
+     , sound "sn:3*2 ~" -- ~は休符
+     -- ハイハット
+     , sound "~ hc ~ hc ~ hc ~ hc" # speed 0.8
+   ]
+    -- #でエフェクトをかける
+    -- speed は音声サンプルの再生速度を変更できる
+    -- shape 音をまとめて音圧を出すエフェクト（コンプレッサー）
+    -- gain は音の大きさ
+    # gain 0.8
+    # shape 0.8
+#+end_src
+
+#+begin_src tidal :results silent
+hush
+#+end_src
+
+*** ランダムに音を変える
+- TidalCyclesの醍醐味
+- ランダム関数を使って音を変化させる
+
+#+begin_src tidal :results silent
+  d2
+    $ sound "bass1:2*8"
+    -- # up 2 -- 音程（ピッチ）を変更するエフェクト
+    # up (choose [0, 2, 3, 0, 9]) -- choose関数で音程の高さをランダムにする  
+    -- # legato 1 -- 音の長さを変更するエフェクト
+    # legato (range 0.7 1 sine) -- range関数で音の長さをランダムにする
+    # gain 0.8
+#+end_src
+
+#+begin_src tidal :results silent
+hush
+#+end_src
+
+** シンセサイザーも鳴らせる
+*** 和音
+#+begin_src tidal :results silent
+  d3
+    -- １サイクルの長さを通常の４倍に伸ばす
+    $ slow 4
+    --   E♭         F         Gm
+    $ n "ef'maj _ _ f'maj _ _ g'min _"
+    -- シンセサイザー名
+    # sound "superhoover"
+    -- 高音をカット(ローパスフィルタ)
+    # lpf 1500
+    -- 低音をカット(ハイパスフィルタ)
+    # hpf 500
+    -- 音に残響音・反射音を加える(リバーブ)
+    # room 0.5
+    # size 0.25
+    -- 音量調節(音量を60%に絞る)
+    # gain 0.6
+#+end_src
+
+#+begin_src tidal :results silent
+hush
+#+end_src
+
+* おわりに１
+
+org-modeとTidalCycles面白いです！暇な人触ってみてください。
+ - 仕事ではあまり役に立たない技術だと思いますが暇つぶしとして面白いです。
+ - かなりハードルが高い（環境構築がクソめんどくさい）ので
+   やってみたい方がいれば助太刀します
    
+* おわりに２
  - LTSさんとのLT大会が楽しかったので、もっと自分の好きなことの話をしようと思って
    久々に発表しました。
 
@@ -294,9 +297,3 @@ hush
    - たまにはこういう発表もあったら嬉しいなと思ってます
      （だから６年ぶりくらいに発表してみました）
    - （多分仕事とあんまり関係なくていいと思います（多分））
-
-* おわり
-ご清聴ありがとうございました！！！！！！
-#+begin_src tidal :results silent
-once $ s "bd" #gain 1.2
-#+end_src

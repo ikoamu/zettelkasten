@@ -56,3 +56,51 @@ SELECT * FROM "Category";
   setcps (300/60/4)
 #+end_src
 
+
+* soundcheck
+:PROPERTIES:
+:ARCHIVE_TIME: 2024-09-25 Wed 21:45
+:ARCHIVE_FILE: ~/zettelkasten/20240902004634-org_modeとlivecoding.org
+:ARCHIVE_CATEGORY: 20240902004634-org_modeとlivecoding
+:ARCHIVE_ITAGS: tidalcycles org-mode
+:END:
+- 発表でPC音声を鳴らしたいのでサウンドチェックします
+- 私の声とPCの音
+#+begin_src tidal :results silent
+  d1
+    $ n "[d3(3,8) f3(3,8) e3(5,8,2) a3(5,8,2)]/2"
+    # s "superpiano"
+    # delay 0.4
+    # room 0.5 # sz 0.6
+    # gain 0.8
+    -- # lpf (range 200 8000 $ slow 2 $ sine)
+#+end_src
+
+#+begin_src tidal :results silent
+hush
+#+end_src
+
+
+* soundcheck
+:PROPERTIES:
+:ARCHIVE_TIME: 2024-09-25 Wed 21:46
+:ARCHIVE_FILE: ~/zettelkasten/20240902004634-org_modeとlivecoding.org
+:ARCHIVE_CATEGORY: 20240902004634-org_modeとlivecoding
+:ARCHIVE_ITAGS: tidalcycles org-mode
+:END:
+- 発表でPC音声を鳴らしたいのでサウンドチェックします
+- 私の声とPCの音
+#+begin_src tidal :results silent
+  d1
+    $ n "[d3(3,8) f3(3,8) e3(5,8,2) a3(5,8,2)]/2"
+    # s "superpiano"
+    # delay 0.4
+    # room 0.5 # sz 0.6
+    # gain 0.8
+    # lpf (range 1000 8000 $ slow 2 $ sine)
+#+end_src
+
+#+begin_src tidal :results silent
+hush
+#+end_src
+
