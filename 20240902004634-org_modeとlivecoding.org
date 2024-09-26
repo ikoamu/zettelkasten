@@ -30,7 +30,7 @@
     $ n "[d3(3,8) f3(3,8) e3(5,8,2) a3(5,8,2)]/2"
     # s "superpiano"
     # room 0.5 # sz 0.6
-    # gain 0.8
+    # gain 0.7
     # lpf (range 1000 8000 $ slow 2 $ sine)
 #+end_src
 
@@ -64,8 +64,8 @@ hush
 * org-modeとは
 - なんでもできるメモ帳くん
 - この謎のテキストファイル
-- 青木が１年目の時に初めてOJTで参画したプロジェクトで使われてた
 - 昔、一斉会議でorg-modeを使って発表する人がいた
+- 青木が１年目の時に初めてOJTで参画したプロジェクトで使われてた
 
 ** 書き方はMarkdownっぽい
   - *太字*
@@ -120,11 +120,8 @@ org-modeでZennの記事を書く機能
 
 *** shell
 #+begin_src shell
-echo "hello world"
+echo "hello world!!"
 #+end_src
-
-#+RESULTS:
-: hello world
 
 *** SQL
 Next.js勉強会の教材で使っているDBに接続してみる
@@ -153,7 +150,7 @@ console.log(hoge)
 ライブコーディングします！
 
 #+begin_src tidal :results silent
-  d1 $ sound "bd*4"
+  d1 $ sound "bd"
 #+end_src
 
 * [[id:6EE32A1E-78EA-4524-9E44-CF7E89B75FF5][TidalCycles]]とは
@@ -179,7 +176,7 @@ console.log(hoge)
 
 ** 1サイクルを分割する
 #+begin_src tidal :results silent
-  d1 $ sound "bd sd bd sd"
+  d1 $ sound "bd sd"
 #+end_src
 
 ~*~ を使って連続で音を鳴らすこともできる
@@ -194,7 +191,7 @@ console.log(hoge)
 
 ** ~hush~ がサイクルを一時停止する命令
 #+begin_src tidal :results silent
-hush
+  hush
 #+end_src
 
 ** 複雑なリズムパターンを作る
@@ -207,18 +204,15 @@ hush
      -- スネアドラム
      , sound "sn:3*2 ~" -- ~は休符
      -- ハイハット
-     , sound "~ hc ~ hc ~ hc ~ hc" # speed 0.8
+     , sound "~ hc ~ hc ~ hc ~ hc" # speed 0.8 -- speed は音声サンプルの再生速度を変更できる
    ]
-    -- #でエフェクトをかける
-    -- speed は音声サンプルの再生速度を変更できる
-    -- shape 音をまとめて音圧を出すエフェクト（コンプレッサー）
-    -- gain は音の大きさ
-    # gain 0.8
-    # shape 0.8
+    -- stackにまとめてエフェクトをかける
+    # gain 0.7  -- gain は音の大きさ
+    # shape 0.8 -- 音圧を出すエフェクト（コンプレッサー）
 #+end_src
 
 #+begin_src tidal :results silent
-hush
+  hush
 #+end_src
 
 *** ランダムに音を変える
@@ -228,15 +222,14 @@ hush
 #+begin_src tidal :results silent
   d2
     $ sound "bass1:2*8"
-    -- # up 2 -- 音程（ピッチ）を変更するエフェクト
-    # up (choose [0, 2, 3, 0, 9]) -- choose関数で音程の高さをランダムにする  
-    -- # legato 1 -- 音の長さを変更するエフェクト
-    # legato (range 0.7 1 sine) -- range関数で音の長さをランダムにする
+    -- # up 3 -- 音程（ピッチ）を変更するエフェクト
+    # up (choose [0, 2, 3, 9]) -- choose関数で音程の高さをランダムにする  
+    # legato 1.0 -- 音の長さを変更するエフェクト
     # gain 0.8
 #+end_src
 
 #+begin_src tidal :results silent
-hush
+  hush
 #+end_src
 
 ** シンセサイザーも鳴らせる
@@ -264,14 +257,9 @@ hush
 hush
 #+end_src
 
-* おわりに１
+TidalCyclesおもしろいです。
 
-org-modeとTidalCycles面白いです！暇な人触ってみてください。
- - 仕事ではあまり役に立たない技術だと思いますが暇つぶしとして面白いです。
- - かなりハードルが高い（環境構築がクソめんどくさい）ので
-   やってみたい方がいれば助太刀します
-   
-* おわりに２
+* おわりに
  - LTSさんとのLT大会が楽しかったので、もっと自分の好きなことの話をしようと思って
    久々に発表しました。
 
@@ -293,7 +281,9 @@ org-modeとTidalCycles面白いです！暇な人触ってみてください。
    /そして、その喜びを周囲の人たちにも伝えましょう。/
    #+end_quote
 
- - 一斉会議でみなさんも自分の好きなことの話を話しませんか？
-   - たまにはこういう発表もあったら嬉しいなと思ってます
+一斉会議でみなさんも自分の好きなことの話を話しませんか？
+
+  - たまにはこういう発表もあったら嬉しいなと思ってます
      （だから６年ぶりくらいに発表してみました）
-   - （多分仕事とあんまり関係なくていいと思います（多分））
+
+  -（多分仕事とあんまり関係なくていいと思います（多分））
