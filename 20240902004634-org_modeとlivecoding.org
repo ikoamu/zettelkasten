@@ -5,7 +5,7 @@
 #+filetags: :tidalcycles:org-mode:
 
 * setup
-- [X] 画像を表示する
+- [ ] 画像を表示する
 #+begin_src elisp :results silent
   (setq org-image-actual-width nil)
   (org-toggle-inline-images)
@@ -15,9 +15,9 @@
 - [ ] 全てのツリーを閉じる
 - [ ] SuperDirtをstart
 - [ ] tidalをstart
-  #+begin_src elisp
-    (tidal-start-haskell)
-  #+end_src
+#+begin_src elisp
+  (tidal-start-haskell)
+#+end_src
 
   #+RESULTS:
   : #<buffer *tidal*>
@@ -30,7 +30,7 @@
     $ n "[d3(3,8) f3(3,8) e3(5,8,2) a3(5,8,2)]/2"
     # s "superpiano"
     # room 0.5 # sz 0.6
-    # gain 0.7
+    # gain 0.6
     # lpf (range 1000 8000 $ slow 2 $ sine)
 #+end_src
 
@@ -120,7 +120,7 @@ org-modeでZennの記事を書く機能
 
 *** shell
 #+begin_src shell
-echo "hello world!!"
+echo "hello world"
 #+end_src
 
 *** SQL
@@ -178,11 +178,11 @@ console.log(hoge)
 #+begin_src tidal :results silent
   d1 $ sound "bd sd"
 #+end_src
-
-~*~ を使って連続で音を鳴らすこともできる
-
 #+ATTR_ORG: :width 700
 [[file:./img/bd_sd.svg]]
+
+~*~ を使って連続で音を鳴らすこともできる
+~()~ を使って音を均等に配置することもできる
 
 ** 別トラックで違う音をならす
 #+begin_src tidal :results silent
@@ -202,12 +202,12 @@ console.log(hoge)
      -- バスドラム
      sound "bd*4" -- 四つ打ち
      -- スネアドラム
-     , sound "sn:3*2 ~" -- ~は休符
+     -- , sound "sn:3*2 ~" -- ~は休符
      -- ハイハット
-     , sound "~ hc ~ hc ~ hc ~ hc" # speed 0.8 -- speed は音声サンプルの再生速度を変更できる
+     -- , sound "~ hc ~ hc ~ hc ~ hc" # speed 0.8 -- speed は音声サンプルの再生速度を変更できる
    ]
     -- stackにまとめてエフェクトをかける
-    # gain 0.7  -- gain は音の大きさ
+    # gain 0.6  -- gain は音の大きさ
     # shape 0.8 -- 音圧を出すエフェクト（コンプレッサー）
 #+end_src
 
@@ -222,8 +222,9 @@ console.log(hoge)
 #+begin_src tidal :results silent
   d2
     $ sound "bass1:2*8"
-    -- # up 3 -- 音程（ピッチ）を変更するエフェクト
-    # up (choose [0, 2, 3, 9]) -- choose関数で音程の高さをランダムにする  
+    # up 0 -- 音程（ピッチ）を変更するエフェクト
+    -- # up (choose [0, 2, 3]) -- choose関数で音程の高さをランダムにする  
+    -- # hpf (choose [100, 200, 300, 800]) -- 低音をカット(ハイパスフィルタ)
     # legato 1.0 -- 音の長さを変更するエフェクト
     # gain 0.8
 #+end_src
@@ -233,7 +234,6 @@ console.log(hoge)
 #+end_src
 
 ** シンセサイザーも鳴らせる
-*** 和音
 #+begin_src tidal :results silent
   d3
     -- １サイクルの長さを通常の４倍に伸ばす
@@ -258,12 +258,14 @@ hush
 #+end_src
 
 TidalCyclesおもしろいです。
+YouTubeとかで調べるとTidalCyclesを使ったかっこいい曲がたくさんあるので
+気になった方は調べてみてください。
 
 * おわりに
- - LTSさんとのLT大会が楽しかったので、もっと自分の好きなことの話をしようと思って
-   久々に発表しました。
+- LTSさんとのLT大会が楽しかったので、
+  もっと自分の好きなことの話をしようと思って久々に発表しました。
 
-   TidalCyalesを学ぶために買った本に（個人的に）凄くいいことが書いてあった
+  TidalCyalesを学ぶために買った本に凄くいいことが書いてあった
    #+ATTR_ORG: :width 250
    [[file:./img/show_your_screen.png]]
    #+begin_quote
@@ -281,9 +283,59 @@ TidalCyclesおもしろいです。
    /そして、その喜びを周囲の人たちにも伝えましょう。/
    #+end_quote
 
-一斉会議でみなさんも自分の好きなことの話を話しませんか？
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+- 一斉会議でみなさんも自分の好きなことの話を話しませんか？
   - たまにはこういう発表もあったら嬉しいなと思ってます
-     （だから６年ぶりくらいに発表してみました）
-
   -（多分仕事とあんまり関係なくていいと思います（多分））
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ご清聴ありがとうございました！
