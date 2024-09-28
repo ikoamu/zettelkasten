@@ -20,4 +20,5 @@ jobs:
           org-roam-db-filename: org-roam.db
           site-title: zettelkasten - ikoamu
           deploy-to-pages: true
+	  default-section-open: false
           # ui-ref: support-html-attr
