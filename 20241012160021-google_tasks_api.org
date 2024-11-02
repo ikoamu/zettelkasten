@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       A6CCD9C9-1CA3-4AE2-83ED-B7160E2FB50D
+:END:
+#+title: google tasks api
+* tasklist
+* tasks
+

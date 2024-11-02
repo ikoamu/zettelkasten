@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       415B746C-E5E2-41E5-8E85-F77D2224C279
+:END:
+#+title: 今日やること
+* 本当に今日やること [2/4]
+** DONE [#B] 資料読む
+[[id:044E2966-7E95-439A-B532-2CD33733CB35][転職]]
+** DONE botをLambdaで動かす
+** TODO [[id:C28C4EAE-E86F-4788-B8FE-2A3F60CBE30B][org-modeとLiveCoding]]を完成させる
+** TODO 公園決める
+* あしたやろうと思っていること
+** TODO 掃除

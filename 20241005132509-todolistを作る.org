@@ -1,0 +1,40 @@
+:PROPERTIES:
+:ID:       F18EDADF-E6CB-4DD6-9B72-B933D3ECB250
+:END:
+#+title: todolistを作る
+* 要件
+** TODO TODOのCRUD
+** TODO [[id:0173C121-7AF7-4502-A344-55787C266B07][SPA]]で作成
+** TODO テストコードを書く
+* 確認したいこと
+** チーム開発
+- [[id:5101B2F8-5FBE-4F2F-8216-BE3A78511B88][Devcontainer]]は使うべき？
+- [[id:B5791833-BAC3-4E25-8A69-CC305EF4BF13][nvm]]でバージョンを固定
+- [[id:21BAEBF4-731A-43A4-85D7-27499E3510A5][renovate]]も導入しようか
+- [[id:35C4D68F-67C7-47A5-8A50-DAC6F4FF722D][ESLint]] + [[id:AC2EA220-B158-4A12-AD51-32394AFB0551][Prettier]] or [[id:4DB79897-C397-466B-AB82-D8CC2B358945][Biome]]
+  - https://biomejs.dev/linter/rules-sources/#eslint-plugin-react-hooks
+  - 今回、 ~create vite~ でプロジェクトの雛形を作ったのため、デフォルトで[[id:35C4D68F-67C7-47A5-8A50-DAC6F4FF722D][ESLint]]が入ったためこれを使わせてもらう
+    フォーマッターはPreteierを使おう
+- [[id:B279B100-5F20-4967-A2AE-4B27B4D8A89A][husky]]も入れておこう
+** CSS
+** UIカタログ
+- [[id:E522835E-62BD-46CC-B9D3-7AF6DCE7BC00][Storybook]]
+** APIでデータの取得・更新を行なってStateを管理するか
+- [[id:00AE06DA-E61B-40DF-8E63-0CECB32E7B81][Jotai]]は必要か？
+** エラーハンドリング
+** 認証機能
+
+** バリデーション
+- [[id:D2C2A1FF-C54D-4030-9967-A9575439AAD9][react-hooks-form]]かな
+
+** 追加機能
+- とりあえずレスポンシブにしたいかなー
+- タスクのステータスはTodoとDoneだけでいいのか？
+  - [[id:A6CCD9C9-1CA3-4AE2-83ED-B7160E2FB50D][google tasks api]]準拠にしよう
+** とりあえず環境設定
+#+begin_src 
+npm create vite@latest todolist -- --template react-ts
+#+end_src
+
+https://medium.com/@manwarerutuj/react-google-login-deprecated-dont-worry-react-oauth-google-will-fix-it-1b2141252952
+https://www.npmjs.com/package/@react-oauth/google
