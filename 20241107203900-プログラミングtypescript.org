@@ -1,0 +1,91 @@
+:PROPERTIES:
+:ID:       CD080ECE-173C-4319-8589-AED0727776CC
+:ROAM_ALIASES: 鹿本
+:END:
+#+title: プログラミングTypeScript
+#+filetags: :JavaScript:book:TypeScript:
+
+* [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の全体像
+** コンパイラー
+- ソースコード（テキスト）を解析する特殊なプログラム
+
+*** コンパイラーのステップ
+1. ソースコードを[[id:80B081A1-636A-4961-BB19-5C6D83698DD2][AST]]に変換する
+2. [[id:80B081A1-636A-4961-BB19-5C6D83698DD2][AST]]を[[id:B3FA789C-528F-4B6C-A1F1-0386ABCEF0E7][バイトコード]]に変換する
+3. バイトコードを[[id:8B9BE26A-10B9-46FA-A4EE-9A13BA1E42C2][ランタイム]]に入力として与える
+4. プログラムが評価され、結果が返ってくる
+
+*** TypeScriptにおけるコンパイラー
+- バイトコードに変換する代わりに[[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]にコンパイルする
+- コンパイルされたJSコードを通常通りの方法で実行する
+
+**** typechecker
+:PROPERTIES:
+:ID:       18AB4FBB-3EBE-4D81-A890-E097B8270574
+:END:
+- 型チェッカー
+- コードが安全かを検証する特別なプログラム
+  
+**** [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]のコンパイルプロセス
+1. TypeScriptソース -> TypeScript AST
+2. ASTが[[id:18AB4FBB-3EBE-4D81-A890-E097B8270574][typechecker]]によってチェックされる
+3. TypeScript AST -> JavaScript
+4. JavaScriptソース -> JavaScript AST
+5. AST -> バイトコード
+6. バイトコードがランタイムによって評価される
+
+** 型システム(type system)
+:PROPERTIES:
+:ID:       E450A103-E578-40B4-A636-ECD2A36D2383
+:END:
+- プログラマーが作成したプログラムに肩を割り当てるために[[id:18AB4FBB-3EBE-4D81-A890-E097B8270574][typechecker]]が
+  使用するルールの集まり
+- 型システムには *一般的に* 2種類ある
+  - 明示的な構文を使ってコンパイラーに伝えるもの
+    - [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]ではアノテーションを使う
+      - ~値:型~
+      - ~let a:number = 1~
+  - 型を自動で推論する
+    - 一般的に明示的な型付けを避け、推論させることを推奨している
+** tsconfig.json
+:PROPERTIES:
+:ID:       4DB06FE9-1E2A-4A84-ACF8-95B5B786CD6C
+:END:
+[[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]において、以下のようなことを定義する場所
+- どのファイルをコンパイルするべきか
+- コンパイル結果をどのディレクトリに格納するか
+- どのバージョンの[[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]を出力するか
+
+* 型について
+Q. 型とは？
+A. 値と、それを使ってできる事柄の集まり
+
+** any
+- 型のゴッドファーザー
+  - 全ての値の集まり
+  - 通常の[[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]と同じような振る舞いをする
+- プログラマー・[[id:18AB4FBB-3EBE-4D81-A890-E097B8270574][typechecker]]がなんの型かわからない場合のデフォルトの型
+- できるだけ避けたい
+** unknown
+- 前もって本当に型がわからない値がある場合に使う
+  - anyよりこっち
+- anyと同様に任意の値を示すが、それが何であるかをチェックすることができる
+  - 型の絞り込みが可能
+    - 比較 ~==~, ~===~, ~||~, ~&&~, ~?~
+    - 否定 ~!~
+    - ~typeof~, ~instanceof~
+#+begin_src typescript
+let a: unknown = 30 // unknown
+let b: a === 123    // boolean
+let c = a + 10      // ERROR
+if (typeof a === 'number') {
+  let d = a + 10    // number
+}
+#+end_src
+
+1. [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]が何かをunknownと推論することはない
+   明示的なアノテーションが必要
+2. unknown型と他の値を比較することができる
+3. unknown値が特定の方であることを想定した事柄は行えない
+   初めにその型であることを ~typeof~ や ~instanceof~ 等で示す必要がある
+** boolean

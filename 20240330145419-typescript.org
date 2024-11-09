@@ -2,4 +2,5 @@
 :ID:       4617E0BC-DF84-42B1-96D3-3B94B7AF9145
 :END:
 #+title: TypeScript
+#+filetags: :TypeScript:JavaScript:
 

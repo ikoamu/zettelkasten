@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       B3FA789C-528F-4B6C-A1F1-0386ABCEF0E7
+:END:
+#+title: バイトコード
+

@@ -1,0 +1,51 @@
+:PROPERTIES:
+:ID:       5A0770D3-61A7-4618-9126-A3B88F1FF7F6
+:END:
+#+title: ブラウザのデータストレージ
+#+filetags: :web:
+
+https://zenn.dev/simsim/articles/3f3e043dd750e8
+
+* SessionStorage
+:PROPERTIES:
+:ID:       1833A312-977E-422B-8BC5-6A3E97975383
+:END:
+- ブラウザのタブが開かれている間だけデータを保存する仕組み
+- タブを閉じると保存されたデータは消去される
+- 複数タブでデータは分離される
+
+#+begin_src js
+  sessionStorage.setItem('key', 'value');
+  const username = sessionStorage.getItem('username');
+  sessionStorage.remove('username');
+#+end_src
+
+** ユースケース
+一時的なデータの保存
+* LocalStorage
+:PROPERTIES:
+:ID:       CB3C1DD0-A1FC-4516-BAEB-00BDB48230DF
+:END:
+- ブラウザのタブを閉じてもデータを保存し続ける仕組み
+- 永続的なデータの保存に適している
+- 異なるタブ感でデータが共有される
+
+#+begin_src js
+  localStorage.setItem('key', 'value');
+  const language = localStorage.getItem('language');
+  localStorage.removeItem('language');
+#+end_src
+
+
+* Cookie
+:PROPERTIES:
+:ID:       FC7AC8B2-18E3-40A7-B2B0-C481B79352B4
+:END:
+- ブラウザに保存される小さなテキストデータ
+  - 1つのクッキーにつき、容量は約4KB
+  - HTTPリクエストヘッダとしてブラウザからサーバーに送信されるため、容量が大きいとパフォーマンスに影響が出てしまう
+- 有効期限を設定することができる
+#+begin_src js
+document.cookie = 'favoriteColor=blue; expires=Thu, 01 Jan 2024 00:00:00 UTC; path=/';
+const cookies = document.cookie;
+#+end_src

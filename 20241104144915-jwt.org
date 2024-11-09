@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       E1CF7399-D63C-49A7-BE75-56F2D51704EF
+:END:
+#+title: JWT
+#+filetags: :web:
+
+JSON Web Token
