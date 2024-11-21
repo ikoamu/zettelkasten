@@ -1,0 +1,46 @@
+:PROPERTIES:
+:ID:       42CFD6D6-7893-47C9-BD67-49BD00672542
+:END:
+#+title: infer
+#+filetags: :TypeScript:
+
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型
+- [[id:A36ED2CD-8563-429D-B3B9-24165F4A0ADA][Conditional Types]]の中で使われる演算子
+  - ~extends~ の右辺にのみ書くことができる
+- inferは「推論する」という意味
+
+* ReturnType<T>の例
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の[[id:2EFF3650-38FC-4052-9209-ED3A47363886][ユーティリティ型]]である[[id:383DC67F-5625-4EAF-895C-0BF012D01848][ReturnType]]の実装を例に考える
+
+#+begin_src ts
+type ReturnType<T extends (...args: any) => any> = T entends (
+  ...args: any
+) => R ? R : any;
+#+end_src
+
+#+begin_src ts
+const request = (url: string): Promise<string> => {
+  return fetch(url).then(res => res.text());
+};
+
+type X = ReturnType<typeof request>; // type X = Promise<string>
+#+end_src
+※ [[id:08AE81C2-F8C8-4FDB-92DB-8BD1BBE0B792][typeof]]は変数から取得する演算子。
+
+** ひとつづつ見ていく
+- ~T extends (...args: any) => any~
+  - Tは任意の関数
+    - 引数なんでも
+      - 任意の個数
+      - 任意の型
+    - 返り値なんでも
+      - 任意の型
+- ~T entends (...args: any) => infer R ? R : any~
+  - Tが関数である場合は、戻り値の型であるR
+  - そうでない場合はany
+
+* もう一つの例
+- ある型Tが配列である場合はその要素の型、そうでない場合は[[id:B5C32B61-AD5C-4534-B7DA-63656E4B9890][never]]を返す
+#+begin_src ts
+type Flatten<T> = T extends (infer U)[] ? U : never;
+#+end_src

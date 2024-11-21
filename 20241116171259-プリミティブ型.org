@@ -1,0 +1,34 @@
+:PROPERTIES:
+:ID:       A4625491-FB20-4D97-A0BB-EE07FA1FCF5A
+:END:
+#+title: プリミティブ型
+#+filetags: :TypeScript:
+
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型
+- [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]のデータ型はプリミティブ型とオブジェクトの２つに分類される
+
+* イミュータブル
+ - JavaScriptのプリミティブ型の1つ目の特徴は、値を直接変更できない点です。つまりイミュータブル(immutable)です
+ -  一方、オブジェクトには、値を後で変更できるというミュータブル特性(mutable)があります
+* プロパティを持たない
+JavaScriptのプリミティブ型の2つ目の特徴は、基本的にプロパティがない
+#+begin_src js
+null.toString(); // エラーになる
+#+end_src
+
+文字列や数値などのプリミティブ型は、プロパティを持ったオブジェクトとして扱えます。
+#+begin_src js
+"name".length; // 4
+#+end_src
+
+プリミティブ型をまるでオブジェクトのように扱えるのは[[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]の特徴
+-> JSにはプリミティブ型をオブジェクトに自動変換する機能がある([[id:A6CE0573-7C54-4237-AFB1-103F120D42C2][autoboxing]])
+
+* プリミティブ型の種類
+- boolean型(論理型): trueまたはfalseの真偽値。
+- number型(数値型): 0や0.1のような数値。
+- string型(文字列型): "Hello World"のような文字列。
+- undefined型: 値が未定義であることを表す型。
+- null型: 値がないことを表す型。
+- [[id:8A5167D3-5D05-4A65-A497-3B5B420F4ADE][symbol型]](シンボル型): 一意で不変の値。
+- bigint型(長整数型): 9007199254740992nのようなnumber型では扱えない大きな整数型。

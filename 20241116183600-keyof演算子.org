@@ -1,0 +1,19 @@
+:PROPERTIES:
+:ID:       54481C57-4032-4950-B83C-3FB4D6F281FD
+:END:
+#+title: keyof演算子
+
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型演算子
+- オブジェクトの型からプロパティ名を型として返す
+- 返り値は[[id:88A06F14-B3EC-4703-B367-CAA3E30F3729][Union型]]
+
+  #+begin_src ts
+    type Book = {
+      title: string;
+      price: number;
+      rating: number;
+    };
+    type BookKey = keyof Book;
+    // 上は次と同じ意味になる
+    type BookKey = "title" | "price" | "rating";
+  #+end_src

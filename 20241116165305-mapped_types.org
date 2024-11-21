@@ -1,0 +1,18 @@
+:PROPERTIES:
+:ID:       1EE1778A-5FE6-4B02-9D89-47F48B216CAD
+:END:
+#+title: Mapped Types
+#+filetags: :TypeScript:
+
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型
+- インデックス型では設定時はどのようなキーも自由に設定できてしまい、
+  アクセス時は毎回 ~undefined~ かどうかの型チェックが必要
+  #+begin_src js
+    const obj = {};
+    obj.num = 1;
+    delete obj.num;
+    obj.num // undefined
+  #+end_src
+- 入力の形式が決まっているのであれば、Mapped Typesを使うと良さそう
+- Mapped Typesは主に[[id:88A06F14-B3EC-4703-B367-CAA3E30F3729][Union型]]と組み合わせて使う
+

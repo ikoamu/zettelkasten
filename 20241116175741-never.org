@@ -1,0 +1,59 @@
+:PROPERTIES:
+:ID:       B5C32B61-AD5C-4534-B7DA-63656E4B9890
+:END:
+#+title: neve
+#+filetags: :TypeScript:
+
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型
+- 「値を持たない」を意味する
+
+* neverの特性
+** never型には何も代入できない
+  #+begin_src ts
+    const foo: never = 1; // ERROR: Type 'number' is not assignable to type 'never'.
+  #+end_src
+
+  #+begin_src ts
+    // anyでさえ代入できない
+    const any: any = 1;
+    const foo: never = any; // Type 'any' is not assignable to type 'never'.
+  #+end_src
+
+  #+begin_src ts
+    // 一応never型は代入できる
+    const foo: never = 1 as never;
+  #+end_src
+** never型の値は何にでも代入できる
+
+#+begin_src 
+const nev = 1 as never;
+const a: string = nev; // 代入OK
+const b: string[] = nev; // 代入OK
+#+end_src
+* 「値を持たない」とは
+** 例外が必ず発生する関数
+#+begin_src ts
+function notImpl(): never {
+  throw new Error("do not use");
+}
+#+end_src
+
+** 終了しない関数
+#+begin_src ts
+function forever(): never {
+  while (true) {} // 無限ループ
+}
+#+end_src
+** ありえない値
+#+begin_src ts
+type NumStr = number & string; // never
+#+end_src
+* voidとの違い
+- void型はundefinedが代入できる
+- neverはundefinedも代入できない
+- voidは関数が最後まで実行されたと言う意味
+- neverは関数が中断または永遠に続くことを意味する
+  - そのため、戻り値がneverの関数が最後まで到達できてしまう場合、コンパイルエラーになる
+
+* 何に使うの？
+網羅性チェックに応用できる

@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       8D9726AD-9414-4BB2-B98E-98B76ACE3108
+:END:
+#+title: TypeChallenge
+#+filetags: :TypeScript:
+
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型パズルゲーム
+- かなり難しい
+
+* 初級
+
+** Pick
+- ある型TにあるキーKのみを抽出したものを型とする[[id:21D0C895-16BE-4E81-BCAE-980C62E67B11][Pick型]]を自前で作成する
+- Kは[[id:88A06F14-B3EC-4703-B367-CAA3E30F3729][Union型]]
+- [[id:1EE1778A-5FE6-4B02-9D89-47F48B216CAD][Mapped Types]]と[[id:54481C57-4032-4950-B83C-3FB4D6F281FD][keyof演算子]]使いそう
+- https://typescriptbook.jp/reference/statements/control-flow-analysis-and-type-guard#in
+  を読まないと土俵に立てなさそう

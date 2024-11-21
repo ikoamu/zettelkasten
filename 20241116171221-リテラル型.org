@@ -1,0 +1,23 @@
+:PROPERTIES:
+:ID:       D11D60FD-6F50-42EA-9595-39D1F4DB607E
+:END:
+#+title: リテラル型
+#+filetags: :TypeScript:
+
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型
+- [[id:A4625491-FB20-4D97-A0BB-EE07FA1FCF5A][プリミティブ型]]の特定の値だけを代入可能にする型を表現できる
+  #+begin_src ts
+    let x: number; // 代入可能な型注釈
+    x = 1;         // 数値であれば1でも100でも代入できる
+  #+end_src
+
+  #+begin_src ts
+    let x: 1; // リテラル型を用いると、1だけが代入可能な型が作れます。
+    x = 1;    // O 
+    x = 100;  // X
+  #+end_src
+
+* リテラル型として表現できるもの
+- boolean型のtrueとfalse
+- number型の値
+- string型の文字列

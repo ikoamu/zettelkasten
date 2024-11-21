@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       8A5167D3-5D05-4A65-A497-3B5B420F4ADE
+:END:
+#+title: symbol型
+#+filetags: :JavaScript:
+
+- [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]のクラス？
+
+  #+begin_src js
+const s1 = Symbol("foo");
+const s2 = Symbol("foo");
+console.log(s1 === s1); // true
+console.log(s1 === s2); // false
+  #+end_src

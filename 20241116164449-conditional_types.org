@@ -1,0 +1,27 @@
+:PROPERTIES:
+:ID:       A36ED2CD-8563-429D-B3B9-24165F4A0ADA
+:END:
+#+title: Conditional Types
+#+filetags: :TypeScript:
+
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型
+- 条件付き型・型の条件分岐、条件型などと呼ばれる
+- 三項演算子のように ~T extends U ? X : Y~ のように書く
+  - ~T~ が ~U~ に *割り当て可能* である場合、 ~X~ になり、そうでない場合は ~Y~ になる
+
+* いつ使う？
+- [[id:1EE1778A-5FE6-4B02-9D89-47F48B216CAD][Mapped Types]]と組み合わせることでオブジェクトを再起的に凍結することができる
+#+begin_src ts
+type Person = {
+  name: string;
+  age: number;
+  address: {
+    country: string;
+    city: string;
+  };
+};
+
+type Freeze<T> = Readonly<{
+  [P in keyof T]: T[P] extends object ? Freeze<T[P]> : T[P];
+}>;
+#+end_src

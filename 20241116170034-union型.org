@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       88A06F14-B3EC-4703-B367-CAA3E30F3729
+:END:
+#+title: Union型
+#+filetags: :TypeScript:
+
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型
+
+* 判定可能なユニオン型(discriminated union)
+:PROPERTIES:
+:ID:       77B05E9C-AF19-4C2B-B8FE-A7AE9455E4FD
+:ROAM_ALIASES: "tagged union"
+:END:
+- オブジェトクの型で構成されたユニオン型
+- 各オブジェクトの型を判定するためのプロパティを持つ
+  - このプロパティのことをディスクリミネータと呼ぶ
+- ディスクリミネータは[[id:D11D60FD-6F50-42EA-9595-39D1F4DB607E][リテラル型]]

@@ -1,0 +1,20 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/aokisusumutarou/zettelkasten/20241116171259-プリミティブ型.org
+
+
+* プリミティブ型の種類
+:PROPERTIES:
+:ARCHIVE_TIME: 2024-11-16 Sat 17:27
+:ARCHIVE_FILE: ~/zettelkasten/20241116171259-プリミティブ型.org
+:ARCHIVE_CATEGORY: 20241116171259-プリミティブ型
+:ARCHIVE_ITAGS: TypeScript
+:END:
+- boolean型(論理型): trueまたはfalseの真偽値。
+- number型(数値型): 0や0.1のような数値。
+- string型(文字列型): "Hello World"のような文字列。
+- undefined型: 値が未定義であることを表す型。
+- null型: 値がないことを表す型。
+- [[id:8A5167D3-5D05-4A65-A497-3B5B420F4ADE][symbol型]](シンボル型): 一意で不変の値。
+- bigint型(長整数型): 9007199254740992nのようなnumber型では扱えない大きな整数型。

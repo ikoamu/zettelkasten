@@ -1,0 +1,40 @@
+:PROPERTIES:
+:ID:       08AE81C2-F8C8-4FDB-92DB-8BD1BBE0B792
+:END:
+#+title: typeof
+#+filetags: :TypeScript:JavaScript:
+
+* typeof型演算子
+:PROPERTIES:
+:ID:       9F6EC199-CEEF-44EF-9F57-C3057658E110
+:END:
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の ~typeof~ は変数から型を抽出する型演算子
+
+* typeof演算子
+:PROPERTIES:
+:ID:       4F0498B2-FC40-466F-A538-660680A98B53
+:END:
+- [[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]の ~typeof~ は値の型を調べることができる
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]では ~typeof~ をifやswitcheと併せて使うとその型として扱うことができる
+  #+begin_src ts
+    const n: unknown = "";
+    if (typeof n === "string") {
+      // このスコープ内ではstring型になる（エディタで補完が効く）
+      return n.toUpperCase();
+    }
+  #+end_src
+
+** nullを判別
+#+begin_src ts
+// まずい実装
+function isObject(value) {
+  return typeof value === "object"; // valueがnullになる場合を考慮していない
+}
+ 
+isObject(null); // 戻り値がtrueになってしまう
+
+function isObject(value) {
+  // nullチェックする必要がある
+  return value !== null && typeof value === "object";
+}
+#+end_src

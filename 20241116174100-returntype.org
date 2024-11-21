@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       383DC67F-5625-4EAF-895C-0BF012D01848
+:END:
+#+title: ReturnType
+

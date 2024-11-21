@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       2EFF3650-38FC-4052-9209-ED3A47363886
+:END:
+#+title: ユーティリティ型
+#+filetags: :TypeScript:
+
+- [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型
+
+- https://typescriptbook.jp/reference/type-reuse/utility-types
