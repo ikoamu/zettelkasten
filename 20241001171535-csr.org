@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       C2F7CC12-44A0-45A4-84C3-2CB1D38242D4
+:END:
+#+title: CSR
+#+filetags: :web:
+

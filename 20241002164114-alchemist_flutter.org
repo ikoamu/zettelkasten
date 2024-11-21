@@ -1,0 +1,21 @@
+:PROPERTIES:
+:ID:       00721C27-B1B6-43BC-A275-D8C99E3A2BCF
+:END:
+#+title: alchemist(flutter)
+#+filetags: :Flutter:
+
+[[id:812A74D1-D7ED-46DE-AD3F-DC6DDE229099][VRT]]用のライブラリ
+* 2種類のGoldenTest
+
+** プラットフォームテスト
+- 人間の読めるテキストを含むゴールデンファイルを生成する
+- ローカルマシンで実行される
+
+** CIテスト
+- テキストがすべて四角に置き換えられる
+- それ以外はプラットフォームテストと同じ
+
+** 区別する理由
+- 画像を生成するマシンのOS（Mac、Windows、Linux）で差分がでるため
+
+* 

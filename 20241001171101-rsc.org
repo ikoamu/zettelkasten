@@ -1,0 +1,19 @@
+:PROPERTIES:
+:ID:       8B0ABF0E-1D24-4843-9469-47C48747D5ED
+:ROAM_ALIASES: "React Server Component"
+:END:
+#+title: RSC
+#+filetags: :React:
+
+- [[id:F581B8C4-23D6-470A-A9EB-D5F1A84B4C34][React]]コンポーネントのレンダリングプロセスにおけるアーキテクチャ
+- [[id:C2F7CC12-44A0-45A4-84C3-2CB1D38242D4][CSR]]や[[id:3D12742E-FD6D-44F8-AC4E-491F33EB5F8D][SSR]]といったレンダリング手法の問題点を解決するために生まれた
+
+* RSCとは
+- RSCは ~Server Components(SC)~ という新たな概念をもつコンポーネントが登場する
+  - ~SC~ はサーバー側のみで実行されるコンポーネント
+  - *JSバンドル* に含まれない
+  - クライアント側でハイドレーションを行はなくて済む
+
+* [[id:3D12742E-FD6D-44F8-AC4E-491F33EB5F8D][SSR]]との違いは？
+- SSR -> ページ単位でデータ取得
+- RSC -> コンポーネント単位でデータ取得
