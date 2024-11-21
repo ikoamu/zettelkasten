@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       72FAD03E-5C0F-40DB-BD06-1B60AF0D63FC
+:END:
+#+title: BuildContext
+#+filetags: :Flutter:
+
+- [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]でよく使う
+- 扱いが難しい？
+  - 特に、[[id:C0E2930F-96E3-4575-BC90-F63DAC148DD0][非同期処理]]後の ~context.mounted~ チェックがよくわからない
+  - 

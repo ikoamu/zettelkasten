@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       41ABE4AF-B783-41F9-8988-1B805830C15C
+:END:
+#+title: emacsでモダンなWeb開発環境を整える
+#+filetags: :emacs:web:TypeScript:
+
+https://www.ovistoica.com/blog/2024-7-05-modern-emacs-typescript-web-tsx-config
+
+* 和訳してみる
+
