@@ -1,0 +1,32 @@
+:PROPERTIES:
+:ID:       FF5F65FA-3A85-4931-9A45-78AE66A7C310
+:END:
+#+title: dashboard
+#+filetags: :wip:emacs:
+
+- [[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]起動時の初期起動時に表示するDashboard
+- この画面にやりたいこと・みたいものを集約したい
+
+* 何がみたい？
+** TODOリスト
+** 記事
+- Zenn & Qiitaなどでバズってる記事
+- Twitterで有名な人がつぶやいているもの(SNS)
+- あとでみたいと思ってたやつ
+  - スマホでもみたいやつがあると嬉しい
+** 書きかけのノート
+-> wipタグをつけるとか？
+
+#+begin_src elisp
+(defun my-get-files-with-tag (tag)
+  (seq-filter
+   (lambda (file)
+     (with-current-buffer (find-file-noselect file)
+       (save-excursion
+         (goto-char (point-min))
+         (org-map-entries (lambda () t) tag nil))))
+   org-agenda-files))
+#+end_src
+
+#+RESULTS:
+: my-get-files-with-tag

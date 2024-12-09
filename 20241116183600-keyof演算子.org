@@ -6,7 +6,7 @@
 - [[id:4617E0BC-DF84-42B1-96D3-3B94B7AF9145][TypeScript]]の型演算子
 - オブジェクトの型からプロパティ名を型として返す
 - 返り値は[[id:88A06F14-B3EC-4703-B367-CAA3E30F3729][Union型]]
-
+  
   #+begin_src ts
     type Book = {
       title: string;
