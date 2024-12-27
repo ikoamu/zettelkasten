@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       2EF6C1B1-8598-4E4F-8569-448BFA411C41
+:END:
+#+title: SystemUiMode
+

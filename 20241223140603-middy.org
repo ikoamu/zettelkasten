@@ -1,0 +1,50 @@
+:PROPERTIES:
+:ID:       519E4EF1-7B3C-4C7C-8A09-15F15382BAFB
+:END:
+#+title: middy
+#+filetags: :AWS:
+
+- [[id:E0288751-720E-4157-9D3D-A3DC8B56F76A][AWS Lambda]]用の[[id:DD155CB4-4AC6-411A-958E-0407C3934E1E][Node.js]]ミドルウェアエンジン
+- LambdaをNode.jsで書く際に簡略化できる
+- 認証、認可、検証、シリアライゼーションといった非機能的な懸念事項の取り扱いを統一できる
+
+* middyなし
+handlerの中に色々書く必要がある
+#+begin_src js
+export const handler = (event, context) => {
+  // BOILERPLATE!
+  // E.g. decrypt environment variables with KMS
+  // deserialize the content of the event
+  // validate input, authentication, authorization
+  
+  // REAL BUSINESS LOGIC
+  let response = doSomethingUsefulWith(event)
+  
+  // MORE BOILERPLATE
+  // E.g.
+  // validate output
+  // serialize response
+  // handle errors
+  return response
+}
+#+end_src
+
+* middyあり
+handlerの中にビジネスロジックのみ記述できる
+-> テストしやすい
+#+begin_src js
+import middy from '@middy/core'
+
+const lambdaHandler = (event, context) => {
+  // REAL BUSINESS LOGIC
+  return doSomethingUsefulWith(event)
+}
+
+export const handler = middy(lambdaHandler)
+  .use(/* Your own behaviour in a reusable fashion */)
+  .use(/* logging and tracing */)
+  .use(/* input validation */)
+  .use(/* authentication */)
+  .use(/* error handling */)
+  .use(/* other behaviour */)
+#+end_src

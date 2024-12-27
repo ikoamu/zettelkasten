@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       F792DF4D-904F-4172-8328-3526C168D3E4
+:END:
+#+title: W3C
+#+filetags: :web:
+
+- Web技術の標準化を行う非営利団体
+  - [[id:1AF10292-7A4F-4332-B43D-7E0068162850][Web標準]]

@@ -32,11 +32,11 @@ https://github.com/aws-amplify/amplify-category-api/issues/2157
    Update<TABLE>Resolver, Get<TABLE>Resolver, Create<TABLE>Resolver].
    #+end_quote
 5. 上記の失敗しているスタックの「イベント」タブをコンソール上で確認し作成に失敗しているリゾルバーを確認する
-   | タイムスタンプ        | 論理ID               | ステータス      | 詳細ステータス | 状況の理由                                               |
-   |---------------------+---------------------+---------------+--------------+--------------------------------------------------------|
-   | 2024-09-11 XX:XX:XX | Sync<TABLE>Resolver | CREATE_FAILED | -            | Resource creation cancelled                            |
-   | 2024-09-11 XX:XX:XX | Get<TABLE>Resolver  | UPDATE_FAILED | -            | Resource handler returned message: "No resolver found. |
-   | 2024-09-11 XX:XX:XX | List<TABLE>Resolver | UPDATE_FAILED | -            | Resource handler returned message: "No resolver found. |
+   | タイムスタンプ      | 論理ID              | ステータス    | 詳細ステータス | 状況の理由                                             |
+   |---------------------+---------------------+---------------+----------------+--------------------------------------------------------|
+   | 2024-09-11 XX:XX:XX | Sync<TABLE>Resolver | CREATE_FAILED | -              | Resource creation cancelled                            |
+   | 2024-09-11 XX:XX:XX | Get<TABLE>Resolver  | UPDATE_FAILED | -              | Resource handler returned message: "No resolver found. |
+   | 2024-09-11 XX:XX:XX | List<TABLE>Resolver | UPDATE_FAILED | -              | Resource handler returned message: "No resolver found. |
 
 6. AppSyncのコンソールからUPDATEしようとしたが、リゾルバーがアタッチされていないものを確認する
    コンソールのAppSync -> スキーマ

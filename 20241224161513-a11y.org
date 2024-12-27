@@ -1,0 +1,20 @@
+:PROPERTIES:
+:ID:       DE67AFE6-129C-45E9-A883-FEA2E56228A5
+:END:
+#+title: a11y
+
+* [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]におけるa11y
+:PROPERTIES:
+:ID:       C141D0AE-1217-4418-8ADF-03334D6443AE
+:END:
+- https://docs.flutter.dev/ui/accessibility-and-internationalization/accessibility
+- https://fortee.jp/flutterkaigi-2021/proposal/d80e1204-3fd5-4c55-b728-83ee1dbf1d01
+
+** Large fonts
+- フォントサイズが大きくなってもデザインが崩れないようにする
+- OSの設定でフォントサイズを設定できるようにする
+
+** Screen renders
+
+** Sufficient contrast
+- [[id:F792DF4D-904F-4172-8328-3526C168D3E4][W3C]]についての記載があるため、こちらに準拠する形で実装するのがよさそう

@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       3697F219-5A1F-492F-A6D7-5BE562F36ABE
+:ROAM_ALIASES: 増分エクスポート
+:END:
+#+title: Incremental export
+#+filetags: :DynamoDB:AWS:
+
+- [[id:AC8972B2-E447-4FBA-97EE-77336884E7F5][DynamoDB]]のデータを[[id:C85A09DE-D726-4B6B-A5B8-54F5BD858CE5][S3]]へエクスポートする機能
+- 指定した時間間隔内に変更されたデータのみをエクスポートできる
+- 増分エクスポートを使用すれば、挿入、更新、または削除されたデータを少しずつエクスポートできる

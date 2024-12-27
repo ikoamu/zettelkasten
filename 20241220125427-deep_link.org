@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       824EC1A3-F0CC-4B3D-973D-196FA08FFF57
+:END:
+#+title: Deep Link
+
+- Webサイトからスマホアプリの特定ページに直接移動することができるリンク

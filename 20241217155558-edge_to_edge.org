@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       45E0A4B0-018D-4A27-8A34-5097A74640C8
+:END:
+#+title: Edge-to-edge
+#+filetags: :Android:
+
+- 直訳すると「端から端まで」
+- [[id:DF5598A5-145F-40E7-BCF9-5B21F27208C4][Android]]アプリの描画領域をシステムUIの裏まで拡張することでアプリを使っている時の没入感をより高められる機能
+
+
+
