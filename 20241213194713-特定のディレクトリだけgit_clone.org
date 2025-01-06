@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       0851F711-2009-4387-9641-398E7CC785B7
+:END:
+#+title: 特定のディレクトリだけgit clone
+#+filetags: :Git:
+
+#+begin_src bash
+$ git clone --filter=blob:none --sparse ${REMOTE_URL}
+$ git sparse-checkout set ${DIRECTORY_NAME}
+#+end_src

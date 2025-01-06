@@ -1,0 +1,28 @@
+:PROPERTIES:
+:ID:       4ED355F7-A666-486A-9B1B-C4E3D6704391
+:END:
+#+title: 改めて、Flutter
+#+filetags: :Flutter:
+
+- [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]でモバイルアプリを開発し始めてもうすぐ2年が経つ
+- そんな中で実はよくわかってないところ・気になっているところを改めて調べたい
+- ぶっちゃけFlutterのことそんなに好きじゃない。
+  - だからこそ、改めて調べてみる(好きになるかも)
+
+* [[id:72FAD03E-5C0F-40DB-BD06-1B60AF0D63FC][BuildContext]]って実際なんなん？
+
+* Sliverって何？
+
+* Flutterでゲームアプリは作れるの？
+- [[id:5973114D-4DAB-4B6F-9BF6-7D765AAD0BB7][Flame]]でいい感じに作れそう
+  https://codelabs.developers.google.com/codelabs/flutter-flame-game?hl=ja#0 やってみよう
+  => [[id:CD478AF6-053C-477A-8DAA-FB6B7EBABB92][FlutterとFlameでゲームを作成する]]
+- [[id:029986EE-B50A-4DA4-99D8-65D284D18A1E][Bonfire]]なるものもあるらしい
+
+* [[id:98A422B8-617E-48F2-84D6-D7C330B2A44B][Riverpod]]のベストプラクティスがよくわかってないかも
+
+* そろそろ描画の仕組みを知りたいかも
+
+* Flutterのパフォーマンスチューニング
+
+* Flutterのアニメーション

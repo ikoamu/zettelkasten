@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       5973114D-4DAB-4B6F-9BF6-7D765AAD0BB7
+:END:
+#+title: Flame
+#+filetags: :Flutter:
+
+* FlutterとFlame
+- [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]アプリは ~Widget~ ツリーを作成
+- [[id:5973114D-4DAB-4B6F-9BF6-7D765AAD0BB7][Flame]]ゲームは ~Component~ のツリーを管理
+
+* ホットリロードは効かない
+

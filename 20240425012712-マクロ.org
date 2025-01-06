@@ -3,3 +3,9 @@
 :END:
 #+title: マクロ
 
+* 一般的なマクロ
+複数の操作をまとめて後で呼び出せるようにする機能
+
+* [[id:799D307C-B31B-4CF7-A986-3E19786CF7CE][emacs]]におけるMacro
+https://ayatakesi.github.io/emacs/24.5/elisp_html/Macros.html
+

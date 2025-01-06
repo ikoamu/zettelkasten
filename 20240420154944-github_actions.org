@@ -3,3 +3,10 @@
 :END:
 #+title: GitHub Actions
 
+* GitHub Actionsの裏技                                              :article:
+:PROPERTIES:
+:ID:       49CF1738-9C77-4189-8FC7-289E253EF2E5
+:END:
+
+** GitHub ActionsのWorkflowをデフォルトブランチにマージする前に実行する裏技
+https://zenn.dev/ikoamu/articles/884ca302fbee35

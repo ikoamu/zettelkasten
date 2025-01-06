@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       32026612-D495-48AD-96D1-0702D6FBB76F
+:END:
+#+title: slack bot
+
+* [[id:63A71BCD-C71F-4EAF-9A31-4BE7B7947CA0][Discord]]のSlash Commandみたいなことできる？
+- [[id:E0288751-720E-4157-9D3D-A3DC8B56F76A][AWS Lambda]]みたいな[[id:0E4F74C9-FEED-4D39-A273-50B4C5D73F10][FaaS]]でつくりたい
+- https://api.slack.com/interactivity/slash-commands

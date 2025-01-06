@@ -2,11 +2,15 @@
 :ID:       DC008AE3-5333-4986-B104-8B635BD38CAE
 :END:
 #+title: Flutter 3.27でソーシャルログインがうまく動かない
+#+filetags: :Android:Flutter:article:
+
+https://zenn.dev/ikoamu/articles/0eba7e39efe65d
+
 * 事象
 - [[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]のバージョンを3.24から3.27に上げたタイミングで、Googleログイ
   ンやAppleログイン成功後、予期せぬ画面に遷移してしまう。
   - ログイン画面（WebView）から [[id:DCFBF3A9-9167-42B8-87E1-0B5725059D1B][GoRouter]]で定義していない画面にリダイレクトされてしまう
-  - Androidのみ
+  - [[id:DF5598A5-145F-40E7-BCF9-5B21F27208C4][Android]]のみ
   - iOSでは問題ない(リダイレクトしない)
 
 * 原因と修正方法
@@ -14,7 +18,7 @@
 - https://docs.flutter.dev/release/breaking-changes/deep-links-flag-change のMigration guide通りにfalseを指定したらこれまで通り動くようになった
 
 * iOSはなんでバージョンアップしてたのにうまく動いてたの？
-
+わからん
 
 * 学び
 ** 定期的なバージョンアップ大事
@@ -23,3 +27,8 @@
 - これがもっと前のバージョンから3.27に上げた時に遭遇していたら原因の特定がかなり大変だったと思う
 
 ** プラットフォーム毎にしっかり動作確認した方がいい
+Androidではログイン時にうまく動作しない問題が発生しましたが、iOSではこれまで通り正常に動作しました。
+Flutter公式のChange Logsを確認したところ、プラットフォームごとの差分はないように見えたものの、利用しているライブラリなどによって予期しないバグが発生する可能性があるため、動作確認は各プラットフォームでしっかり行った方がいいという学びがありました。
+
+
+

@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       CD478AF6-053C-477A-8DAA-FB6B7EBABB92
+:END:
+#+title: FlutterとFlameでゲームを作成する
+
+- https://codelabs.developers.google.com/codelabs/flutter-flame-brick-breaker?hl=ja#0
+を読みながら[[id:92CA83DB-6830-4473-944B-F49B8AD1C31A][Flutter]]と[[id:5973114D-4DAB-4B6F-9BF6-7D765AAD0BB7][Flame]]を使ってゲームを作成する方法を学んでみる
+- 最終的にはパズルゲームが作りたい
+
+* プロジェクト作成
