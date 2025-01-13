@@ -1,0 +1,24 @@
+:PROPERTIES:
+:ID:       C0BF6479-0680-4750-A048-828DA72CBBBB
+:ROAM_ALIASES: ヒューマンインザループ HITL
+:END:
+#+title: Human-in-the-Loop
+#+filetags: :AI:
+
+- 人間との相互座用がシステム内に含まれることを指す言葉
+- AIの性能を引き出し、信頼性を高める概念
+- [[id:9E38F234-C221-4373-B26C-821F78FF4458][outlier.ai]]の仕事も多分それ?
+
+* 例
+- フライトシミュレーターやドライビングシミュレーターなどで、操作者がシミュレーションに参加することが
+
+* 生成AI分野で重要な理由
+AI開発において、HITLが重要な理由
+- 品質保証と精度向上
+- [[id:7A8946E7-552E-4ED0-B4CD-6DBE05126E4E][エッジケース]]への対応
+- 倫理と信頼性の担保
+
+* 参考記事
+- https://cloud.signate.jp/column/human-in-the-loop
+- https://www.soumu.go.jp/main_content/000899843.pdf
+  - [[id:86452A66-FCEF-4869-A9AE-B466C3038A12][攻殻機動隊]]を例に挙げて話している
