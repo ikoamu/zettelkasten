@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       53DA0EF6-745A-491B-9A26-C2C59215F52D
+:END:
+#+title: PiP
+#+filetags: :web:
+
+https://developer.chrome.com/docs/web-platform/document-picture-in-picture?ref=hackernoon.com&hl=ja

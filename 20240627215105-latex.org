@@ -3,3 +3,7 @@
 :END:
 #+title: LaTeX
 
+* [[id:13AEED11-5252-4F49-8DF5-8A4CFEE5380F][TeX]]との違い
+https://blog.wtsnjp.com/2016/12/19/tex-and-latex/
+
+

@@ -1,5 +1,6 @@
 :PROPERTIES:
 :ID:       70E2620E-9D5A-493D-A8F3-0BCD49B2A064
+:ROAM_ALIASES: シューゲイザー
 :END:
 #+title: Shoegaze
 #+filetags: :genre(music):music:

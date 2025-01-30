@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       2CF48813-D92A-495A-86C9-C265C1D5EEF6
+:END:
+#+title: window.open
+#+filetags: :web:
+

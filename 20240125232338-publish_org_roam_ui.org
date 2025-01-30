@@ -40,9 +40,38 @@ https://github.com/ikoamu/publish-org-roam-ui/issues/13
 *** 開発者ツールを見るとエラーが出ているからそれが原因か？
 - processOrgのsecction部分かな？
   - コメントアウトしたら治った
-** TODO [[id:AE463A5A-5D42-4A6C-A1CF-3365C66A0326][org-cite]]サポート
+** DONE [[id:AE463A5A-5D42-4A6C-A1CF-3365C66A0326][org-cite]]サポート
 [[id:9D7068AD-090B-4C72-B1D3-AA97E34FF736][org-roam-uiのgraphdata]]で[[id:AE463A5A-5D42-4A6C-A1CF-3365C66A0326][org-cite]]と[[id:3AA03F38-BE5D-4BFB-9E0C-458939005A98][org-ref]]をサポートしていなかったためサポートする
-** TODO 
+** TODO クオートの対応がしたい
+#+begin_quote
+this is normal quote
+#+end_quote
+
+#+BEGIN_QUOTE
+[!NOTE]
+this is note
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+[!TIP]
+this is tip
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+[!IMPORTANT]
+this is important
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+[!WARNING]
+this is warning
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+[!CAUTION]
+this is caution
+#+END_QUOTE
+
 ** TODO ファビコン設定
 
 ** DONE ノードに特定のURLをつける
@@ -76,5 +105,6 @@ https://zenn.dev/tak_dcxi/articles/f464f90a24f754b15dd9
 * バグ修正
 ** DONE [[id:A0578F9C-C1B6-4DB6-B27D-914E01E101FF][publish-org-roam-uiのヘッダーに設定している値でActionが失敗する]]
 ** DONE [[id:F5612736-833B-433C-A032-F77234784C06][publish-org-roam-uiでタイムスタンプがないファイルに対応]]
+** TODO [[id:663959D8-7463-4FB9-B095-38487E3292B8][publish-org-roam-uiでLaTeXがうまく動かない]]
 * issue
 [[id:1F9504B0-D608-4186-A837-731C134C0B84][publish-org-roam-uiのissue]]

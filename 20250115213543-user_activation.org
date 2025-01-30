@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       BB9C0534-B44A-4CF6-9211-E22FCD2ACCEE
+:END:
+#+title: User Activation
+#+filetags: :web:
+
+https://developer.mozilla.org/ja/docs/Web/API/UserActivation
+
+* Features gated by user activation
+:PROPERTIES:
+:ID:       D3B83352-F405-48C7-8913-9D5D521A236C
+:END:
+- 特定のAPIについて条件を満たさないと実行不可に実行不可にする仕組み
+- Webページ所有者の[[id:15DD94FE-7358-4A6E-8A96-233C15DEA653][JavaScript]]が好き勝手呼び出せると悪用可能なAPIをユーザーの操作に起因していないと呼び出せない仕組み
+- https://developer.mozilla.org/en-US/docs/Web/Security/User_activation

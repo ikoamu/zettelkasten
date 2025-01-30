@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       1FC8AC93-0428-48E6-B6BF-1B2A587CC342
+:END:
+#+title: ピンポン
+
