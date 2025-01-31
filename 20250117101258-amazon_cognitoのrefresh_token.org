@@ -1,0 +1,26 @@
+:PROPERTIES:
+:ID:       46515C56-D0F9-4AF1-BAD6-269C975B606A
+:END:
+#+title: Amazon CognitoのRefresh Token
+
+* 前提
+[[id:CBFE3F09-2A24-4259-96F0-3F9409DF40A7][Cognito]]から発行されるトークン
+
+- ID Token
+  - ユーザー情報を取得する場合に使用する
+- Access Token
+  - 認証に必要な最低限のユーザー情報を含めたトークン
+- [[id:8D5398ED-8966-436A-B8E8-5909FD45284D][RefreshToken]]
+  - ID TokenとAccess Tokenを更新するために利用する
+
+* 有効期限
+https://docs.aws.amazon.com/ja_jp/cognito/latest/developerguide/amazon-cognito-user-pools-using-the-refresh-token.html
+
+- 有効期限はデフォルト30日
+- 有効期限は60分~10年までの値で設定できる
+- 有効期限が切れた場合は、ユーザーは再度ログインする必要がある
+- ユーザーのアカウント自体は、ユーザーが新しいアカウントの
+  ~UnusedAccountValidityDays~ 時間制限前に少なくとも 1 回ログインしてい
+  る限り、その有効期限が切れることはありません。
+  - 本当に使われている？
+

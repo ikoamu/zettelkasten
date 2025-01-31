@@ -8,6 +8,7 @@ https://zenn.dev/levtech/articles/a6e8910df5baa0
 * 認証と認可
 :PROPERTIES:
 :ID:       8D5398ED-8966-436A-B8E8-5909FD45284D
+:ROAM_ALIASES: RefreshToken
 :END:
 
 ** 認証

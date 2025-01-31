@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       158FA445-D32F-419F-9AE8-5494067EE0BC
+:END:
+#+title: CSSでノイズ
+#+filetags: :web:
+
+https://css-tricks.com/grainy-gradients/
+https://www.youtube.com/watch?v=XX2gZTGwZWc
+
+

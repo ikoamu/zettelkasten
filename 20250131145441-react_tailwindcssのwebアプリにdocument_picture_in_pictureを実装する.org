@@ -1,0 +1,35 @@
+:PROPERTIES:
+:ID:       3708581E-37D7-4543-8553-85395E3FB8E6
+:END:
+#+title: React + TailwindCSSのWebアプリにDocument Picture-in-Pictureを実装する
+#+filetags: :wip:article:web:React:
+
+[[id:F581B8C4-23D6-470A-A9EB-D5F1A84B4C34][React]] + [[id:E1EE03DF-3856-44CE-B5EA-F572BCDFA4D4][TailwindCSS]] のWebアプリに[[id:F97C8B48-2491-4A33-B2FD-24EB12416544][Document Picture-in-Picture API]]を使ってPiP機能を実装する方法です。
+
+* [[Id:F97C8B48-2491-4A33-B2FD-24EB12416544][Document Picture-in-Picture API]] とは
+Webアプリケーションで任意のHTML要素を常時最前面の別ウィンドウに表示で
+きる新しいWeb APIです。従来のPicture-in-Picture APIは ~<video>~ 要素のみ
+をポップアウト表示できましたが、DocPiPではあらゆるHTML要素を表示できる
+ように拡張されています。
+
+これにより、ブラウザで他のサイトを見ながらさまざまなコンテンツを常に最
+前面で表示し続けることができます。
+
+https://support.google.com/meet/answer/13665919?hl=ja
+
+https://developer.chrome.com/blog/spotify-picture-in-picture?hl=ja
+
+* PiPウィンドウを表示・非表示できるようにする
+
+** 表示
+
+** 非表示
+
+* PiPウィンドウに任意の要素を表示する
+
+* PiPウィンドウ内で[[id:E1EE03DF-3856-44CE-B5EA-F572BCDFA4D4][TailwindCSS]]を利用できるようにする
+
+* Document PiP APIをサポートしているかどうかをチェックする
+#+begin_quote
+Arcはだめ
+#+end_quote

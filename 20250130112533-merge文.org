@@ -1,0 +1,57 @@
+:PROPERTIES:
+:ID:       75B3DCC3-BE8F-4F2A-85E4-DAAA87003773
+:END:
+#+title: MERGE文
+#+filetags: :SQL:
+
+* [[id:C32B9491-8874-4569-A905-F0E7F8CF5701][BigQuery]]におけるMerge構文
+
+#+begin_src sql
+  MERGE `マージ先`
+    USING (
+      -- マージ先にマージしたいレコード
+      SELECT * FROM XX WHERE XX.x = true
+    ) as tmp
+    ON (
+      -- 結合条件
+      `マージ先`.date = tmp.date
+    )
+    When MATCHED THEN
+      UPDATE SET
+	-- アップデート条件
+	`マージ先`.date = tmp.date
+    WHEN NOT MATCHED THEN
+      -- アップデート条件にマッチしない場合はレコードを挿入
+      INSERT ROW;
+#+end_src
+
+#+begin_src sql
+  -- 定期実行時の日時を取得
+  DECLARE target_date DATE DEFAULT PARSE_DATE('%Y%m%d', @execution_date_yyyymmdd);
+
+  -- テーブル作成
+  CREATE TABLE IF NOT EXISTS
+    `my_table` (
+      date DATE,
+      count INT64,
+      name STRING as n
+    );
+
+  MERGE `my_table` AS mt
+  USING (
+    SELECT
+      a as date
+      b as count
+      c as name
+    FROM
+      `other_table_*` AS ot
+    CROSS JOIN
+      ot.name
+    ) as tmp
+  ON mt.date = tmp.date
+  WHEN MATCHED THEN
+    UPDATE SET 
+	n = tmp.name
+  WHEN NOT MATCHED THEN
+    INSERT ROW;
+#+end_src
